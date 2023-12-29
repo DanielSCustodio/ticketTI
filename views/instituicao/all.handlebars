@@ -1,0 +1,19 @@
+<section>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each institutions}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.name}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <a href="/instituicao/cadastro">Cadastar</a>
+</section>
