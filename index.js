@@ -4,7 +4,8 @@ require('custom-env').env('development.local');
 
 const app = express();
 
-//Connection
+//Connection BD
+const connection = require('./db/connection');
 
 //Models
 
@@ -32,6 +33,8 @@ app.get('/', (_req, res) => {
   res.send('Ok');
 });
 
-app.listen(process.env.PORT, 'localhost', () => {
-  console.log(`Aplicação em execução na porta ${process.env.PORT}`);
+connection.sync().then(() => {
+  app.listen(process.env.PORT, 'localhost', () => {
+    console.log(`Aplicação em execução na porta ${process.env.PORT}`);
+  });
 });
