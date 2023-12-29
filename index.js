@@ -8,6 +8,13 @@ const app = express();
 const connection = require('./db/connection');
 
 //Models
+/* const Institution = require('./models/Institution');
+const Departament = require('./models/Departament');
+const Person = require('./models/Person');
+const Administrador = require('./models/Administrator');
+const SupportAgent = require('./models/SupportAgent');
+const Equipment = require('./models/Equipment');
+const Ticket = require('./models/Ticket'); */
 
 //Routes
 
@@ -33,7 +40,7 @@ app.get('/', (_req, res) => {
   res.send('Ok');
 });
 
-connection.sync().then(() => {
+connection.sync(/* { force: true } */).then(() => {
   app.listen(process.env.PORT, 'localhost', () => {
     console.log(`Aplicação em execução na porta ${process.env.PORT}`);
   });
