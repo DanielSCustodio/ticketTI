@@ -1,0 +1,24 @@
+<section>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Setor</th>
+        <th>Instituição</th>
+    </thead>
+    <tbody>
+      {{#each people}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.role}}</td>
+          <td>{{this.Departament.name}}</td>
+          <td>{{this.Institution.name}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <a href="/colaborador/cadastro">Cadastar</a>
+</section>

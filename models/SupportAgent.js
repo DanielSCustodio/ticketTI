@@ -3,8 +3,8 @@ const db = require('../db/connection');
 const Person = require('./Person');
 
 const SupportAgent = db.define('SupportAgent', {
-  type: {
-    type: DataTypes.STRING(50),
+  role: {
+    type: DataTypes.BOOLEAN, // 1 Funcionario  // 0 Prestador de serviço
     allowNull: false,
     require: true,
   },

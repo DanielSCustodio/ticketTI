@@ -19,6 +19,7 @@ const Ticket = require('./models/Ticket'); */
 //Routes
 const InstitutionRoutes = require('./routes/Institution');
 const DepartamentRoutes = require('./routes/Departament');
+const PersonRoutes = require('./routes/Person');
 
 //Template Engine
 app.engine('handlebars', exphbs.engine());
@@ -40,6 +41,7 @@ app.use(express.json());
 //Routes
 app.use('/instituicao', InstitutionRoutes);
 app.use('/setor', DepartamentRoutes);
+app.use('/colaborador', PersonRoutes);
 app.get('/', (_req, res) => {
   res.send('Ok');
 });
