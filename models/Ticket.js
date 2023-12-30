@@ -20,6 +20,12 @@ const Ticket = db.define(
       require: true,
     },
 
+    solution: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      require: true,
+    },
+
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,

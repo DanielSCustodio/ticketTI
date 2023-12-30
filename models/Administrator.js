@@ -14,6 +14,12 @@ const Administrador = db.define('Administrador', {
     allowNull: false,
     require: true,
   },
+
+  privilege: {
+    type: DataTypes.BOOLEAN, // 1 All - 0 Default
+    allowNull: false,
+    require: true,
+  },
 });
 
 Administrador.belongsTo(Person);

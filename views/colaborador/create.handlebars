@@ -1,0 +1,35 @@
+<section class='form-conatiner'>
+  <form action='/colaborador/add' method='POST' class='form'>
+    <div class='form-control'>
+      <input
+        type='text'
+        name='name'
+        placeholder='Escreva o nome do colaborador'
+      />
+    </div>
+    <div class='form-control'>
+      <input
+        type='text'
+        name='role'
+        placeholder='Escreva a função do colaborador'
+      />
+    </div>
+    <div class='form-control'>
+      <label>Instituição</label>
+      <select name='institutionSelected'>
+        {{#each institutions}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <label>Setor</label>
+      <select name='departamentSelected'>
+        {{#each departaments}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <input type='submit' value='Cadastar' class='btn' />
+  </form>
+</section>
