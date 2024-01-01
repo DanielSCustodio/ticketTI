@@ -1,0 +1,22 @@
+<section>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Equipamento</th>
+        <th>Responsável</th>
+        <th>Setor</th>
+    </thead>
+    <tbody>
+      {{#each equipments}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.Person.name}}</td>
+          <td>{{this.Departament.name}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <a href="/equipamento/cadastro">Cadastar</a>
+</section>

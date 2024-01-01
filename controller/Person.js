@@ -8,6 +8,7 @@ module.exports = class PersonController {
     const institutions = await Institution.findAll({ raw: true });
     res.render('colaborador/create', { departaments, institutions });
   }
+
   static async createPersonSave(req, res) {
     const { name, role, institutionSelected, departamentSelected } = req.body;
     const id = (await Person.findAll({ raw: true })).length + 1;
