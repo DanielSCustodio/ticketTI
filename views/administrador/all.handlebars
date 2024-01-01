@@ -1,0 +1,23 @@
+<section>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Username</th>
+        <th>Administrado Geral</th>
+    </thead>
+    <tbody>
+      {{#each administradors}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.Person.name}}</td>
+          <td>{{this.username}}</td>
+          <td>{{#if this.privilege}}Sim{{else}}Não{{/if}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <p>{{adm}}</p>
+  </table>
+  <a href="/administrador/cadastro">Cadastar</a>
+</section>

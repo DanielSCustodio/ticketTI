@@ -2,7 +2,7 @@ const Departament = require('../models/Departament');
 const Person = require('../models/Person');
 const Equipment = require('../models/Equipment');
 
-module.exports = class EuipmentController {
+module.exports = class EquipmentController {
   static async createEquipment(_req, res) {
     const departaments = await Departament.findAll({ raw: true });
     const people = await Person.findAll({ raw: true });

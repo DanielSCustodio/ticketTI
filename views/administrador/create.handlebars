@@ -1,0 +1,30 @@
+<section class='form-conatiner'>
+  <form action='/administrador/add' method='POST' class='form'>
+    <div class='form-control'>
+      <label>Colaborador</label>
+      <select name='personSelected'>
+        {{#each people}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <input
+        type='text'
+        name='username'
+        placeholder='Digite o nome de usuário'
+      />
+    </div>
+    <div class='form-control'>
+      <input type='password' name='password' placeholder='Escolha uma senha' />
+    </div>
+    <div class='form-control'>
+      <label>Previlégios de Admistrador</label>
+      <select name='privilege'>
+        <option value='1'>Sim</option>
+        <option value='0'>Não</option>
+      </select>
+    </div>
+    <input type='submit' value='Cadastar' class='btn' />
+  </form>
+</section>
