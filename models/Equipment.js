@@ -14,7 +14,10 @@ const Equipment = db.define('Equipment', {
 Equipment.belongsTo(Departament);
 Departament.hasMany(Equipment);
 
-Equipment.belongsTo(Person);
+Equipment.belongsTo(Person, {
+  foreignKey: 'PersonId',
+  allowNull: true,
+});
 Person.hasMany(Equipment);
 
 module.exports = Equipment;

@@ -1,0 +1,28 @@
+<section class='form-conatiner'>
+  <form action='/equipamento/add' method='POST' class='form'>
+    <div class='form-control'>
+      <input
+        type='text'
+        name='name'
+        placeholder='Escreva o nome do equipamento'
+      />
+    </div>
+    <div class='form-control'>
+      <label>Colaborador</label>
+      <select name='personSelected'>
+        {{#each people}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <label>Setor</label>
+      <select name='departamentSelected'>
+        {{#each departaments}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <input type='submit' value='Cadastar' class='btn' />
+  </form>
+</section>
