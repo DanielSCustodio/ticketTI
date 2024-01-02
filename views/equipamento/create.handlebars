@@ -23,6 +23,21 @@
         {{/each}}
       </select>
     </div>
+    <div class='form-control'>
+      <label>Tipo de referência</label>
+      <select name='referenceTypeSelected'>
+        {{#each referenceType}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <input
+        type='text'
+        name='reference'
+        placeholder='Digite a referência do produto'
+      />
+    </div>
     <input type='submit' value='Cadastar' class='btn' />
   </form>
 </section>
