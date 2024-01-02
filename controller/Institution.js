@@ -5,7 +5,7 @@ module.exports = class InstitutionController {
     res.render('instituicao/create');
   }
   static async createInstitutionSave(req, res) {
-    const response = { name: req.body.institution };
+    const response = { name: req.body.name };
     await Institution.create(response);
     res.redirect('/instituicao');
   }

@@ -22,6 +22,7 @@ const DepartamentRoutes = require('./routes/Departament');
 const PersonRoutes = require('./routes/Person');
 const EquipmentRoutes = require('./routes/Equipment');
 const AdministratorRoutes = require('./routes/Administrator');
+const ReferenceTypeRoutes = require('./routes/ReferenceType');
 
 //Template Engine
 app.engine('handlebars', exphbs.engine());
@@ -46,6 +47,7 @@ app.use('/setor', DepartamentRoutes);
 app.use('/colaborador', PersonRoutes);
 app.use('/equipamento', EquipmentRoutes);
 app.use('/administrador', AdministratorRoutes);
+app.use('/tipo-de-referencia', ReferenceTypeRoutes);
 app.get('/', (_req, res) => {
   res.send('Ok');
 });

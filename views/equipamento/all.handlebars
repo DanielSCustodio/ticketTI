@@ -6,6 +6,8 @@
         <th>Equipamento</th>
         <th>Responsável</th>
         <th>Setor</th>
+        <th>Tipo de refrência</th>
+        <th>Referência</th>
     </thead>
     <tbody>
       {{#each equipments}}
@@ -14,6 +16,8 @@
           <td>{{this.name}}</td>
           <td>{{this.Person.name}}</td>
           <td>{{this.Departament.name}}</td>
+          <td>{{this.ReferenceType.name}}</td>
+          <td>{{this.reference}}</td>
         </tr>
       {{/each}}
     </tbody>
