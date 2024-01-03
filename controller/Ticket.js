@@ -33,8 +33,6 @@ module.exports = class TicketController {
       startTime,
       endTime,
       administratorIdSelected,
-      oneAssistantIdSelected,
-      twoAssistantIdSelected,
       departamentSelected,
       requesterSelected,
       equipmentSelected,
@@ -45,16 +43,6 @@ module.exports = class TicketController {
     const supportAgent = await Person.findOne({
       raw: true,
       where: { name: administratorIdSelected },
-    });
-
-    const oneAssistant = await Person.findOne({
-      raw: true,
-      where: { name: oneAssistantIdSelected },
-    });
-
-    const twoAssistant = await Person.findOne({
-      raw: true,
-      where: { name: twoAssistantIdSelected },
     });
 
     const departament = await Departament.findOne({
@@ -80,8 +68,6 @@ module.exports = class TicketController {
       startTime,
       endTime,
       AdministratorId: supportAgent.id,
-      OneAssistantId: oneAssistant.id,
-      TwoAssistantId: twoAssistant.id,
       DepartamentId: departament.id,
       PersonId: requester.id,
       EquipmentId: equipment.id,
@@ -92,16 +78,26 @@ module.exports = class TicketController {
     res.redirect(`/ticket/${id}`);
   }
 
+  // Controller
   static async viewTickets(_req, res) {
     let tickets = await Ticket.findAll({
       include: [
         { model: Departament },
         { model: Person },
-        { model: Administrator },
+        {
+          model: Administrator,
+          include: [{ model: Person, attributes: ['name'] }],
+        },
         { model: Equipment },
       ],
     });
-    tickets = tickets.map((result) => result.get({ plain: true }));
+
+    tickets = tickets.map((result) => {
+      const plainResult = result.get({ plain: true });
+      // Renomeia o campo AdministratorId para AdministratorName
+      plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
+      return plainResult;
+    });
     res.render('ticket/all', { tickets });
   }
 };
