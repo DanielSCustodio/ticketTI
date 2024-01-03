@@ -59,16 +59,6 @@ Person.hasMany(Ticket);
 Ticket.belongsTo(Administrator);
 Administrator.hasMany(Ticket);
 
-Ticket.belongsTo(Administrator, {
-  foreignKey: 'OneAssistantId',
-  allowNull: true,
-});
-
-Ticket.belongsTo(Administrator, {
-  foreignKey: 'TwoAssistantId',
-  allowNull: true,
-});
-
 Ticket.belongsTo(Equipment);
 Equipment.hasMany(Ticket);
 

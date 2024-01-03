@@ -12,8 +12,6 @@
         <th>Final do atendimento</th>
         <th>Solicitante</th>
         <th>Suporte de agente</th>
-        <th>Ajudante #1</th>
-        <th>Ajudante #2</th>
     </thead>
     <tbody>
       {{#each tickets}}
@@ -27,7 +25,8 @@
           <td>{{this.startTime}}</td>
           <td>{{this.endTime}}</td>
           <td>{{this.Person.name}}</td>
-          <td>{{this.Administrator.id}}</td>
+          <td>{{AdministratorName}}</td>
+          <td></td>
         </tr>
       {{/each}}
     </tbody>
