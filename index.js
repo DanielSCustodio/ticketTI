@@ -11,7 +11,7 @@ const connection = require('./db/connection');
 /* const Institution = require('./models/Institution');
 const Departament = require('./models/Departament');
 const Person = require('./models/Person');
-const Administrador = require('./models/Administrator');
+const Administrator = require('./models/Administrator');
 const Equipment = require('./models/Equipment');
 const ReferenceType = require('./models/ReferenceType');
 const Ticket = require('./models/Ticket'); */
@@ -23,6 +23,7 @@ const PersonRoutes = require('./routes/Person');
 const EquipmentRoutes = require('./routes/Equipment');
 const AdministratorRoutes = require('./routes/Administrator');
 const ReferenceTypeRoutes = require('./routes/ReferenceType');
+const TicketRoutes = require('./routes/Ticket');
 
 //Template Engine
 app.engine('handlebars', exphbs.engine());
@@ -48,6 +49,7 @@ app.use('/colaborador', PersonRoutes);
 app.use('/equipamento', EquipmentRoutes);
 app.use('/administrador', AdministratorRoutes);
 app.use('/tipo-de-referencia', ReferenceTypeRoutes);
+app.use('/ticket', TicketRoutes);
 app.get('/', (_req, res) => {
   res.send('Ok');
 });

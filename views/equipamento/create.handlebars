@@ -1,6 +1,7 @@
 <section class='form-conatiner'>
   <form action='/equipamento/add' method='POST' class='form'>
     <div class='form-control'>
+      <label>Equipamento</label>
       <input
         type='text'
         name='name'
@@ -8,7 +9,7 @@
       />
     </div>
     <div class='form-control'>
-      <label>Colaborador</label>
+      <label>Responsável pelo equipamento</label>
       <select name='personSelected'>
         {{#each people}}
           <option value='{{this.name}}'>{{this.name}}</option>
