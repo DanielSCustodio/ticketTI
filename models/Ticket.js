@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 const Departament = require('./Departament');
 const Person = require('./Person');
-const Administrador = require('./Administrator');
+const Administrator = require('./Administrator');
 const Equipment = require('./Equipment');
 
 const Ticket = db.define(
@@ -56,15 +56,15 @@ Ticket.belongsTo(Person, {
 });
 Person.hasMany(Ticket);
 
-Ticket.belongsTo(Administrador);
-Administrador.hasMany(Ticket);
+Ticket.belongsTo(Administrator);
+Administrator.hasMany(Ticket);
 
-Ticket.belongsTo(Administrador, {
+Ticket.belongsTo(Administrator, {
   foreignKey: 'OneAssistantId',
   allowNull: true,
 });
 
-Ticket.belongsTo(Administrador, {
+Ticket.belongsTo(Administrator, {
   foreignKey: 'TwoAssistantId',
   allowNull: true,
 });

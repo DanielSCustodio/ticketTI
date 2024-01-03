@@ -12,7 +12,6 @@ module.exports = class ReferenceTypeController {
 
   static async viewReferenceTypes(_req, res) {
     const referenceTypes = await ReferenceType.findAll({ raw: true });
-    console.log('=======>', referenceTypes);
     res.render('tipo-de-referencia/all', { referenceTypes });
   }
 };

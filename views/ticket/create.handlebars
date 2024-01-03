@@ -1,0 +1,83 @@
+<section class='form-conatiner'>
+  <form action='/ticket/add' method='POST' class='form'>
+    <div class='form-control'>
+      <label for='title'>Assunto</label>
+      <input type='text' name='title' id='title' placeholder='Assunto' />
+    </div>
+    <div class='form-control'>
+      <label for='description'>Descrição do problema</label>
+      <textarea
+        name='description'
+        id='description'
+        cols='30'
+        rows='10'
+      ></textarea>
+    </div>
+    <div class='form-control'>
+      <label for='solution'>Solução</label>
+      <textarea name='solution' id='solution' cols='30' rows='10'></textarea>
+    </div>
+    <div class='form-control'>
+      <label for='date'>Data do ticket</label>
+      <input type='date' name='date' id='date' />
+    </div>
+    <div class='form-control'>
+      <label for='startTime'>Início do atendimento</label>
+      <input type='time' name='startTime' id='startTime' />
+    </div>
+    <div class='form-control'>
+      <label for='endTime'>Final do atendimento</label>
+      <input type='time' name='endTime' id='endTime' />
+    </div>
+    <div class='form-control'>
+      <label>Agente de suporte</label>
+      <select name='administratorIdSelected'>
+        {{#each administrators}}
+          <option value='{{this.Person.name}}'>{{this.Person.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <label>Ajudante 01</label>
+      <select name='oneAssistantIdSelected'>
+        {{#each administrators}}
+          <option value='{{this.Person.name}}'>{{this.Person.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <label>Ajudante 02</label>
+      <select name='twoAssistantIdSelected'>
+        {{#each administrators}}
+          <option value='{{this.Person.name}}'>{{this.Person.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <label>Setor</label>
+      <select name='departamentSelected'>
+        {{#each departaments}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <label>Solicitante</label>
+      <select name='requesterSelected'>
+        {{#each people}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-control'>
+      <label>Equipamento</label>
+      <select name='equipmentSelected'>
+        {{#each equipment}}
+          <option value='{{this.name}}'>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <input type='submit' value='Cadastar' class='btn' />
+  </form>
+</section>

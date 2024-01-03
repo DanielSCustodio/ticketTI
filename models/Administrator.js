@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 const Person = require('./Person');
 
-const Administrador = db.define('Administrador', {
+const Administrator = db.define('Administrator', {
   username: {
     type: DataTypes.STRING(50),
     allowNull: false,
@@ -22,7 +22,7 @@ const Administrador = db.define('Administrador', {
   },
 });
 
-Administrador.belongsTo(Person);
-Person.hasMany(Administrador);
+Administrator.belongsTo(Person);
+Person.hasOne(Administrator);
 
-module.exports = Administrador;
+module.exports = Administrator;

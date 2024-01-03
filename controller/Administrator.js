@@ -28,15 +28,12 @@ module.exports = class AdministratorController {
   }
 
   static async viewAdministrators(_req, res) {
-    let administradors = await Administrator.findAll({
+    let administrators = await Administrator.findAll({
       include: [{ model: Person }],
     });
-    administradors = administradors.map((result) =>
+    administrators = administrators.map((result) =>
       result.get({ plain: true }),
     );
-
-    console.log(administradors);
-
-    res.render('administrador/all', { administradors });
+    res.render('administrador/all', { administrators });
   }
 };
