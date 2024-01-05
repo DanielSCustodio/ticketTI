@@ -1,5 +1,8 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const flash = require('express-flash');
 require('custom-env').env('development.local');
 
 const app = express();
@@ -24,10 +27,10 @@ const EquipmentRoutes = require('./routes/Equipment');
 const AdministratorRoutes = require('./routes/Administrator');
 const ReferenceTypeRoutes = require('./routes/ReferenceType');
 const TicketRoutes = require('./routes/Ticket');
+const authRotes = require('./routes/Auth');
 
 //Template Engine
 app.engine('handlebars', exphbs.engine());
-
 app.set('view engine', 'handlebars');
 
 //Static Files
@@ -39,8 +42,35 @@ app.use(
     extended: true,
   }),
 );
-
 app.use(express.json());
+
+//Session
+app.use(
+  session({
+    name: 'session',
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new FileStore({
+      logFn: function () {},
+      path: require('path').join(require('os').tmpdir(), 'sessions'),
+    }),
+    cookie: {
+      secure: false,
+      maxAge: 360000000,
+      expires: new Date(Date.now() + 360000000), // 5 dias
+      httpOnly: true,
+    },
+  }),
+);
+//Mensagens Flash
+app.use(flash());
+app.use((req, res, next) => {
+  if (req.session.userid) {
+    res.locals.session = req.session;
+  }
+  next();
+});
 
 //Routes
 app.use('/instituicao', InstitutionRoutes);
@@ -50,12 +80,18 @@ app.use('/equipamento', EquipmentRoutes);
 app.use('/administrador', AdministratorRoutes);
 app.use('/tipo-de-referencia', ReferenceTypeRoutes);
 app.use('/ticket', TicketRoutes);
+app.use('/', authRotes);
 app.get('/', (_req, res) => {
   res.send('Ok');
 });
 
-connection.sync(/* { force: true } */).then(() => {
-  app.listen(process.env.PORT, 'localhost', () => {
-    console.log(`Aplicação em execução na porta ${process.env.PORT}`);
-  });
-});
+connection
+  .sync(/* {
+    force: true,
+  } */)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log(`Aplicação em execução na porta ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => console.log(err));
