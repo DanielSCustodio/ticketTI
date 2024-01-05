@@ -19,12 +19,24 @@
       <input type='password' name='password' placeholder='Escolha uma senha' />
     </div>
     <div class='form-control'>
+      <input
+        type='password'
+        name='confirmpassword'
+        placeholder='Confirme a sua uma senha'
+      />
+    </div>
+    <div class='form-control'>
       <label>Previlégios de Admistrador</label>
       <select name='privilege'>
         <option value='1'>Sim</option>
         <option value='0'>Não</option>
       </select>
     </div>
+    {{#if messages.error-registro}}
+      <div class='message'>
+        {{messages.error-registro}}
+      </div>
+    {{/if}}
     <input type='submit' value='Cadastar' class='btn' />
   </form>
 </section>
