@@ -51,7 +51,7 @@ module.exports = class AdministratorController {
 
     try {
       await Administrator.create(adm);
-      req.flash('success-register', 'Deu tudo certo!');
+      req.flash('success-register', 'Usuário registrado com sucesso.');
       res.redirect('/administrador');
     } catch (error) {
       console.log(error);
