@@ -1,23 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ticketCVTR</title>
-</head>
-<body style="background-color: #bdb6b6;">
-  <nav>
-    <ul>
-      <li><a href="/ticket/cadastro">Ticket</a></li>
-      <li><a href="/instituicao/cadastro">Instituição</a></li>
-      <li><a href="/setor/cadastro">Setor</a></li>
-      <li><a href="/colaborador/cadastro">Pessoa</a></li>
-      <li><a href="/tipo-de-referencia/cadastro">Tipo de Referência</a></li>
-      <li><a href="/equipamento/cadastro">Equipamento</a></li>
-      <li><a href="/administrador/cadastro">Configurações</a></li>
-    </ul>
-  </nav>
+<html lang='pt-BR'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>ticketCVTR</title>
+  </head>
+  <body style='background-color: #bdb6b6;'>
+    <nav>
+      <ul>
+        {{#if session.userid}}
+          <li><a href='/ticket/cadastro'>Ticket</a></li>
+          <li><a href='/instituicao/cadastro'>Instituição</a></li>
+          <li><a href='/setor/cadastro'>Setor</a></li>
+          <li><a href='/colaborador/cadastro'>Pessoa</a></li>
+          <li><a href='/tipo-de-referencia/cadastro'>Tipo de Referência</a></li>
+          <li><a href='/equipamento/cadastro'>Equipamento</a></li>
+          <li><a href='/administrador/cadastro'>Configurações</a></li>
+          <li><a href='/logout'>Sair</a></li>
+        {{/if}}
+      </ul>
+    </nav>
     {{{body}}}
-  <footer>Rodapé</footer>
-</body>
+    <footer>Rodapé</footer>
+  </body>
 </html>
