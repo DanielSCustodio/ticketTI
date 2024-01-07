@@ -23,7 +23,6 @@ module.exports = class TicketController {
       administrators,
     });
   }
-  // Finalizar aqui
   static async createTicketSave(req, res) {
     const {
       title,
