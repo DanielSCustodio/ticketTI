@@ -28,6 +28,10 @@ const AdministratorRoutes = require('./routes/Administrator');
 const ReferenceTypeRoutes = require('./routes/ReferenceType');
 const TicketRoutes = require('./routes/Ticket');
 const authRotes = require('./routes/Auth');
+const DashboardRotes = require('./routes/Dashboard');
+
+//middleware
+const { checkAuth } = require('./helpers/auth');
 
 //Template Engine
 app.engine('handlebars', exphbs.engine());
@@ -73,16 +77,17 @@ app.use((req, res, next) => {
 });
 
 //Routes
-app.use('/instituicao', InstitutionRoutes);
-app.use('/setor', DepartamentRoutes);
-app.use('/colaborador', PersonRoutes);
-app.use('/equipamento', EquipmentRoutes);
-app.use('/administrador', AdministratorRoutes);
-app.use('/tipo-de-referencia', ReferenceTypeRoutes);
-app.use('/ticket', TicketRoutes);
+app.use('/instituicao', checkAuth, InstitutionRoutes);
+app.use('/setor', checkAuth, DepartamentRoutes);
+app.use('/colaborador', checkAuth, PersonRoutes);
+app.use('/equipamento', checkAuth, EquipmentRoutes);
+app.use('/administrador', checkAuth, AdministratorRoutes);
+app.use('/tipo-de-referencia', checkAuth, ReferenceTypeRoutes);
+app.use('/ticket', checkAuth, TicketRoutes);
+app.use('/dashboard', checkAuth, DashboardRotes);
 app.use('/', authRotes);
-app.get('/', (_req, res) => {
-  res.send('Ok');
+app.get('/', checkAuth, (_req, res) => {
+  res.redirect('dashboard');
 });
 
 connection
