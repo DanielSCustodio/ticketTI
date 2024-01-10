@@ -1,0 +1,126 @@
+<!-- Botão para abrir o modal -->
+<section class='form-conatiner'>
+  <form action='/colaborador/add' method='POST' class='form'>
+    <div class='form-control'>
+      <input
+        type='text'
+        name='name'
+        placeholder='Digite o nome do colaborador'
+      />
+    </div>
+    <div class='form-control'>
+      <input
+        type='text'
+        name='role'
+        placeholder='Digite a função do colaborador'
+      />
+    </div>
+
+    
+    <div class='form-control'>
+      <label>Setor</label>
+      <input name='departamentSelected' id='departamentSelected'  style="pointer-events:none"/>
+      <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
+    </div>
+    </div>
+
+    <input type='submit' value='Cadastar' class='btn' />
+  </form>
+</section>
+
+<!-- Modal Institution -->
+<div
+  class='modal fade'
+  id='departamentModel'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='ModalLabelDepartament'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='ModalLabelDepartament'>Setores</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <section>
+          <!-- Código Handlebars do Modal -->
+          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome da instituição...">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each departaments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </section>
+      </div>
+      <div class='modal-footer'>
+        <button
+          type='button'
+          class='btn btn-secondary'
+          data-dismiss='modal'
+        >Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Departament-->
+<script
+  src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.bundle.min.js'
+></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let openModalBtnDepartament = document.getElementById('openModalBtnDepartament');
+  let departamentModel = new bootstrap.Modal(document.getElementById('departamentModel'));
+  let departamentSelectedInput = document.getElementById('departamentSelected');
+
+  openModalBtnDepartament.addEventListener('click', function () {
+    departamentModel.show();
+  });
+
+  let selectableRows = document.querySelectorAll('.selectable-row');
+  selectableRows.forEach(function (row) {
+    row.addEventListener('click', function () {
+      let departamentId = row.getAttribute('data-id');
+      let departamentName = row.getAttribute('data-name');
+      departamentSelectedInput.value = departamentName;
+      departamentModel.hide();
+    });
+  });
+
+  searchInputDepartament.addEventListener('input', function () {
+    let searchTerm = searchInputDepartament.value.toLowerCase();
+
+    selectableRows.forEach(function (row) {
+      let rowName = row.getAttribute('data-name').toLowerCase();
+      let isVisible = rowName.includes(searchTerm);
+
+      // Define a visibilidade da linha com base no termo de busca
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+  });
+});
+</script>
