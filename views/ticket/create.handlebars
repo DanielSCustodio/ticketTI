@@ -29,40 +29,423 @@
       <label for='endTime'>Final do atendimento</label>
       <input type='time' name='endTime' id='endTime' />
     </div>
+        <div class='form-control'>
+      <label>Agente de atendimento</label>
+      <input name='administratorIdSelected' id='administratorIdSelected'  style="pointer-events:none"/>
+      <a href='#' id='openModalBtnAdministrator'><i class='bi bi-search'></i></a>
+    </div>
+    
     <div class='form-control'>
-      <label>Agente de suporte</label>
-      <select name='administratorIdSelected'>
-        {{#each administrators}}
-          <option value='{{this.Person.name}}'>{{this.Person.name}}</option>
-        {{/each}}
-      </select>
+      <label>Solicitante</label>
+      <input name='requesterSelected' id='requesterSelected'  style="pointer-events:none"/>
+      <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
     </div>
 
     <div class='form-control'>
       <label>Setor</label>
-      <select name='departamentSelected'>
-        {{#each departaments}}
-          <option value='{{this.name}}'>{{this.name}}</option>
-        {{/each}}
-      </select>
+      <input name='departamentSelected' id='departamentSelected'  style="pointer-events:none"/>
+      <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
     </div>
+    
     <div class='form-control'>
-      <label>Solicitante</label>
-      <select name='requesterSelected'>
-        {{#each people}}
-          <option value='{{this.name}}'>{{this.name}}</option>
-        {{/each}}
-      </select>
-    </div>
-    <div class='form-control'>
-      <label>Equipamento</label>
-      <select name='equipmentSelected'>
-        {{#each equipment}}
-          <option value='{{this.name}}'>{{this.name}}</option>
-        {{/each}}
-      </select>
+      <label>Equipamento/Sistema</label>
+      <input name='equipmentSelected' id='equipmentSelected'  style="pointer-events:none"/>
+      <a href='#' id='openModalBtnEquipment'><i class='bi bi-search'></i></a>
     </div>
 
     <input type='submit' value='Cadastar' class='btn' />
   </form>
 </section>
+
+<!--Person-->
+<section
+  class='modal fade'
+  id='personModel'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='ModalLabelPerson'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='ModalLabelPerson'>Colaboradores</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <section>
+          <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador...">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each people}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-people'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </section>
+      </div>
+      <div class='modal-footer'>
+        <span id='currentPage'></span>
+        <button type='button' class='btn btn-secondary' id='prevPageBtn'>Anterior</button>
+        <button type='button' class='btn btn-secondary' id='nextPageBtn'>Próximo</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!--Administrator-->
+<section
+  class='modal fade'
+  id='administrtorModel'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='ModalLabelAdministrator'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='ModalLabelAdministrator'>Setores</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <section>
+          <!-- Código Handlebars do Modal -->
+          <input type="text" id="searchInputAdministrator" placeholder="Buscar por nome...">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each administrators}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.Person.name}}'
+                  class='selectable-row-administrators'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.Person.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </section>
+      </div>
+      <div class='modal-footer'>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Equipment-->
+<section
+  class='modal fade'
+  id='equipmentModel'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='ModalLabelEquipment'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='ModalLabelEquipment'>Equipamento/Sistema</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <section>
+          <!-- Código Handlebars do Modal -->
+          <input type="text" id="searchInputEquipment" placeholder="Buscar por nome do equipamneto/sistema...">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each equipments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-equipments'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </section>
+      </div>
+      <div class='modal-footer'>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Departament-->
+<section
+  class='modal fade'
+  id='departamentModel'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='ModalLabelDepartament'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='ModalLabelDepartament'>Setores</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <section>
+          <!-- Código Handlebars do Modal -->
+          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor...">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each departaments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-departaments'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </section>
+      </div>
+      <div class='modal-footer'>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script   src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.bundle.min.js' ></script>
+
+<!--Person-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  
+  let openModalBtnPerson = document.getElementById('openModalBtnPerson');
+  let personModel = new bootstrap.Modal(document.getElementById('personModel'));
+  let requesterSelectedInput = document.getElementById('requesterSelected');
+
+  openModalBtnPerson.addEventListener('click', function () {
+    personModel.show();
+  });
+
+  let selectableRowsPerson = document.querySelectorAll('.selectable-row-people');
+  selectableRowsPerson.forEach(function (row) {
+    row.addEventListener('click', function () {
+      let personId = row.getAttribute('data-id');
+      let personName = row.getAttribute('data-name');
+      requesterSelectedInput.value = personName;
+      personModel.hide();
+    });
+  });
+
+  searchInputPerson.addEventListener('input', function () {
+    let searchTerm = searchInputPerson.value.toLowerCase();
+
+    selectableRowsPerson.forEach(function (row) {
+      let rowNamePerson = row.getAttribute('data-name').toLowerCase();
+      let isVisible = rowNamePerson.includes(searchTerm);
+
+      // Define a visibilidade da linha com base no termo de busca
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+  });
+  let currentPage = 1;
+  const itemsPerPage = 10;
+  const totalItems = selectableRowsPerson.length;
+
+  function paginate(page) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    selectableRowsPerson.forEach(function (row, index) {
+      const isVisible = index >= startIndex && index < endIndex;
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+
+    document.getElementById('currentPage').innerText = `Página ${page}`;
+  }
+
+  paginate(currentPage);
+
+  document.getElementById('prevPageBtn').addEventListener('click', function () {
+    if (currentPage > 1) {
+      currentPage--;
+      paginate(currentPage);
+    }
+  });
+
+  document.getElementById('nextPageBtn').addEventListener('click', function () {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      paginate(currentPage);
+    }
+  });
+
+});
+</script>
+
+<!--Administrator-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let openModalBtnAdministrator = document.getElementById('openModalBtnAdministrator');
+  let administrtorModel = new bootstrap.Modal(document.getElementById('administrtorModel'));
+  let administratorIdSelectedInput = document.getElementById('administratorIdSelected');
+
+  openModalBtnAdministrator.addEventListener('click', function () {
+    administrtorModel.show();
+  });
+
+  let selectableRowsAdministrator = document.querySelectorAll('.selectable-row-administrators');
+  selectableRowsAdministrator.forEach(function (row) {
+    row.addEventListener('click', function () {
+      let admnistratorId = row.getAttribute('data-id');
+      let admnistratorName = row.getAttribute('data-name');
+      administratorIdSelectedInput.value = admnistratorName;
+      administrtorModel.hide();
+    });
+  });
+
+  searchInputAdministrator.addEventListener('input', function () {
+    let searchTerm = searchInputAdministrator.value.toLowerCase();
+
+    selectableRowsAdministrator.forEach(function (row) {
+      let rowNameAdmnistrator = row.getAttribute('data-name').toLowerCase();
+      let isVisible = rowNameAdmnistrator.includes(searchTerm);
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+  });
+});
+</script>
+
+<!--Equipment-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let openModalBtnEquipment = document.getElementById('openModalBtnEquipment');
+  let equipmentModel = new bootstrap.Modal(document.getElementById('equipmentModel'));
+  let equipmentSelectedInput = document.getElementById('equipmentSelected');
+
+  openModalBtnEquipment.addEventListener('click', function () {
+    equipmentModel.show();
+  });
+
+  let selectableRowsEquipment = document.querySelectorAll('.selectable-row-equipments');
+  selectableRowsEquipment.forEach(function (row) {
+    row.addEventListener('click', function () {
+      let equipmentId = row.getAttribute('data-id');
+      let equipmentName = row.getAttribute('data-name');
+      equipmentSelectedInput.value = equipmentName;
+      equipmentModel.hide();
+    });
+  });
+
+  searchInputEquipment.addEventListener('input', function () {
+    let searchTerm = searchInputEquipment.value.toLowerCase();
+
+    selectableRowsEquipment.forEach(function (row) {
+      let rowNameEquipment = row.getAttribute('data-name').toLowerCase();
+      let isVisible = rowNameEquipment.includes(searchTerm);
+
+      // Define a visibilidade da linha com base no termo de busca
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+  });
+});
+</script>
+
+<!--Departament-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let openModalBtnDepartament = document.getElementById('openModalBtnDepartament');
+  let departamentModel = new bootstrap.Modal(document.getElementById('departamentModel'));
+  let departamentSelectedInput = document.getElementById('departamentSelected');
+
+  openModalBtnDepartament.addEventListener('click', function () {
+    departamentModel.show();
+  });
+
+  let selectableRowsDepartament = document.querySelectorAll('.selectable-row-departaments');
+  selectableRowsDepartament.forEach(function (row) {
+    row.addEventListener('click', function () {
+      let departamentId = row.getAttribute('data-id');
+      let departamentName = row.getAttribute('data-name');
+      departamentSelectedInput.value = departamentName;
+      departamentModel.hide();
+    });
+  });
+
+  searchInputDepartament.addEventListener('input', function () {
+    let searchTerm = searchInputDepartament.value.toLowerCase();
+
+    selectableRowsDepartament.forEach(function (row) {
+      let rowNameDepartament = row.getAttribute('data-name').toLowerCase();
+      let isVisible = rowNameDepartament.includes(searchTerm);
+
+      // Define a visibilidade da linha com base no termo de busca
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+  });
+});
+</script>
