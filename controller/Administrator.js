@@ -1,10 +1,15 @@
 const Person = require('../models/Person');
 const Administrator = require('../models/Administrator');
+const Departament = require('../models/Departament');
+const Institution = require('../models/Institution');
 const bcrypt = require('bcryptjs');
 
 module.exports = class AdministratorController {
   static async createAdministrator(_req, res) {
-    const people = await Person.findAll({ raw: true });
+    let people = await Person.findAll({
+      include: [{ model: Departament }, { model: Institution }],
+    });
+    people = people.map((result) => result.get({ plain: true }));
     res.render('administrador/create', { people });
   }
 
