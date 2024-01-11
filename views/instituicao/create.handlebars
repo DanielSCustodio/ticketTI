@@ -1,8 +1,14 @@
-<section class="form-conatiner">
-  <form action="/instituicao/add" method="POST" class="form">
-    <div class="form-control">
-      <input type="text" name="name" placeholder="Cadastre um instituição">
+<section class='form-conatiner'>
+  {{#if messages.error-input-name}}
+    <div class='message'>
+      {{messages.error-input-name}}
     </div>
-    <input type="submit" value="Cadastar" class="btn">
+  {{/if}}
+
+  <form action='/instituicao/add' method='POST' class='form'>
+    <div class='form-control'>
+      <input type='text' name='name' placeholder='Cadastre um instituição' />
+    </div>
+    <input type='submit' value='Cadastar' class='btn' />
   </form>
 </section>
