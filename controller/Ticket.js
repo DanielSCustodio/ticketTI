@@ -11,7 +11,7 @@ module.exports = class TicketController {
     let administrators = await Administrator.findAll({
       include: [{ model: Person }],
     });
-    const equipment = await Equipment.findAll({ raw: true });
+    const equipments = await Equipment.findAll({ raw: true });
 
     administrators = administrators.map((result) =>
       result.get({ plain: true }),
@@ -19,7 +19,7 @@ module.exports = class TicketController {
     res.render('ticket/create', {
       departaments,
       people,
-      equipment,
+      equipments,
       administrators,
     });
   }
@@ -72,6 +72,8 @@ module.exports = class TicketController {
       PersonId: requester.id,
       EquipmentId: equipment.id,
     };
+
+    console.log('====>', ticket);
 
     await Ticket.create(ticket);
 
