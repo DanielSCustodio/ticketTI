@@ -5,7 +5,7 @@ module.exports = class DepartamentController {
     res.render('setor/create');
   }
   static async createDepartamentSave(req, res) {
-    const response = { name: req.body.departament };
+    const response = { name: req.body.name };
     await Departament.create(response);
     res.redirect('/setor');
   }

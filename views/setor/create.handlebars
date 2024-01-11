@@ -1,8 +1,13 @@
-<section class="form-conatiner">
-  <form action="/setor/add" method="POST" class="form">
-    <div class="form-control">
-      <input type="text" name="departament" placeholder="Cadastre um setor">
+<section class='form-conatiner'>
+  {{#if messages.error-input-name}}
+    <div class='message'>
+      {{messages.error-input-name}}
     </div>
-    <input type="submit" value="Cadastar" class="btn">
+  {{/if}}
+  <form action='/setor/add' method='POST' class='form'>
+    <div class='form-control'>
+      <input type='text' name='name' placeholder='Cadastre um setor' />
+    </div>
+    <input type='submit' value='Cadastar' class='btn' />
   </form>
 </section>
