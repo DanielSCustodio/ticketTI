@@ -1,15 +1,23 @@
-<!-- Botão para abrir o modal -->
 <section class='form-conatiner'>
+  {{#if messages.error-input-person}}
+    <div class='message'>
+      {{messages.error-input-person}}
+    </div>
+  {{/if}}
   <form action='/colaborador/add' method='POST' class='form'>
     <div class='form-control'>
+      <label for="name">Nome</label>
       <input
+        id="name"
         type='text'
         name='name'
         placeholder='Digite o nome do colaborador'
       />
     </div>
     <div class='form-control'>
+      <label for="role">Função</label>
       <input
+        id="role"
         type='text'
         name='role'
         placeholder='Digite a função do colaborador'
