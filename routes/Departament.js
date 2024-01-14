@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 const DepartamentController = require('../controller/Departament');
 const checkNameInput = require('../middleware/validations').checkNameInput;
+const checkPrivilege = require('../middleware/validations').checkPrivilege;
 
-router.get('/cadastro', DepartamentController.createDepartament);
+router.get(
+  '/cadastro',
+  checkPrivilege,
+  DepartamentController.createDepartament,
+);
 router.post(
   '/add',
   checkNameInput,

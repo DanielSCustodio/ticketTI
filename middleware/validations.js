@@ -2,6 +2,7 @@ const Departament = require('../models/Departament');
 const Institution = require('../models/Institution');
 const Person = require('../models/Person');
 const ReferenceType = require('../models/ReferenceType');
+const Administrator = require('../models/Administrator');
 
 //Institution, Departament, ReferenceType
 module.exports.checkNameInput = function (req, res, next) {
@@ -126,5 +127,66 @@ module.exports.checkEquipment = async function async(req, res, next) {
     return;
   }
 
+  next();
+};
+
+module.exports.checkAdministrator = async function async(req, res, next) {
+  const { personSelected, username, password, confirmpassword } = req.body;
+
+  const people = await Person.findAll({ raw: true });
+
+  const checkIfUserExists = await Administrator.findOne({
+    where: { username: username },
+  });
+
+  if (!personSelected) {
+    req.flash(
+      'error-input-administrator',
+      'O campo "colaborador" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('administrador/create', { people });
+    return;
+  }
+
+  if (checkIfUserExists) {
+    req.flash('error-input-administrator', 'Nome de usuário já cadastrado');
+    const people = await Person.findAll({ raw: true });
+    res.render('administrador/create', { people });
+    return;
+  }
+
+  if (password.length <= 5) {
+    req.flash(
+      'error-input-administrator',
+      'O campo "senha" deve conter pelo menos 6 caracteres. ',
+    );
+    res.render('administrador/create', { people });
+    return;
+  }
+
+  if (password !== confirmpassword) {
+    req.flash('error-input-administrator', 'Senhas não conferem!');
+    const people = await Person.findAll({ raw: true });
+    res.render('administrador/create', { people });
+    return;
+  }
+
+  next();
+};
+
+module.exports.checkPrivilege = async function async(req, res, next) {
+  const id = req.session.userid;
+  const user = await Administrator.findOne({
+    where: { id: id },
+  });
+
+  if (!user.privilege) {
+    req.flash(
+      'error-privilege',
+      'Você não possui privilégios de administrador.',
+    );
+    res.redirect('/dashboard');
+    return;
+  }
   next();
 };

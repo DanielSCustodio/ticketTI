@@ -6,7 +6,6 @@ const Ticket = require('../models/Ticket');
 
 module.exports = class DashboardController {
   static async viewDashboard(_req, res) {
-    console.log('testetetsstte');
     let tickets = await Ticket.findAll({
       include: [
         { model: Departament },

@@ -4,7 +4,12 @@ const bcrypt = require('bcryptjs');
 
 module.exports = class AdministratorController {
   static async createAdministrator(_req, res) {
-    const people = await Person.findAll({ raw: true });
+    let people = await Person.findAll({ raw: true });
+    const adm = await Administrator.findAll({ raw: true });
+
+    const adminIds = adm.map((admin) => admin.PersonId);
+    people = people.filter((person) => !adminIds.includes(person.id));
+
     res.render('administrador/create', { people });
   }
 
@@ -16,27 +21,6 @@ module.exports = class AdministratorController {
       raw: true,
       where: { name: personSelected },
     });
-
-    if (password !== confirmpassword) {
-      req.flash(
-        'error-registro',
-        'Ops! Houve um pequeno desentendimento entre a senha e a sua confirmação. Tente novamente!',
-      );
-      const people = await Person.findAll({ raw: true });
-      res.render('administrador/create', { people });
-      return;
-    }
-
-    const checkIfUserExists = await Administrator.findOne({
-      where: { username: username },
-    });
-
-    if (checkIfUserExists) {
-      req.flash('error-registro', 'Nome de usuário já cadastrado');
-      const people = await Person.findAll({ raw: true });
-      res.render('administrador/create', { people });
-      return;
-    }
 
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
