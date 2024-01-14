@@ -1,4 +1,9 @@
 <section class='form-conatiner'>
+  {{#if messages.error-input-equipment}}
+    <div class='message'>
+      <span>{{messages.error-input-equipment}}</span>
+    </div>
+  {{/if}}
   <form action='/equipamento/add' method='POST' class='form'>
     <div class='form-control'>
       <label for="equipment">Equipamento</label>
