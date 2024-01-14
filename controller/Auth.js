@@ -26,6 +26,7 @@ module.exports = class AuthController {
     }
 
     req.session.userid = user.id;
+
     req.flash('sucess-login', `Olá, ${user.username}!`);
     req.session.save(() => {
       res.redirect('/dashboard');
