@@ -73,8 +73,6 @@ module.exports = class TicketController {
       EquipmentId: equipment.id,
     };
 
-    console.log('====>', ticket);
-
     await Ticket.create(ticket);
 
     res.redirect(`/ticket/${id}`);
