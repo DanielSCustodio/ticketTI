@@ -121,7 +121,7 @@
 <!--Administrator-->
 <section
   class='modal fade'
-  id='administrtorModel'
+  id='administratorModel'
   tabindex='-1'
   role='dialog'
   aria-labelledby='ModalLabelAdministrator'
@@ -356,11 +356,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   let openModalBtnAdministrator = document.getElementById('openModalBtnAdministrator');
-  let administrtorModel = new bootstrap.Modal(document.getElementById('administrtorModel'));
+  let administratorModel = new bootstrap.Modal(document.getElementById('administratorModel'));
   let administratorIdSelectedInput = document.getElementById('administratorIdSelected');
 
   openModalBtnAdministrator.addEventListener('click', function () {
-    administrtorModel.show();
+    administratorModel.show();
   });
 
   let selectableRowsAdministrator = document.querySelectorAll('.selectable-row-administrators');
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let admnistratorId = row.getAttribute('data-id');
       let admnistratorName = row.getAttribute('data-name');
       administratorIdSelectedInput.value = admnistratorName;
-      administrtorModel.hide();
+      administratorModel.hide();
     });
   });
 

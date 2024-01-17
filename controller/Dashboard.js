@@ -18,8 +18,6 @@ module.exports = class DashboardController {
       ],
     });
 
-    console.log('=========>', tickets);
-
     const ticketsDuration = tickets.map((ticket) => {
       const startTimeString = ticket.startTime;
       const endTimeString = ticket.endTime;
