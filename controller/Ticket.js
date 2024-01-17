@@ -40,11 +40,6 @@ module.exports = class TicketController {
 
     const id = (await Ticket.findAll({ raw: true })).length + 1;
 
-    const supportAgent = await Person.findOne({
-      raw: true,
-      where: { name: administratorIdSelected },
-    });
-
     const departament = await Departament.findOne({
       raw: true,
       where: { name: departamentSelected },
@@ -67,7 +62,7 @@ module.exports = class TicketController {
       date,
       startTime,
       endTime,
-      AdministratorId: supportAgent.id,
+      administratorIdSelected,
       DepartamentId: departament.id,
       PersonId: requester.id,
       EquipmentId: equipment.id,

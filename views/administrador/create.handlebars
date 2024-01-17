@@ -13,6 +13,8 @@
     <div class='form-control'>
       <i class="bi bi-person"></i>
       <input
+        id="usernameSelected"
+        style="pointer-events:none"
         type='text'
         name='username'
         placeholder='Digite o nome de usuário'
@@ -108,6 +110,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let openModalBtnPerson = document.getElementById('openModalBtnPerson');
   let personModel = new bootstrap.Modal(document.getElementById('personModel'));
   let personSelectedInput = document.getElementById('personSelected');
+  let usernameSelectedInput = document.getElementById('usernameSelected');
+  
 
   openModalBtnPerson.addEventListener('click', function () {
     personModel.show();
@@ -119,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let personId = row.getAttribute('data-id');
       let personName = row.getAttribute('data-name');
       personSelectedInput.value = personName;
+      usernameSelectedInput.value = personName;
       personModel.hide();
     });
   });

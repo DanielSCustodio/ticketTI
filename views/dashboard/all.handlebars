@@ -11,36 +11,39 @@
     </div>
   {{/if}}
   <table class='table'>
-    <thead>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Equipamento</th>
+      <th>Departamento</th>
+      <th>Data</th>
+      <th>Início do atendimento</th>
+      <th>Final do atendimento</th>
+      <th>Solicitante</th>
+      <th>Agente de suporte</th>
+      <th>Duração</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each ticketsDuration}}
       <tr>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Equipamento</th>
-        <th>Departamento</th>
-        <th>Data</th>
-        <th>Início do atendimento</th>
-        <th>Final do atendimento</th>
-        <th>Solicitante</th>
-        <th>Agente de suporte</th>
-    </thead>
-    <tbody>
-      {{#each tickets}}
-        <tr>
-          <td>{{this.id}}</td>
-          <td>{{this.title}}</td>
-          <td>{{this.description}}</td>
-          <td>{{this.Equipment.name}}</td>
-          <td>{{this.Departament.name}}</td>
-          <td>{{this.date}}</td>
-          <td>{{this.startTime}}</td>
-          <td>{{this.endTime}}</td>
-          <td>{{this.Person.name}}</td>
-          <td>{{AdministratorName}}</td>
-          <td></td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+        <td>{{this.id}}</td>
+        <td>{{this.title}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.Equipment.dataValues.name}}</td>
+        <td>{{this.Departament.dataValues.name}}</td>
+        <td>{{this.date}}</td>
+        <td>{{this.startTime}}</td>
+        <td>{{this.endTime}}</td>
+        <td>{{this.Person.dataValues.name}}</td>
+        <td>{{this.Administrator.dataValues.username}}</td>
+        <td>{{duration}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
   <a href="/ticket/cadastro">Cadastar</a>
 </section>

@@ -131,6 +131,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
   next();
 };
 
+//Administrator
 module.exports.checkAdministrator = async function async(req, res, next) {
   const { personSelected, username, password, confirmpassword } = req.body;
 
@@ -175,6 +176,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
   next();
 };
 
+//Administrator Privilege
 module.exports.checkPrivilege = async function async(req, res, next) {
   const id = req.session.userid;
   const user = await Administrator.findOne({
@@ -191,6 +193,7 @@ module.exports.checkPrivilege = async function async(req, res, next) {
   }
   next();
 };
+//Ticket
 module.exports.checkTicket = async function async(req, res, next) {
   const {
     title,
