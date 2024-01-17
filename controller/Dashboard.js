@@ -18,11 +18,37 @@ module.exports = class DashboardController {
       ],
     });
 
+    console.log('=========>', tickets);
+
+    const ticketsDuration = tickets.map((ticket) => {
+      const startTimeString = ticket.startTime;
+      const endTimeString = ticket.endTime;
+
+      const startTime = new Date(`1970-01-01T${startTimeString}`);
+      const endTime = new Date(`1970-01-01T${endTimeString}`);
+
+      if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+        return {
+          ...ticket.get(),
+          duration: 'Erro: startTime ou endTime inválidos',
+        };
+      }
+
+      const diffMilliseconds = endTime - startTime;
+      const diffInSeconds = diffMilliseconds / 1000 / 60; // Converta para segundos
+
+      return {
+        ...ticket.get(),
+        duration: diffInSeconds,
+      };
+    });
+
     tickets = tickets.map((result) => {
       const plainResult = result.get({ plain: true });
       plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
       return plainResult;
     });
-    res.render('dashboard/all', { tickets });
+
+    res.render('dashboard/all', { ticketsDuration });
   }
 };
