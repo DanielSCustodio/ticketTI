@@ -11,7 +11,7 @@ module.exports = class PersonController {
 
   static async createPersonSave(req, res) {
     const { name, role, institutionSelected, departamentSelected } = req.body;
-    const id = (await Person.findAll({ raw: true })).length + 1;
+    /*     const id = (await Person.findAll({ raw: true })).length + 1; */
 
     const departament = await Departament.findOne({
       raw: true,
@@ -31,7 +31,7 @@ module.exports = class PersonController {
 
     await Person.create(person);
 
-    res.redirect(`/colaborador/${id}`);
+    res.redirect(`/colaborador`);
   }
 
   static async viewPeople(_req, res) {

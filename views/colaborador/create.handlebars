@@ -6,31 +6,31 @@
   {{/if}}
   <form action='/colaborador/add' method='POST' class='form'>
     <div class='form-control'>
-      <label for="name">Nome Completo</label>
+      <label for="name">Nome Completo:</label>
       <input
         id="name"
         type='text'
         name='name'
-        placeholder='Digite o nome completo do colaborador'
+        placeholder='Nome completo do colaborador'
       />
     </div>
     <div class='form-control'>
-      <label for="role">Função</label>
+      <label for="role">Função:</label>
       <input
         id="role"
         type='text'
         name='role'
-        placeholder='Digite a função do colaborador'
+        placeholder='Função do colaborador'
       />
     </div>
     <div class='form-control'>
-      <label>Instituição</label>
-      <input name='institutionSelected' id='institutionSelected'  style="pointer-events:none"/>
+      <label>Instituição:</label>
+      <input name='institutionSelected' id='institutionSelected' placeholder="Instituição do colaborador"  style="pointer-events:none"/>
       <a href='#' id='openModalBtnInstitution'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
-      <label>Setor</label>
-      <input name='departamentSelected' id='departamentSelected'  style="pointer-events:none"/>
+      <label>Setor:</label>
+      <input name='departamentSelected' id='departamentSelected' placeholder="Setor do colaborador"  style="pointer-events:none"/>
       <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
     </div>
 
