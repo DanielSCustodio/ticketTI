@@ -135,7 +135,11 @@ module.exports.checkEquipment = async function async(req, res, next) {
 module.exports.checkAdministrator = async function async(req, res, next) {
   const { personSelected, username, password, confirmpassword } = req.body;
 
-  const people = await Person.findAll({ raw: true });
+  let people = await Person.findAll({ raw: true });
+  const adm = await Administrator.findAll({ raw: true });
+
+  const adminIds = adm.map((admin) => admin.PersonId);
+  people = people.filter((person) => !adminIds.includes(person.id));
 
   const checkIfUserExists = await Administrator.findOne({
     where: { username: username },

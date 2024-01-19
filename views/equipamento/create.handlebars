@@ -6,37 +6,37 @@
   {{/if}}
   <form action='/equipamento/add' method='POST' class='form'>
     <div class='form-control'>
-      <label for="equipment">Equipamento</label>
+      <label for="equipment">Equipamento:</label>
       <input
         id="equipment"
         type='text'
         name='name'
-        placeholder='Digite o nome do equipamento'
+        placeholder='Nome do equipamento'
       />
     </div>
     <div class='form-control'>
-      <label>Colaborador</label>
-      <input name='personSelected' id='personSelected'  style="pointer-events:none"/>
+      <label>Colaborador:</label>
+      <input name='personSelected' placeholder="Responsável pelo equipamento" id='personSelected'  readonly/>
       <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
-      <label>Setor</label>
-      <input name='departamentSelected' id='departamentSelected'  style="pointer-events:none"/>
+      <label>Setor:</label>
+      <input name='departamentSelected' placeholder="Onde se encontra o equipamento" id='departamentSelected'  readonly/>
       <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
-      <label>Tipo de Referência</label>
-      <input name='referenceTypeSelected' id='referenceTypeSelected'  style="pointer-events:none"/>
+      <label>Tipo de referência:</label>
+      <input name='referenceTypeSelected' placeholder="Tipo de referência" id='referenceTypeSelected'  readonly/>
       <a href='#' id='openModalBtnReferenceType'><i class='bi bi-search'></i></a>
     </div>
 
     <div class='form-control'>
-      <label for="reference">Referência</label>
+      <label for="reference">Referência:</label>
       <input
       id="reference"
         type='text'
         name='reference'
-        placeholder='Digite a referência do produto'
+        placeholder='Referência do equipamento/sistema'
       />
     </div>
     <input type='submit' value='Cadastar' class='btn' />
@@ -67,7 +67,7 @@
       </div>
       <div class='modal-body'>
         <section>
-          <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador...">
+          <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador">
           <table class='table'>
             <thead>
               <tr>
@@ -111,7 +111,7 @@
   <div class='modal-dialog' role='document'>
     <div class='modal-content'>
       <div class='modal-header'>
-        <h5 class='modal-title' id='ModalLabelReferenceType'>Setores</h5>
+        <h5 class='modal-title' id='ModalLabelReferenceType'>Tipos de referência</h5>
         <button
           type='button'
           class='close'
@@ -124,7 +124,7 @@
       <div class='modal-body'>
         <section>
           <!-- Código Handlebars do Modal -->
-          <input type="text" id="searchInputReferenceType" placeholder="Buscar por nome da referência...">
+          <input type="text" id="searchInputReferenceType" placeholder="Buscar por nome do tipo de referência">
           <table class='table'>
             <thead>
               <tr>
@@ -178,7 +178,7 @@
       <div class='modal-body'>
         <section>
           <!-- Código Handlebars do Modal -->
-          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor...">
+          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor">
           <table class='table'>
             <thead>
               <tr>

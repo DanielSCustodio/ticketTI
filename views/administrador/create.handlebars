@@ -7,33 +7,33 @@
   <form action='/administrador/add' method='POST' class='form'>
     <div class='form-control'>
       <label>Colaborador:</label>
-      <input name='personSelected' id='personSelected' placeholder="Escolha um colaborador" style="pointer-events:none"/>
+      <input name='personSelected' id='personSelected' placeholder="Escolha um colaborador" readonly/>
       <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
-      <i class="bi bi-person"></i>
+      <label for="">Nome de usuário:</label>
       <input
         id="usernameSelected"
-        style="pointer-events:none"
+        readonly
         type='text'
         name='username'
         placeholder='Nome de usuário'
       />
     </div>
     <div class='form-control'>
-      <i class='bi bi-lock'></i>
+      <label for="">Senha:</label>
       <input type='password' name='password' placeholder='Escolha uma senha' />
     </div>
     <div class='form-control'>
-      <i class='bi bi-lock'></i>
+      <label for="">Confirme a senha:</label>
       <input
         type='password'
         name='confirmpassword'
-        placeholder='Confirme a sua uma senha'
+        placeholder='Confirme a senha'
       />
     </div>
     <div class='form-control'>
-      <label>Previlégios de Admistrador</label>
+      <label>Privilégios de admistrador?</label>
       <select name='privilege'>
         <option value='1'>Sim</option>
         <option value='0'>Não</option>
@@ -71,7 +71,7 @@
       </div>
       <div class='modal-body'>
         <section>
-          <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador...">
+          <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador">
           <table class='table'>
             <thead>
               <tr>

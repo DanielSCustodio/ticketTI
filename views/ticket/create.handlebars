@@ -6,12 +6,13 @@
   {{/if}}
   <form action='/ticket/add' method='POST' class='form'>
     <div class='form-control'>
-      <label for='title'>Assunto</label>
-      <input type='text' name='title' id='title' placeholder='Assunto' />
+      <label for='title'>Assunto:</label>
+      <input type='text' name='title' id='title' placeholder='Assunto do ticket' />
     </div>
     <div class='form-control'>
-      <label for='description'>Descrição do problema</label>
+      <label for='description'>Descrição do incidente:</label>
       <textarea
+        placeholder="Descrição completa do incidente"
         name='description'
         id='description'
         cols='30'
@@ -19,42 +20,42 @@
       ></textarea>
     </div>
     <div class='form-control'>
-      <label for='solution'>Solução</label>
-      <textarea name='solution' id='solution' cols='30' rows='10'></textarea>
+      <label for='solution'>Solução:</label>
+      <textarea name='solution' placeholder="Descrição completa da solução" id='solution' cols='30' rows='10'></textarea>
     </div>
     <div class='form-control'>
-      <label for='date'>Data do ticket</label>
+      <label for='date'>Data do ticket:</label>
       <input type='date' name='date' id='date' />
     </div>
     <div class='form-control'>
-      <label for='startTime'>Início do atendimento</label>
+      <label for='startTime'>Início do suporte</label>
       <input type='time' name='startTime' id='startTime' />
     </div>
     <div class='form-control'>
-      <label for='endTime'>Final do atendimento</label>
+      <label for='endTime'>Final do suporte</label>
       <input type='time' name='endTime' id='endTime' />
     </div>
         <div class='form-control'>
-      <label>Agente de atendimento</label>
-      <input name='administratorIdSelected' id='administratorIdSelected'  style="pointer-events:none"/>
+      <label>Agente de atendimento:</label>
+      <input name='administratorIdSelected' id='administratorIdSelected'  readonly/>
       <a href='#' id='openModalBtnAdministrator'><i class='bi bi-search'></i></a>
     </div>
     
     <div class='form-control'>
-      <label>Solicitante</label>
-      <input name='requesterSelected' id='requesterSelected'  style="pointer-events:none"/>
+      <label>Solicitante:</label>
+      <input name='requesterSelected' id='requesterSelected'  readonly/>
       <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
     </div>
 
     <div class='form-control'>
-      <label>Setor</label>
-      <input name='departamentSelected' id='departamentSelected'  style="pointer-events:none"/>
+      <label>Setor:</label>
+      <input name='departamentSelected' id='departamentSelected'  readonly/>
       <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
     </div>
     
     <div class='form-control'>
-      <label>Equipamento/Sistema</label>
-      <input name='equipmentSelected' id='equipmentSelected'  style="pointer-events:none"/>
+      <label>Equipamento/Sistema:</label>
+      <input name='equipmentSelected' id='equipmentSelected'  readonly/>
       <a href='#' id='openModalBtnEquipment'><i class='bi bi-search'></i></a>
     </div>
 
@@ -86,7 +87,7 @@
       </div>
       <div class='modal-body'>
         <section>
-          <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador...">
+          <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador">
           <table class='table'>
             <thead>
               <tr>
@@ -143,7 +144,7 @@
       <div class='modal-body'>
         <section>
           <!-- Código Handlebars do Modal -->
-          <input type="text" id="searchInputAdministrator" placeholder="Buscar por nome...">
+          <input type="text" id="searchInputAdministrator" placeholder="Buscar por nome do agente de atentimento">
           <table class='table'>
             <thead>
               <tr>
@@ -184,7 +185,7 @@
   <div class='modal-dialog' role='document'>
     <div class='modal-content'>
       <div class='modal-header'>
-        <h5 class='modal-title' id='ModalLabelEquipment'>Equipamento/Sistema</h5>
+        <h5 class='modal-title' id='ModalLabelEquipment'>Equipamentos/Sistemas</h5>
         <button
           type='button'
           class='close'
@@ -197,7 +198,7 @@
       <div class='modal-body'>
         <section>
           <!-- Código Handlebars do Modal -->
-          <input type="text" id="searchInputEquipment" placeholder="Buscar por nome do equipamneto/sistema...">
+          <input type="text" id="searchInputEquipment" placeholder="Buscar por nome do equipamentos/sistemas">
           <table class='table'>
             <thead>
               <tr>
@@ -251,7 +252,7 @@
       <div class='modal-body'>
         <section>
           <!-- Código Handlebars do Modal -->
-          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor...">
+          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor">
           <table class='table'>
             <thead>
               <tr>

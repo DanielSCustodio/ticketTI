@@ -19,7 +19,7 @@ module.exports = class EquipmentController {
       referenceTypeSelected,
       departamentSelected,
     } = req.body;
-    const id = (await Equipment.findAll({ raw: true })).length + 1;
+    /*  const id = (await Equipment.findAll({ raw: true })).length + 1; */
 
     const departament = await Departament.findOne({
       raw: true,
@@ -46,7 +46,7 @@ module.exports = class EquipmentController {
 
     await Equipment.create(equipment);
 
-    res.redirect(`/equipamento/${id}`);
+    res.redirect('/equipamento');
   }
 
   static async viewEquipments(_req, res) {
