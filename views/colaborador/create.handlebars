@@ -6,7 +6,7 @@
   {{/if}}
   <form action='/colaborador/add' method='POST' class='form'>
     <div class='form-control'>
-      <label for="name">Nome Completo:</label>
+      <label for="name">Nome completo:</label>
       <input
         id="name"
         type='text'
@@ -25,12 +25,12 @@
     </div>
     <div class='form-control'>
       <label>Instituição:</label>
-      <input name='institutionSelected' id='institutionSelected' placeholder="Instituição do colaborador"  style="pointer-events:none"/>
+      <input name='institutionSelected' id='institutionSelected' placeholder="Instituição do colaborador"  readonly/>
       <a href='#' id='openModalBtnInstitution'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
       <label>Setor:</label>
-      <input name='departamentSelected' id='departamentSelected' placeholder="Setor do colaborador"  style="pointer-events:none"/>
+      <input name='departamentSelected' id='departamentSelected' placeholder="Setor do colaborador"  readonly/>
       <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
     </div>
 
@@ -63,7 +63,7 @@
       <div class='modal-body'>
         <section>
           <!-- Código Handlebars do Modal -->
-          <input type="text" id="searchInputInstituiton" placeholder="Buscar por nome da instituição...">
+          <input type="text" id="searchInputInstituiton" placeholder="Buscar por nome da instituição">
           <table class='table'>
             <thead>
               <tr>
@@ -116,7 +116,7 @@
       <div class='modal-body'>
         <section>
           <!-- Código Handlebars do Modal -->
-          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor...">
+          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor">
           <table class='table'>
             <thead>
               <tr>
