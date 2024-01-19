@@ -6,8 +6,8 @@
   {{/if}}
   <form action='/administrador/add' method='POST' class='form'>
     <div class='form-control'>
-      <label>Colaborador</label>
-      <input name='personSelected' id='personSelected'  style="pointer-events:none"/>
+      <label>Colaborador:</label>
+      <input name='personSelected' id='personSelected' placeholder="Escolha um colaborador" style="pointer-events:none"/>
       <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
@@ -17,7 +17,7 @@
         style="pointer-events:none"
         type='text'
         name='username'
-        placeholder='Digite o nome de usuário'
+        placeholder='Nome de usuário'
       />
     </div>
     <div class='form-control'>
