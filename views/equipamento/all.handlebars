@@ -1,4 +1,19 @@
 <section>
+  {{#if messages.delete-equipment}}
+    <div class='message'>
+      <span>{{messages.delete-equipment}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.create-equipment}}
+    <div class='message'>
+      <span>{{messages.create-equipment}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.error-privilege}}
+    <div class='message'>
+      <span>{{messages.error-privilege}}</span>
+    </div>
+  {{/if}}
   <table class='table'>
     <thead>
       <tr>
@@ -8,6 +23,7 @@
         <th>Setor</th>
         <th>Tipo de refrência</th>
         <th>Referência</th>
+        <th>Excluir</th>
     </thead>
     <tbody>
       {{#each equipments}}
@@ -15,12 +31,23 @@
           <td>{{this.id}}</td>
           <td>{{this.name}}</td>
           <td>{{this.Person.name}}</td>
-          <td>{{this.Departament.name}}</td>
+          <td>{{this.equipment.name}}</td>
           <td>{{this.ReferenceType.name}}</td>
           <td>{{this.reference}}</td>
+          <td>
+            <form action='/equipamento/remove' method='post'>
+              <input type='hidden' name='id' value='{{this.id}}' />
+              <button type='submit' class='btn'><i
+                  class='bi bi-x-square'
+                ></i></button>
+            </form>
+          </td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-  <a href="/equipamento/cadastro">Cadastar</a>
+  {{#if privilege}}
+    <a href="/equipamento/cadastro">Cadastar</a>
+  {{/if}}
+
 </section>
