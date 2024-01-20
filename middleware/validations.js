@@ -13,10 +13,10 @@ module.exports.checkNameInput = function (req, res, next) {
   const pathSegments = url.pathname.split('/');
   const instance = pathSegments[1];
 
-  if (response.name.length <= 2) {
+  if (response.name.length <= 1) {
     req.flash(
       'error-input-name',
-      'Este campo deve conter pelo menos 3 caracteres.',
+      'Este campo deve conter pelo menos 2 caracteres.',
     );
     res.render(`${instance}/create`);
 
