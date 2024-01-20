@@ -1,4 +1,5 @@
 const Institution = require('../models/Institution');
+const Administrator = require('../models/Administrator');
 
 module.exports = class InstitutionController {
   static createInstitution(_req, res) {
@@ -19,10 +20,16 @@ module.exports = class InstitutionController {
   }
 
   static async viewInstitutions(req, res) {
+    const id = req.session.userid;
+
     try {
+      const user = await Administrator.findOne({
+        where: { id: id },
+      });
+      let privilege = user.privilege;
       const institutions = await Institution.findAll({ raw: true });
       req.session.save(() => {
-        res.render('instituicao/all', { institutions });
+        res.render('instituicao/all', { institutions, privilege });
       });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);

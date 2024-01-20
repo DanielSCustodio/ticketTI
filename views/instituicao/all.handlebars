@@ -39,5 +39,7 @@
       {{/each}}
     </tbody>
   </table>
-  <a href='/instituicao/cadastro'>Cadastar</a>
+  {{#if privilege}}
+    <a href='/instituicao/cadastro'>Cadastar</a>
+  {{/if}}
 </section>
