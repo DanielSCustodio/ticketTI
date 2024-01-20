@@ -1,7 +1,17 @@
 <section>
-  {{#if messages.success-register}}
+  {{#if messages.delete-administrator}}
     <div class='message'>
-      {{messages.success-register}}
+      <span>{{messages.delete-administrator}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.create-administrator}}
+    <div class='message'>
+      <span>{{messages.create-administrator}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.error-privilege}}
+    <div class='message'>
+      <span>{{messages.error-privilege}}</span>
     </div>
   {{/if}}
   <table class='table'>
@@ -11,6 +21,7 @@
         <th>Nome</th>
         <th>Username</th>
         <th>Administrador Geral</th>
+        <th>Excluir</th>
     </thead>
     <tbody>
       {{#each administrators}}
@@ -19,10 +30,20 @@
           <td>{{this.Person.name}}</td>
           <td>{{this.username}}</td>
           <td>{{#if this.privilege}}Sim{{else}}Não{{/if}}</td>
+          <td>
+            <form action='/administrador/remove' method='post'>
+              <input type='hidden' name='id' value='{{this.id}}' />
+              <button type='submit' class='btn'><i
+                  class='bi bi-x-square'
+                ></i></button>
+            </form>
+          </td>
         </tr>
       {{/each}}
     </tbody>
     <p>{{adm}}</p>
   </table>
-  <a href="/administrador/cadastro">Cadastar</a>
+  {{#if privilege}}
+    <a href="/administrador/cadastro">Cadastar</a>
+  {{/if}}
 </section>

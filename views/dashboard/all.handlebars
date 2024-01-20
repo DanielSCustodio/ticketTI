@@ -1,4 +1,14 @@
 <section>
+  {{#if messages.delete-ticket}}
+    <div class='message'>
+      <span>{{messages.delete-ticket}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.create-ticket}}
+    <div class='message'>
+      <span>{{messages.create-ticket}}</span>
+    </div>
+  {{/if}}
   {{#if messages.sucess-login}}
     <div class='message'>
       {{messages.sucess-login}}
@@ -44,6 +54,7 @@
     {{/each}}
   </tbody>
 </table>
-
-  <a href="/ticket/cadastro">Cadastar</a>
+  {{#if privilege}}
+    <a href="/ticket/cadastro">Cadastar</a>
+  {{/if}}
 </section>

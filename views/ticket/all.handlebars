@@ -1,4 +1,19 @@
 <section>
+  {{#if messages.delete-ticket}}
+    <div class='message'>
+      <span>{{messages.delete-ticket}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.create-ticket}}
+    <div class='message'>
+      <span>{{messages.create-ticket}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.error-privilege}}
+    <div class='message'>
+      <span>{{messages.error-privilege}}</span>
+    </div>
+  {{/if}}
   <table class='table'>
     <thead>
       <tr>
@@ -12,6 +27,7 @@
         <th>Final do atendimento</th>
         <th>Solicitante</th>
         <th>Agente de suporte</th>
+        <th>Excluir</th>
     </thead>
     <tbody>
       {{#each tickets}}
@@ -26,10 +42,19 @@
           <td>{{this.endTime}}</td>
           <td>{{this.Person.name}}</td>
           <td>{{AdministratorName}}</td>
-          <td></td>
+          <td>
+            <form action='/ticket/remove' method='post'>
+              <input type='hidden' name='id' value='{{this.id}}' />
+              <button type='submit' class='btn'><i
+                  class='bi bi-x-square'
+                ></i></button>
+            </form></td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-  <a href="/ticket/cadastro">Cadastar</a>
+  {{#if privilege}}
+    <a href="/ticket/cadastro">Cadastar</a>
+  {{/if}}
+
 </section>

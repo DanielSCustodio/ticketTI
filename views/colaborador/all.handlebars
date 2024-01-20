@@ -1,4 +1,19 @@
 <section>
+  {{#if messages.delete-person}}
+    <div class='message'>
+      <span>{{messages.delete-person}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.create-person}}
+    <div class='message'>
+      <span>{{messages.create-person}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.error-privilege}}
+    <div class='message'>
+      <span>{{messages.error-privilege}}</span>
+    </div>
+  {{/if}}
   <table class='table'>
     <thead>
       <tr>
@@ -7,6 +22,7 @@
         <th>Cargo</th>
         <th>Setor</th>
         <th>Instituição</th>
+        <th>Excluir</th>
     </thead>
     <tbody>
       {{#each people}}
@@ -16,9 +32,19 @@
           <td>{{this.role}}</td>
           <td>{{this.Departament.name}}</td>
           <td>{{this.Institution.name}}</td>
+          <td>
+            <form action='/colaborador/remove' method='post'>
+              <input type='hidden' name='id' value='{{this.id}}' />
+              <button type='submit' class='btn'><i
+                  class='bi bi-x-square'
+                ></i></button>
+            </form>
+          </td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-  <a href="/colaborador/cadastro">Cadastar</a>
+  {{#if privilege}}
+    <a href="/colaborador/cadastro">Cadastar</a>
+  {{/if}}
 </section>

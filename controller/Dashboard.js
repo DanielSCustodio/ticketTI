@@ -5,48 +5,58 @@ const Equipment = require('../models/Equipment');
 const Ticket = require('../models/Ticket');
 
 module.exports = class DashboardController {
-  static async viewDashboard(_req, res) {
-    let tickets = await Ticket.findAll({
-      include: [
-        { model: Departament },
-        { model: Person },
-        {
-          model: Administrator,
-          include: [{ model: Person, attributes: ['name'] }],
-        },
-        { model: Equipment },
-      ],
-    });
+  static async viewDashboard(req, res) {
+    const id = req.session.userid;
 
-    const ticketsDuration = tickets.map((ticket) => {
-      const startTimeString = ticket.startTime;
-      const endTimeString = ticket.endTime;
+    try {
+      const user = await Administrator.findOne({
+        where: { id: id },
+      });
+      let privilege = user.privilege;
+      let tickets = await Ticket.findAll({
+        include: [
+          { model: Departament },
+          { model: Person },
+          {
+            model: Administrator,
+            include: [{ model: Person, attributes: ['name'] }],
+          },
+          { model: Equipment },
+        ],
+      });
 
-      const startTime = new Date(`1970-01-01T${startTimeString}`);
-      const endTime = new Date(`1970-01-01T${endTimeString}`);
+      const ticketsDuration = tickets.map((ticket) => {
+        const startTimeString = ticket.startTime;
+        const endTimeString = ticket.endTime;
 
-      if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+        const startTime = new Date(`1970-01-01T${startTimeString}`);
+        const endTime = new Date(`1970-01-01T${endTimeString}`);
+
+        if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+          return {
+            ...ticket.get(),
+            duration: 'Erro: startTime ou endTime inválidos',
+          };
+        }
+
+        const diffMilliseconds = endTime - startTime;
+        const diffInSeconds = diffMilliseconds / 1000 / 60; // Converta para segundos
+
         return {
           ...ticket.get(),
-          duration: 'Erro: startTime ou endTime inválidos',
+          duration: diffInSeconds,
         };
-      }
+      });
 
-      const diffMilliseconds = endTime - startTime;
-      const diffInSeconds = diffMilliseconds / 1000 / 60; // Converta para segundos
+      tickets = tickets.map((result) => {
+        const plainResult = result.get({ plain: true });
+        plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
+        return plainResult;
+      });
 
-      return {
-        ...ticket.get(),
-        duration: diffInSeconds,
-      };
-    });
-
-    tickets = tickets.map((result) => {
-      const plainResult = result.get({ plain: true });
-      plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
-      return plainResult;
-    });
-
-    res.render('dashboard/all', { ticketsDuration });
+      res.render('dashboard/all', { ticketsDuration, privilege });
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
   }
 };

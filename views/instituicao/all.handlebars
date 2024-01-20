@@ -1,9 +1,25 @@
 <section>
+  {{#if messages.delete-institution}}
+    <div class='message'>
+      <span>{{messages.delete-institution}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.create-institution}}
+    <div class='message'>
+      <span>{{messages.create-institution}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.error-privilege}}
+    <div class='message'>
+      <span>{{messages.error-privilege}}</span>
+    </div>
+  {{/if}}
   <table class='table'>
     <thead>
       <tr>
         <th>ID</th>
         <th>Nome</th>
+        <th>Excluir</th>
       </tr>
     </thead>
     <tbody>
@@ -11,9 +27,19 @@
         <tr>
           <td>{{this.id}}</td>
           <td>{{this.name}}</td>
+          <td>
+            <form action='/instituicao/remove' method='post'>
+              <input type='hidden' name='id' value='{{this.id}}' />
+              <button type='submit' class='btn'><i
+                  class='bi bi-x-square'
+                ></i></button>
+            </form>
+          </td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-  <a href="/instituicao/cadastro">Cadastar</a>
+  {{#if privilege}}
+    <a href='/instituicao/cadastro'>Cadastar</a>
+  {{/if}}
 </section>
