@@ -22,6 +22,7 @@
         <th>Cargo</th>
         <th>Setor</th>
         <th>Instituição</th>
+        <th>Excluir</th>
     </thead>
     <tbody>
       {{#each people}}
@@ -31,6 +32,14 @@
           <td>{{this.role}}</td>
           <td>{{this.Departament.name}}</td>
           <td>{{this.Institution.name}}</td>
+          <td>
+            <form action='/colaborador/remove' method='post'>
+              <input type='hidden' name='id' value='{{this.id}}' />
+              <button type='submit' class='btn'><i
+                  class='bi bi-x-square'
+                ></i></button>
+            </form>
+          </td>
         </tr>
       {{/each}}
     </tbody>
