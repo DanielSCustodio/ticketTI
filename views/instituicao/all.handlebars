@@ -9,6 +9,11 @@
       <span>{{messages.create-institution}}</span>
     </div>
   {{/if}}
+  {{#if messages.error-privilege}}
+    <div class='message'>
+      <span>{{messages.error-privilege}}</span>
+    </div>
+  {{/if}}
   <table class='table'>
     <thead>
       <tr>

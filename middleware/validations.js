@@ -183,6 +183,11 @@ module.exports.checkAdministrator = async function async(req, res, next) {
 //Administrator Privilege
 module.exports.checkPrivilege = async function async(req, res, next) {
   const id = req.session.userid;
+  const urlString = req.protocol + '://' + req.get('host') + req.originalUrl;
+  const url = new URL(urlString);
+  const pathSegments = url.pathname.split('/');
+  const instance = pathSegments[1];
+
   const user = await Administrator.findOne({
     where: { id: id },
   });
@@ -192,7 +197,7 @@ module.exports.checkPrivilege = async function async(req, res, next) {
       'error-privilege',
       'Você não possui privilégios de administrador.',
     );
-    res.redirect('/dashboard');
+    res.redirect(`/${instance}`);
     return;
   }
   next();

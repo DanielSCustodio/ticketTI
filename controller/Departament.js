@@ -1,4 +1,5 @@
 const Departament = require('../models/Departament');
+const Administrator = require('../models/Administrator');
 
 module.exports = class DepartamentController {
   static createDepartament(_req, res) {
@@ -21,10 +22,18 @@ module.exports = class DepartamentController {
   }
 
   static async viewDepartaments(req, res) {
+    const id = req.session.userid;
+
+    const user = await Administrator.findOne({
+      where: { id: id },
+    });
+    let privilege = user.privilege;
+    console.log('--->', privilege);
+
     try {
       const departaments = await Departament.findAll({ raw: true });
       req.session.save(() => {
-        res.render('setor/all', { departaments });
+        res.render('setor/all', { departaments, privilege });
       });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);

@@ -9,6 +9,11 @@
       <span>{{messages.create-departament}}</span>
     </div>
   {{/if}}
+  {{#if messages.error-privilege}}
+    <div class='message'>
+      <span>{{messages.error-privilege}}</span>
+    </div>
+  {{/if}}
   <table class='table'>
     <thead>
       <tr>
@@ -34,5 +39,7 @@
       {{/each}}
     </tbody>
   </table>
-  <a href='/setor/cadastro'>Cadastar</a>
+  {{#if privilege}}
+    <a href='/setor/cadastro'>Cadastar</a>
+  {{/if}}
 </section>
