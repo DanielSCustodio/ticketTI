@@ -5,9 +5,17 @@ module.exports = class InstitutionController {
     res.render('instituicao/create');
   }
   static async createInstitutionSave(req, res) {
-    const name = { name: req.body.name };
-    await Institution.create(name);
-    res.redirect('/instituicao');
+    const response = { name: req.body.name };
+    try {
+      req.flash(
+        'create-institution',
+        `Instituição "${response.name}" criada com sucesso.`,
+      );
+      await Institution.create(response);
+      res.redirect('/instituicao');
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
   }
 
   static async viewInstitutions(req, res) {
@@ -24,8 +32,15 @@ module.exports = class InstitutionController {
   static async removeInstitution(req, res) {
     const id = req.body.id;
     try {
+      const institution = await Institution.findOne({
+        where: { id: id },
+        raw: true,
+      });
       await Institution.destroy({ where: { id: id } });
-      req.flash('delete-Institution', 'instituição excluída com sucesso.');
+      req.flash(
+        'delete-institution',
+        `Instituição "${institution.name}" excluída com sucesso.`,
+      );
       req.session.save(() => {
         res.redirect('/instituicao');
       });
