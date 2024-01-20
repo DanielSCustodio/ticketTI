@@ -10,8 +10,27 @@ module.exports = class InstitutionController {
     res.redirect('/instituicao');
   }
 
-  static async viewInstitutions(_req, res) {
-    const institutions = await Institution.findAll({ raw: true });
-    res.render('instituicao/all', { institutions });
+  static async viewInstitutions(req, res) {
+    try {
+      const institutions = await Institution.findAll({ raw: true });
+      req.session.save(() => {
+        res.render('instituicao/all', { institutions });
+      });
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
+  }
+
+  static async removeInstitution(req, res) {
+    const id = req.body.id;
+    try {
+      await Institution.destroy({ where: { id: id } });
+      req.flash('delete-Institution', 'instituição excluída com sucesso.');
+      req.session.save(() => {
+        res.redirect('/instituicao');
+      });
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
   }
 };

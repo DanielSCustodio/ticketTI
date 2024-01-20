@@ -51,4 +51,6 @@ module.exports = class AdministratorController {
     );
     res.render('administrador/all', { administrators });
   }
+
+
 };
