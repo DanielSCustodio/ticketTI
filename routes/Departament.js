@@ -10,6 +10,11 @@ router.get(
   checkPrivilege,
   DepartamentController.createDepartament,
 );
+router.get(
+  '/editar/:id',
+  checkPrivilege,
+  DepartamentController.updateDepartament,
+);
 router.get('/', DepartamentController.viewDepartaments);
 
 //post
@@ -18,6 +23,11 @@ router.post(
   '/add',
   checkNameInput,
   DepartamentController.createDepartamentSave,
+);
+router.post(
+  '/edit',
+  checkPrivilege,
+  DepartamentController.updateDepartamentSave,
 );
 
 module.exports = router;

@@ -4,12 +4,11 @@
       <span>{{messages.error-input-name}}</span>
     </div>
   {{/if}}
-
-  <form action='/instituicao/edit' method='POST' class='form'>
-    <input type="hidden" name="id" value="{{institution.id}}">
+  <form action='/setor/edit' method='POST' class='form'>
+    <input type="hidden" name="id" value="{{departament.id}}">
     <div class='form-control'>
-      <label for='name'>Instituição:</label>
-      <input id='name' name='name' placeholder='Nome da instituição'  value="{{institution.name}}"/>
+      <label for='name'>Setor:</label>
+      <input id='name' type='text' name='name' placeholder='Nome do setor'  value="{{departament.name}}"/>
     </div>
     <input type='submit' value='Atualizar' class='btn' />
   </form>

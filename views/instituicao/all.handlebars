@@ -24,8 +24,8 @@
       <tr>
         <th>ID</th>
         <th>Nome</th>
-        <th>Excluir</th>
         <th>Editar</th>
+        <th>Excluir</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +34,11 @@
           <td>{{this.id}}</td>
           <td>{{this.name}}</td>
           <td>
+            <a href='/instituicao/editar/{{this.id}}' class='btn'><i
+                class='bi bi-pencil-square'
+              ></i></a>
+          </td>
+          <td>
             <form action='/instituicao/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />
               <button type='submit' class='btn'><i
@@ -41,9 +46,7 @@
                 ></i></button>
             </form>
           </td>
-          <td>
-            <a href="/instituicao/editar/{{this.id}}" class="btn"><i class="bi bi-pencil-square"></i></a>
-          </td>
+
         </tr>
       {{/each}}
     </tbody>

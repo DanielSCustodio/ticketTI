@@ -9,6 +9,11 @@
       <span>{{messages.create-departament}}</span>
     </div>
   {{/if}}
+  {{#if messages.update-departament}}
+    <div class='message'>
+      <span>{{messages.update-departament}}</span>
+    </div>
+  {{/if}}
   {{#if messages.error-privilege}}
     <div class='message'>
       <span>{{messages.error-privilege}}</span>
@@ -19,6 +24,7 @@
       <tr>
         <th>ID</th>
         <th>Nome</th>
+        <th>Editar</th>
         <th>Excluir</th>
       </tr>
     </thead>
@@ -27,6 +33,10 @@
         <tr>
           <td>{{this.id}}</td>
           <td>{{this.name}}</td>
+          <td>
+            <a href='/setor/editar/{{this.id}}' class='btn'><i
+                class='bi bi-pencil-square'
+              ></i></a></td>
           <td>
             <form action='/setor/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />
