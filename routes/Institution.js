@@ -10,11 +10,13 @@ router.get(
   checkPrivilege,
   InstitutionController.createInstitution,
 );
+
 router.get(
   '/editar/:id',
   checkPrivilege,
   InstitutionController.updateInstituiton,
 );
+
 router.get('/', InstitutionController.viewInstitutions);
 
 //Post
@@ -24,7 +26,9 @@ router.post(
   checkNameInput,
   InstitutionController.createInstitutionSave,
 );
+
 router.post('/remove', checkPrivilege, InstitutionController.removeInstitution);
+
 router.post(
   '/edit',
   checkPrivilege,
