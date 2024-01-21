@@ -78,4 +78,53 @@ module.exports = class PersonController {
       console.log('Aconteceu um erro ===>', error);
     }
   }
+
+  static async updatePerson(req, res) {
+    const id = req.params.id;
+
+    const person = await Person.findOne({
+      where: { id: id },
+      raw: true,
+    });
+
+    const departaments = await Departament.findAll({ raw: true });
+    const institutions = await Institution.findAll({ raw: true });
+
+    const institutionSelected = await Institution.findOne({
+      raw: true,
+      where: { id: person.InstitutionId },
+    });
+
+    const departamentSelected = await Departament.findOne({
+      raw: true,
+      where: { id: person.DepartamentId },
+    });
+
+    console.log(person);
+
+    res.render('colaborador/edit', {
+      person,
+      departaments,
+      institutions,
+      institutionSelected,
+      departamentSelected,
+    });
+  }
+
+  static async updatePersonSave(req, res) {
+    const id = req.body.id;
+    const person = {
+      name: req.body.name,
+    };
+    try {
+      req.flash(
+        'update-person',
+        `Registro de "${person.name}" atualizado com sucesso.`,
+      );
+      await Person.update(person, { where: { id: id } });
+      res.redirect('/colaborador');
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
+  }
 };

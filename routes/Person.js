@@ -6,11 +6,17 @@ const checkPrivilege = require('../middleware/validations').checkPrivilege;
 
 //get
 router.get('/cadastro', checkPrivilege, PersonController.createPerson);
-router.post('/add', checkPerson, PersonController.createPersonSave);
 
-//post
-router.post('/remove', checkPrivilege, PersonController.removePerson);
+router.get('/editar/:id', checkPrivilege, PersonController.updatePerson);
 
 router.get('/', PersonController.viewPeople);
+
+//post
+
+router.post('/add', checkPerson, PersonController.createPersonSave);
+
+router.post('/remove', checkPrivilege, PersonController.removePerson);
+
+router.post('/edit', checkPrivilege, PersonController.updatePersonSave);
 
 module.exports = router;
