@@ -9,6 +9,11 @@
       <span>{{messages.create-institution}}</span>
     </div>
   {{/if}}
+  {{#if messages.update-institution}}
+    <div class='message'>
+      <span>{{messages.update-institution}}</span>
+    </div>
+  {{/if}}
   {{#if messages.error-privilege}}
     <div class='message'>
       <span>{{messages.error-privilege}}</span>
@@ -20,6 +25,7 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Excluir</th>
+        <th>Editar</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +40,9 @@
                   class='bi bi-x-square'
                 ></i></button>
             </form>
+          </td>
+          <td>
+            <a href="/instituicao/editar/{{this.id}}" class="btn"><i class="bi bi-pencil-square"></i></a>
           </td>
         </tr>
       {{/each}}

@@ -10,15 +10,25 @@ router.get(
   checkPrivilege,
   InstitutionController.createInstitution,
 );
-
+router.get(
+  '/editar/:id',
+  checkPrivilege,
+  InstitutionController.updateInstituiton,
+);
 router.get('/', InstitutionController.viewInstitutions);
 
 //Post
 router.post(
   '/add',
+  checkPrivilege,
   checkNameInput,
   InstitutionController.createInstitutionSave,
 );
 router.post('/remove', checkPrivilege, InstitutionController.removeInstitution);
+router.post(
+  '/edit',
+  checkPrivilege,
+  InstitutionController.updateInstituitonSave,
+);
 
 module.exports = router;

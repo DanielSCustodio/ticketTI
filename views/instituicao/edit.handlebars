@@ -1,0 +1,16 @@
+<section class='form-conatiner'>
+  {{#if messages.error-input-name}}
+    <div class='message'>
+      <span>{{messages.error-input-name}}</span>
+    </div>
+  {{/if}}
+
+  <form action='/instituicao/edit' method='POST' class='form'>
+    <input type="hidden" name="id" value="{{institution.id}}">
+    <div class='form-control'>
+      <label for='name'>Instituição:</label>
+      <input id='name' name='name' placeholder='Nome da instituição'  value="{{institution.name}}"/>
+    </div>
+    <input type='submit' value='Editar' class='btn' />
+  </form>
+</section>
