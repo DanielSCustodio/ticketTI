@@ -1,0 +1,220 @@
+<section class='form-conatiner'>
+  {{#if messages.error-input-person}}
+    <div class='message'>
+      <span>{{messages.error-input-person}}</span>
+    </div>
+  {{/if}}
+  <form action='/colaborador/edit' method='POST' class='form'>
+    <input type="hidden" name="id" value="{{person.id}}">
+    <div class='form-control'>
+      <label for="name">Nome completo:</label>
+      <input
+        id="name"
+        type='text'
+        name='name'
+        placeholder='Nome completo do colaborador'
+        value="{{person.name}}"
+      />
+    </div>
+    <div class='form-control'>
+      <label for="role">Função:</label>
+      <input
+        id="role"
+        type='text'
+        name='role'
+        placeholder='Função do colaborador'
+        value="{{person.role}}"
+      />
+    </div>
+    <div class='form-control'>
+      <label>Instituição:</label>
+      <input name='institutionSelected' id='institutionSelected' placeholder="Instituição do colaborador" value="{{institutionSelected.name}}" readonly/>
+      <a href='#' id='openModalBtnInstitution'><i class='bi bi-search'></i></a>
+    </div>
+    <div class='form-control'>
+      <label>Setor:</label>
+      <input name='departamentSelected' id='departamentSelected' placeholder="Setor do colaborador" value="{{departamentSelected.name}}"  readonly/>
+      <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
+    </div>
+
+    <input type='submit' value='Atualizar' class='btn' />
+  </form>
+</section>
+
+<!-- Modal Institution -->
+<section
+  class='modal fade'
+  id='instituitionModel'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='ModalLabelInstituition'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='ModalLabelInstituition'>Instituições</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <section>
+          <!-- Código Handlebars do Modal -->
+          <input type="text" id="searchInputInstituiton" placeholder="Buscar por nome da instituição">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each institutions}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-institutions'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </section>
+      </div>
+      <div class='modal-footer'>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  class='modal fade'
+  id='departamentModel'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='ModalLabelDepartament'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='ModalLabelDepartament'>Setores</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <section>
+          <!-- Código Handlebars do Modal -->
+          <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each departaments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-departaments'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </section>
+      </div>
+      <div class='modal-footer'>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script   src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.bundle.min.js' ></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let openModalBtnInstitution = document.getElementById('openModalBtnInstitution');
+  let instituitionModel = new bootstrap.Modal(document.getElementById('instituitionModel'));
+  let institutionSelectedInput = document.getElementById('institutionSelected');
+
+  openModalBtnInstitution.addEventListener('click', function () {
+    instituitionModel.show();
+  });
+
+  let selectableRowsInstitution = document.querySelectorAll('.selectable-row-institutions');
+  selectableRowsInstitution.forEach(function (row) {
+    row.addEventListener('click', function () {
+      let institutionId = row.getAttribute('data-id');
+      let institutionName = row.getAttribute('data-name');
+      institutionSelectedInput.value = institutionName;
+      instituitionModel.hide();
+    });
+  });
+
+  searchInputInstituiton.addEventListener('input', function () {
+    let searchTerm = searchInputInstituiton.value.toLowerCase();
+
+    selectableRowsInstitution.forEach(function (row) {
+      let rowNameInstituiton = row.getAttribute('data-name').toLowerCase();
+      let isVisible = rowNameInstituiton.includes(searchTerm);
+
+      // Define a visibilidade da linha com base no termo de busca
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let openModalBtnDepartament = document.getElementById('openModalBtnDepartament');
+  let departamentModel = new bootstrap.Modal(document.getElementById('departamentModel'));
+  let departamentSelectedInput = document.getElementById('departamentSelected');
+
+  openModalBtnDepartament.addEventListener('click', function () {
+    departamentModel.show();
+  });
+
+  let selectableRowsDepartament = document.querySelectorAll('.selectable-row-departaments');
+  selectableRowsDepartament.forEach(function (row) {
+    row.addEventListener('click', function () {
+      let departamentId = row.getAttribute('data-id');
+      let departamentName = row.getAttribute('data-name');
+      departamentSelectedInput.value = departamentName;
+      departamentModel.hide();
+    });
+  });
+
+  searchInputDepartament.addEventListener('input', function () {
+    let searchTerm = searchInputDepartament.value.toLowerCase();
+
+    selectableRowsDepartament.forEach(function (row) {
+      let rowNameDepartament = row.getAttribute('data-name').toLowerCase();
+      let isVisible = rowNameDepartament.includes(searchTerm);
+
+      // Define a visibilidade da linha com base no termo de busca
+      row.style.display = isVisible ? 'table-row' : 'none';
+    });
+  });
+});
+</script>

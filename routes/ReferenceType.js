@@ -10,6 +10,13 @@ router.get(
   checkPrivilege,
   ReferenceTypeController.createReferenceType,
 );
+
+router.get(
+  '/editar/:id',
+  checkPrivilege,
+  ReferenceTypeController.updateReferenceType,
+);
+
 router.get('/', ReferenceTypeController.viewReferenceTypes);
 
 //post
@@ -23,6 +30,12 @@ router.post(
   '/add',
   checkNameInput,
   ReferenceTypeController.createReferenceTypeSave,
+);
+
+router.post(
+  '/edit',
+  checkPrivilege,
+  ReferenceTypeController.updateReferenceTypeSave,
 );
 
 module.exports = router;

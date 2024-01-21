@@ -6,10 +6,16 @@ const checkPrivilege = require('../middleware/validations').checkPrivilege;
 
 //get
 router.get('/cadastro', checkPrivilege, EquipmentController.createEquipment);
+
+router.get('/editar/:id', checkPrivilege, EquipmentController.updateEquipment);
+
 router.get('/', EquipmentController.viewEquipments);
 
 //post
 router.post('/remove', checkPrivilege, EquipmentController.removeEquipment);
+
 router.post('/add', checkEquipment, EquipmentController.createEquipmentSave);
+
+router.post('/edit', checkPrivilege, EquipmentController.updateEquipmentSave);
 
 module.exports = router;

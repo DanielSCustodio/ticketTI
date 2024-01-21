@@ -9,6 +9,11 @@
       <span>{{messages.create-person}}</span>
     </div>
   {{/if}}
+  {{#if messages.update-person}}
+    <div class='message'>
+      <span>{{messages.update-person}}</span>
+    </div>
+  {{/if}}
   {{#if messages.error-privilege}}
     <div class='message'>
       <span>{{messages.error-privilege}}</span>
@@ -22,6 +27,7 @@
         <th>Cargo</th>
         <th>Setor</th>
         <th>Instituição</th>
+        <th>Editar</th>
         <th>Excluir</th>
     </thead>
     <tbody>
@@ -32,6 +38,11 @@
           <td>{{this.role}}</td>
           <td>{{this.Departament.name}}</td>
           <td>{{this.Institution.name}}</td>
+          <td>
+            <a href='/colaborador/editar/{{this.id}}' class='btn'><i
+                class='bi bi-pencil-square'
+              ></i></a>
+          </td>
           <td>
             <form action='/colaborador/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />

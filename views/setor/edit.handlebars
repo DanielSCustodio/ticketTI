@@ -1,0 +1,15 @@
+<section class='form-conatiner'>
+  {{#if messages.error-input-name}}
+    <div class='message'>
+      <span>{{messages.error-input-name}}</span>
+    </div>
+  {{/if}}
+  <form action='/setor/edit' method='POST' class='form'>
+    <input type="hidden" name="id" value="{{departament.id}}">
+    <div class='form-control'>
+      <label for='name'>Setor:</label>
+      <input id='name' type='text' name='name' placeholder='Nome do setor'  value="{{departament.name}}"/>
+    </div>
+    <input type='submit' value='Atualizar' class='btn' />
+  </form>
+</section>

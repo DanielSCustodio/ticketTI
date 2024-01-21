@@ -9,6 +9,11 @@
       <span>{{messages.create-institution}}</span>
     </div>
   {{/if}}
+  {{#if messages.update-institution}}
+    <div class='message'>
+      <span>{{messages.update-institution}}</span>
+    </div>
+  {{/if}}
   {{#if messages.error-privilege}}
     <div class='message'>
       <span>{{messages.error-privilege}}</span>
@@ -19,6 +24,7 @@
       <tr>
         <th>ID</th>
         <th>Nome</th>
+        <th>Editar</th>
         <th>Excluir</th>
       </tr>
     </thead>
@@ -28,6 +34,11 @@
           <td>{{this.id}}</td>
           <td>{{this.name}}</td>
           <td>
+            <a href='/instituicao/editar/{{this.id}}' class='btn'><i
+                class='bi bi-pencil-square'
+              ></i></a>
+          </td>
+          <td>
             <form action='/instituicao/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />
               <button type='submit' class='btn'><i
@@ -35,6 +46,7 @@
                 ></i></button>
             </form>
           </td>
+
         </tr>
       {{/each}}
     </tbody>

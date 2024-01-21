@@ -1,0 +1,21 @@
+<section class='form-conatiner'>
+  {{#if messages.error-input-name}}
+    <div class='message'>
+      <span>{{messages.error-input-name}}</span>
+    </div>
+  {{/if}}
+  <form action='/tipo-de-referencia/add' method='POST' class='form'>
+    <input type="hidden" name="id" value="{{referenceType.id}}">
+    <div class='form-control'>
+      <label for="name">Tipo de referência:</label>
+      <input
+        id="name"
+        type='text'
+        name='name'
+        placeholder='Nome do tipo de referência'
+        value="{{referenceType.name}}"
+      />
+    </div>
+    <input type='submit' value='Atualizar' class='btn' />
+  </form>
+</section>

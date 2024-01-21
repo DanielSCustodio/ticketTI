@@ -55,4 +55,30 @@ module.exports = class InstitutionController {
       console.log('Aconteceu um erro ===>', error);
     }
   }
+
+  static async updateInstituiton(req, res) {
+    const id = req.params.id;
+    const institution = await Institution.findOne({
+      where: { id: id },
+      raw: true,
+    });
+    res.render('instituicao/edit', { institution });
+  }
+
+  static async updateInstituitonSave(req, res) {
+    const id = req.body.id;
+    const institution = {
+      name: req.body.name,
+    };
+    try {
+      req.flash(
+        'update-institution',
+        `Instituição "${institution.name}" atualizada com sucesso.`,
+      );
+      await Institution.update(institution, { where: { id: id } });
+      res.redirect('/instituicao');
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
+  }
 };

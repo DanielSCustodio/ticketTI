@@ -56,4 +56,30 @@ module.exports = class ReferenceTypeController {
       console.log('Aconteceu um erro ===>', error);
     }
   }
+
+  static async updateReferenceType(req, res) {
+    const id = req.params.id;
+    const referenceType = await ReferenceType.findOne({
+      where: { id: id },
+      raw: true,
+    });
+    res.render('tipo-de-referencia/edit', { referenceType });
+  }
+
+  static async updateReferenceTypeSave(req, res) {
+    const id = req.body.id;
+    const referenceType = {
+      name: req.body.name,
+    };
+    try {
+      req.flash(
+        'update-reference-type',
+        `Tipo de referência "${referenceType.name}" atualizada com sucesso.`,
+      );
+      await referenceType.update(referenceType, { where: { id: id } });
+      res.redirect('/tipo-de-referencia');
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
+  }
 };

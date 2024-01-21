@@ -57,4 +57,30 @@ module.exports = class DepartamentController {
       console.log('Aconteceu um erro ===>', error);
     }
   }
+
+  static async updateDepartament(req, res) {
+    const id = req.params.id;
+    const departament = await Departament.findOne({
+      where: { id: id },
+      raw: true,
+    });
+    res.render('setor/edit', { departament });
+  }
+
+  static async updateDepartamentSave(req, res) {
+    const id = req.body.id;
+    const departament = {
+      name: req.body.name,
+    };
+    try {
+      req.flash(
+        'update-departament',
+        `Setor "${departament.name}" atualizada com sucesso.`,
+      );
+      await Departament.update(departament, { where: { id: id } });
+      res.redirect('/setor');
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
+  }
 };
