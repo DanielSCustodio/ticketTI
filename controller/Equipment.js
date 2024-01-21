@@ -95,4 +95,92 @@ module.exports = class EquipmentController {
       console.log('Aconteceu um erro ===>', error);
     }
   }
+
+  static async updateEquipment(req, res) {
+    const id = req.params.id;
+
+    try {
+      const equipment = await Equipment.findOne({
+        where: { id: id },
+        raw: true,
+      });
+
+      const departaments = await Departament.findAll({ raw: true });
+      const people = await Person.findAll({ raw: true });
+      const referenceType = await ReferenceType.findAll({ raw: true });
+
+      const personSelected = await Person.findOne({
+        raw: true,
+        where: { id: equipment.PersonId },
+      });
+
+      const departamentSelected = await Departament.findOne({
+        raw: true,
+        where: { id: equipment.DepartamentId },
+      });
+
+      const referenceTypeSelected = await ReferenceType.findOne({
+        raw: true,
+        where: { id: equipment.ReferenceTypeId },
+      });
+
+      res.render('equipamento/edit', {
+        equipment,
+        people,
+        departaments,
+        referenceType,
+        personSelected,
+        referenceTypeSelected,
+        departamentSelected,
+      });
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
+  }
+
+  static async updateEquipmentSave(req, res) {
+    const id = req.body.id;
+
+    const {
+      name,
+      personSelected,
+      reference,
+      referenceTypeSelected,
+      departamentSelected,
+    } = req.body;
+
+    try {
+      const departament = await Departament.findOne({
+        raw: true,
+        where: { name: departamentSelected },
+      });
+
+      const person = await Person.findOne({
+        raw: true,
+        where: { name: personSelected },
+      });
+
+      const referenceType = await ReferenceType.findOne({
+        raw: true,
+        where: { name: referenceTypeSelected },
+      });
+
+      const equipment = {
+        name,
+        reference,
+        ReferenceTypeId: referenceType.id,
+        PersonId: person.id,
+        DepartamentId: departament.id,
+      };
+
+      req.flash(
+        'update-equipment',
+        `Item "${equipment.name}" atualizado com sucesso.`,
+      );
+      await Equipment.update(equipment, { where: { id: id } });
+      res.redirect('/equipamento');
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
+  }
 };

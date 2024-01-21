@@ -9,6 +9,11 @@
       <span>{{messages.create-equipment}}</span>
     </div>
   {{/if}}
+  {{#if messages.update-equipment}}
+    <div class='message'>
+      <span>{{messages.update-equipment}}</span>
+    </div>
+  {{/if}}
   {{#if messages.error-privilege}}
     <div class='message'>
       <span>{{messages.error-privilege}}</span>
@@ -23,6 +28,7 @@
         <th>Setor</th>
         <th>Tipo de refrência</th>
         <th>Referência</th>
+        <th>Editar</th>
         <th>Excluir</th>
     </thead>
     <tbody>
@@ -34,6 +40,11 @@
           <td>{{this.Departament.name}}</td>
           <td>{{this.ReferenceType.name}}</td>
           <td>{{this.reference}}</td>
+          <td>
+            <a href='/equipamento/editar/{{this.id}}' class='btn'><i
+                class='bi bi-pencil-square'
+              ></i></a>
+          </td>
           <td>
             <form action='/equipamento/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />

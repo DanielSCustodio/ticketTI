@@ -82,41 +82,58 @@ module.exports = class PersonController {
   static async updatePerson(req, res) {
     const id = req.params.id;
 
-    const person = await Person.findOne({
-      where: { id: id },
-      raw: true,
-    });
+    try {
+      const person = await Person.findOne({
+        where: { id: id },
+        raw: true,
+      });
 
-    const departaments = await Departament.findAll({ raw: true });
-    const institutions = await Institution.findAll({ raw: true });
+      const departaments = await Departament.findAll({ raw: true });
+      const institutions = await Institution.findAll({ raw: true });
 
-    const institutionSelected = await Institution.findOne({
-      raw: true,
-      where: { id: person.InstitutionId },
-    });
+      const institutionSelected = await Institution.findOne({
+        raw: true,
+        where: { id: person.InstitutionId },
+      });
 
-    const departamentSelected = await Departament.findOne({
-      raw: true,
-      where: { id: person.DepartamentId },
-    });
+      const departamentSelected = await Departament.findOne({
+        raw: true,
+        where: { id: person.DepartamentId },
+      });
 
-    console.log(person);
-
-    res.render('colaborador/edit', {
-      person,
-      departaments,
-      institutions,
-      institutionSelected,
-      departamentSelected,
-    });
+      res.render('colaborador/edit', {
+        person,
+        departaments,
+        institutions,
+        institutionSelected,
+        departamentSelected,
+      });
+    } catch (error) {
+      console.log('Aconteceu um erro ===>', error);
+    }
   }
 
   static async updatePersonSave(req, res) {
     const id = req.body.id;
-    const person = {
-      name: req.body.name,
-    };
+    const { name, role, institutionSelected, departamentSelected } = req.body;
+
     try {
+      const departament = await Departament.findOne({
+        raw: true,
+        where: { name: departamentSelected },
+      });
+
+      const institution = await Institution.findOne({
+        raw: true,
+        where: { name: institutionSelected },
+      });
+
+      const person = {
+        name,
+        role,
+        InstitutionId: institution.id,
+        DepartamentId: departament.id,
+      };
       req.flash(
         'update-person',
         `Registro de "${person.name}" atualizado com sucesso.`,

@@ -4,7 +4,8 @@
       <span>{{messages.error-input-equipment}}</span>
     </div>
   {{/if}}
-  <form action='/equipamento/add' method='POST' class='form'>
+  <form action='/equipamento/edit' method='POST' class='form'>
+    <input type="hidden" name="id" value="{{equipment.id}}">
     <div class='form-control'>
       <label for="equipment">Equipamento:</label>
       <input
@@ -12,34 +13,36 @@
         type='text'
         name='name'
         placeholder='Nome do equipamento'
+        value="{{equipment.name}}"
       />
     </div>
     <div class='form-control'>
-      <label>Colaborador:</label>
-      <input name='personSelected' placeholder="Responsável pelo equipamento" id='personSelected'  readonly/>
+      <label>Responsável:</label>
+      <input name='personSelected' placeholder="Responsável pelo equipamento" id='personSelected' value="{{personSelected.name}}"  readonly/>
       <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
       <label>Setor:</label>
-      <input name='departamentSelected' placeholder="Onde se encontra o equipamento" id='departamentSelected'  readonly/>
+      <input name='departamentSelected' placeholder="Onde se encontra o equipamento" id='departamentSelected'  value="{{departamentSelected.name}}" readonly/>
       <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
     </div>
     <div class='form-control'>
       <label>Tipo de referência:</label>
-      <input name='referenceTypeSelected' placeholder="Tipo de referência" id='referenceTypeSelected'  readonly/>
+      <input name='referenceTypeSelected' placeholder="Tipo de referência" id='referenceTypeSelected' value="{{referenceTypeSelected.name}}"  readonly/>
       <a href='#' id='openModalBtnReferenceType'><i class='bi bi-search'></i></a>
     </div>
 
     <div class='form-control'>
       <label for="reference">Referência:</label>
       <input
-      id="reference"
+        id="reference"
         type='text'
         name='reference'
         placeholder='Referência do equipamento/sistema'
+        value="{{equipment.reference}}"
       />
     </div>
-    <input type='submit' value='Cadastar' class='btn' />
+    <input type='submit' value='Atualizar' class='btn' />
   </form>
 </section>
 
