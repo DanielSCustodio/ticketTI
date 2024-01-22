@@ -1,18 +1,14 @@
 const Person = require('../models/Person');
 const Administrator = require('../models/Administrator');
 const bcrypt = require('bcryptjs');
-
 module.exports = class AdministratorController {
   static async createAdministrator(_req, res) {
     let people = await Person.findAll({ raw: true });
     const adm = await Administrator.findAll({ raw: true });
-
     const adminIds = adm.map((admin) => admin.PersonId);
     people = people.filter((person) => !adminIds.includes(person.id));
-
     res.render('administrador/create', { people });
   }
-
   static async createAdministratorSave(req, res) {
     const { personSelected, username, password, confirmpassword, privilege } =
       req.body;
