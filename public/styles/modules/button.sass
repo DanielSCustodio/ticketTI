@@ -1,0 +1,26 @@
+@use '../base/variables'
+@use '../base/base-mixins'
+
+.default-container-buttons
+
+  @include base-mixins.smartphone
+    flex-direction: row-reverse
+
+.btn
+  padding: 0.8rem 2rem
+  margin-top: 1rem
+  cursor: pointer
+  transition: .8s
+  border: 1px solid variables.$primary-color
+  text-transform: uppercase
+  background-color: variables.$second-color
+  color: variables.$second-text-color
+  border-radius: 6px
+
+  @include base-mixins.smartphone
+    padding: 0.4rem 1rem
+
+
+  &:hover
+    background-color: variables.$primary-color
+    color: variables.$second-text-color

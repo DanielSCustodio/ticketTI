@@ -1,0 +1,16 @@
+@use '../base/variables'
+@use '../base/base-mixins'
+
+@mixin center-content()
+  max-width: variables.$container-width
+  margin: 0 auto
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 1rem
+
+  @include base-mixins.tablet
+    padding: 1rem 3rem
+
+  @include base-mixins.smartphone
+    padding: 1rem

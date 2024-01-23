@@ -1,0 +1,78 @@
+@use '../base/variables'
+@use '../layouts/mixins'
+@use '../base/base-mixins'
+
+.default-container
+  @include mixins.center-content()
+  flex-direction: column
+  width: 100%
+
+  &-item
+    width: 100%
+    margin: 0 auto
+    display: flex
+    align-items: baseline
+    justify-content: space-between
+
+    @include base-mixins.smartphone
+      flex-direction: column
+
+    #search-mobile
+      display: none
+
+      @include base-mixins.smartphone
+        display: inline
+
+    #search
+      @include base-mixins.smartphone
+        display: none
+
+  &-buttons
+    width: 100%
+    display: flex
+    justify-content: flex-end
+    margin-bottom: 3rem
+    gap: 1rem
+
+.container-view
+  @include mixins.center-content()
+
+.container-topic
+  @include mixins.center-content()
+  flex-direction: column
+
+.container-topic-list
+  @include mixins.center-content()
+  padding-top: 0
+  width: 100%
+
+.default-container-title
+  @include mixins.center-content()
+  padding-top: variables.$top-distance
+  margin-bottom: 2rem
+
+  @include base-mixins.tablet
+    padding-top: variables.$top-distance-mobile
+
+  @include base-mixins.smartphone
+    padding-top: 7rem
+
+  #back-mobile
+    display: none
+
+    @include base-mixins.smartphone
+      display: inline
+
+  #back
+    @include base-mixins.smartphone
+      display: none
+
+  button
+    color: variables.$primary-color
+    border: 0
+    background: none
+    transition: .8s
+
+    &:hover
+      cursor: pointer
+      color: variables.$text-color
