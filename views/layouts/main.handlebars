@@ -17,7 +17,7 @@
     <link rel='stylesheet' href='/css/style.css' />
     <title>ticketCVTR</title>
   </head>
-  <body style='background-color: #bdb6b6;'>
+  <body>
     <nav>
       <ul>
         {{#if session.userid}}
@@ -32,7 +32,17 @@
         {{/if}}
       </ul>
     </nav>
-    {{{body}}}
-    <footer>Rodapé</footer>
+    <div class='container-body'>
+      {{{body}}}
+    </div>
+    <footer id='footer'>
+      <div class='container-footer'>
+        <a href='/'> <img src='/image/logo-completa-transparente.svg' alt='Logo Câmara Municipal de TRês Rios' /></a>
+        <div>
+          <h6><span>ticketTI</span> &copy; 2024</h6>
+          <p>Todos os direitos reservados</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
