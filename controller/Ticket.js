@@ -6,22 +6,29 @@ const Ticket = require('../models/Ticket');
 
 module.exports = class TicketController {
   static async createTicket(_req, res) {
-    const departaments = await Departament.findAll({ raw: true });
-    const people = await Person.findAll({ raw: true });
-    let administrators = await Administrator.findAll({
-      include: [{ model: Person }],
-    });
-    const equipments = await Equipment.findAll({ raw: true });
+    try {
+      const departaments = await Departament.findAll({ raw: true });
+      const people = await Person.findAll({ raw: true });
+      let administrators = await Administrator.findAll({
+        include: [{ model: Person }],
+      });
+      const equipments = await Equipment.findAll({ raw: true });
 
-    administrators = administrators.map((result) =>
-      result.get({ plain: true }),
-    );
-    res.render('ticket/create', {
-      departaments,
-      people,
-      equipments,
-      administrators,
-    });
+      administrators = administrators.map((result) =>
+        result.get({ plain: true }),
+      );
+      res.render('ticket/create', {
+        departaments,
+        people,
+        equipments,
+        administrators,
+      });
+    } catch (error) {
+      console.log(
+        'Aconteceu um erro no controller createTicket ticket ===>',
+        error,
+      );
+    }
   }
 
   static async createTicketSave(req, res) {
@@ -79,7 +86,10 @@ module.exports = class TicketController {
 
       res.redirect('/ticket');
     } catch (error) {
-      console.log('Aconteceu um erro ===>', error);
+      console.log(
+        'Aconteceu um erro no controller createTicketSave ticket ===>',
+        error,
+      );
     }
   }
 
@@ -112,7 +122,10 @@ module.exports = class TicketController {
       });
       res.render('ticket/all', { tickets, privilege });
     } catch (error) {
-      console.log('Aconteceu um erro ===>', error);
+      console.log(
+        'Aconteceu um erro no controller viewTickets ticket ===>',
+        error,
+      );
     }
   }
 
@@ -133,6 +146,134 @@ module.exports = class TicketController {
       });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
+    }
+  }
+
+  static async updateTicket(req, res) {
+    const id = req.params.id;
+
+    try {
+      const ticket = await Ticket.findOne({
+        where: { id: id },
+        raw: true,
+      });
+
+      const departaments = await Departament.findAll({ raw: true });
+
+      const people = await Person.findAll({ raw: true });
+
+      let administrators = await Administrator.findAll({
+        include: [{ model: Person }],
+      });
+
+      const equipments = await Equipment.findAll({ raw: true });
+
+      administrators = administrators.map((result) =>
+        result.get({ plain: true }),
+      );
+
+      const supportAgent = await Person.findOne({
+        raw: true,
+        where: { id: ticket.AdministratorId },
+      });
+
+      const departament = await Departament.findOne({
+        raw: true,
+        where: { id: ticket.DepartamentId },
+      });
+
+      const requester = await Person.findOne({
+        raw: true,
+        where: { id: ticket.PersonId },
+      });
+
+      const equipment = await Equipment.findOne({
+        raw: true,
+        where: { id: ticket.EquipmentId },
+      });
+
+      res.render('ticket/edit', {
+        ticket,
+        departaments,
+        people,
+        equipments,
+        administrators,
+        supportAgent,
+        departament,
+        requester,
+        equipment,
+      });
+    } catch (error) {
+      console.log(
+        'Aconteceu um erro no controller updateTicket ticket ===>',
+        error,
+      );
+    }
+  }
+
+  static async updateTicketSave(req, res) {
+    const id = req.body.id;
+
+    console.log('---->', id);
+
+    const {
+      title,
+      description,
+      solution,
+      date,
+      startTime,
+      endTime,
+      administratorIdSelected,
+      requesterSelected,
+      departamentSelected,
+      equipmentSelected,
+    } = req.body;
+
+    try {
+      const administrator = await Administrator.findOne({
+        raw: true,
+        where: { username: administratorIdSelected },
+      });
+
+      const requester = await Person.findOne({
+        raw: true,
+        where: { name: requesterSelected },
+      });
+
+      const departament = await Departament.findOne({
+        raw: true,
+        where: { name: departamentSelected },
+      });
+
+      const equipment = await Equipment.findOne({
+        raw: true,
+        where: { name: equipmentSelected },
+      });
+
+      const ticket = {
+        title,
+        description,
+        solution,
+        date,
+        startTime,
+        endTime,
+        AdministratorId: administrator.id,
+        PersonId: requester.id,
+        DepartamentId: departament.id,
+        EquipmentId: equipment.id,
+      };
+
+      req.flash(
+        'update-ticket',
+        `Item "${ticket.title}" atualizado com sucesso.`,
+      );
+      await Ticket.update(ticket, { where: { id: id } });
+      res.redirect('/ticket');
+    } catch (error) {
+      console.log(
+        'Aconteceu um erro no controller updateTicketSave ticket ===>',
+        error,
+      );
     }
   }
 };

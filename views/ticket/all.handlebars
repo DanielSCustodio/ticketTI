@@ -9,6 +9,11 @@
       <span>{{messages.create-ticket}}</span>
     </div>
   {{/if}}
+  {{#if messages.update-ticket}}
+    <div class='message'>
+      <span>{{messages.update-ticket}}</span>
+    </div>
+  {{/if}}
   {{#if messages.error-privilege}}
     <div class='message'>
       <span>{{messages.error-privilege}}</span>
@@ -27,6 +32,7 @@
         <th>Final do atendimento</th>
         <th>Solicitante</th>
         <th>Agente de suporte</th>
+        <th>Editar</th>
         <th>Excluir</th>
     </thead>
     <tbody>
@@ -42,6 +48,11 @@
           <td>{{this.endTime}}</td>
           <td>{{this.Person.name}}</td>
           <td>{{AdministratorName}}</td>
+          <td>
+            <a href='/ticket/editar/{{this.id}}' class='btn'><i
+                class='bi bi-pencil-square'
+              ></i></a>
+          </td>
           <td>
             <form action='/ticket/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />
