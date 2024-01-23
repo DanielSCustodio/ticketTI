@@ -1,0 +1,59 @@
+@use '../base/variables'
+@use '../layouts/mixins'
+@use '../base/base-mixins'
+
+.table 
+  max-width: variables.$container-width
+  width: 100%
+  border-collapse: collapse
+  border-bottom: 1px solid variables.$border-color
+
+  @include base-mixins.tablet
+    display: none
+
+  th, td
+    padding: 1rem
+    text-align: justify
+
+  th
+    background-color: variables.$bg-second-color
+    color: variables.$primary-color
+
+  tr:nth-child(odd)
+    background-color: variables.$table-bg-color
+
+  tr:nth-child(even)
+    background-color: variables.$bg-second-color
+
+  i
+    transition: .8s
+    margin-left: 1.2rem
+    &:hover
+      cursor: pointer
+      color: variables.$primary-color
+
+.table-mobile
+  display: none
+
+  @include base-mixins.tablet
+    display: flex
+    flex-direction: column
+    width: 100%
+
+.table-mobile-item
+  margin-bottom: 1rem
+  border-bottom: 1px solid variables.$border-color
+  padding: 1rem
+  background-color: variables.$table-bg-color
+  border-radius: variables.$radius
+
+  p
+    margin-bottom: 1rem
+
+  div
+    display: flex
+    gap: 1rem
+
+  &:nth-child(even)
+    background-color: variables.$bg-second-color
+
