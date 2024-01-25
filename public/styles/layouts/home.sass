@@ -2,5 +2,12 @@
 @use './mixins'
 @use '../base/base-mixins'
 
+.layout
+  @include mixins.center-content()
+
 .container-body
   min-height: 100vh
+  overflow: hidden
+  margin-left: 12%
+  border-left: 1px solid variables.$border-color
+
