@@ -61,15 +61,19 @@ ul {
   margin: 10;
 }
 #footer {
-  position: static;
+  position: absolute;
+  width: 100%;
   border-top: 1px solid #34384e;
+  z-index: 99999 !important;
+  background: #16141C;
 }
 #footer .container-footer {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 5%;
 }
 @media (max-width: 912px) {
   #footer .container-footer {
@@ -110,51 +114,63 @@ ul {
   justify-content: first baseline;
   flex-direction: column;
   position: fixed;
-  z-index: 999;
   overflow: hidden;
   max-width: 28%;
   top: 0px;
   height: 100vh;
-  padding-right: 1rem;
+  padding-right: 2%;
+  margin-left: 5%;
+  border-right: 1px solid #34384e;
 }
 #nav-bar .header-nav {
   margin-bottom: 2rem;
 }
-#nav-bar .header-nav a {
+#nav-bar .header-nav img {
   margin-left: -10px;
+  width: 150px;
 }
 #nav-bar .header-nav h3, #nav-bar .header-nav span {
   font-size: 1.5rem;
   color: #f9f9f9;
 }
 #nav-bar .header-nav h3 {
-  font-weight: 100;
+  font-weight: 300;
 }
 #nav-bar .header-nav span {
-  font-weight: 500;
+  font-weight: 600;
 }
-#nav-bar .header-nav button {
-  width: 190px;
-}
-#nav-bar .header-nav button a {
-  color: #f9f9f9;
-  font-size: 16px;
+#nav-bar .header-nav a {
+  margin: 0;
+  margin-top: 2rem;
 }
 #nav-bar .navigation {
+  margin-top: 2rem;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
-#nav-bar .navigation li a {
+#nav-bar .navigation li {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+}
+#nav-bar .navigation li a, #nav-bar .navigation li i {
   color: #f9f9f9;
 }
-#nav-bar .navigation li a:hover {
+#nav-bar .navigation li a:hover, #nav-bar .navigation li i:hover {
   color: #828597;
+}
+#nav-bar .navigation li a:hover i, #nav-bar .navigation li i:hover i {
+  color: #828597;
+}
+#nav-bar .navigation li i {
+  font-size: 1.1rem;
+  margin-right: 0.5rem;
 }
 
 .layout {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -174,8 +190,7 @@ ul {
 .container-body {
   min-height: 100vh;
   overflow: hidden;
-  margin-left: 12%;
-  border-left: 1px solid #34384e;
+  margin-left: 15.9%;
 }
 
 .title {
@@ -219,10 +234,10 @@ ul {
 }
 
 .btn {
-  padding: 0.8rem 2rem;
+  padding: 0.6rem 2.8rem;
   margin-top: 1rem;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.8s;
   background-color: #3F7446;
   color: #f9f9f9;
   border-radius: 6px;
@@ -239,7 +254,7 @@ ul {
 }
 
 .form-conatiner {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -276,7 +291,6 @@ ul {
   margin-bottom: 1rem;
 }
 .form-control label {
-  color: #3F7446;
   text-transform: uppercase;
 }
 @media (max-width: 720px) {
@@ -288,7 +302,6 @@ ul {
   padding: 1rem;
   width: 85%;
   border-radius: 6px;
-  background-color: #3F7446 !important;
   color: #f9f9f9;
 }
 @media (max-width: 720px) {
@@ -302,7 +315,7 @@ ul {
   color: #828597;
 }
 .form-control input::placeholder, .form-control textarea::placeholder, .form-control select::placeholder {
-  color: rgba(255, 255, 255, 0.3098039216);
+  color: #34384e;
 }
 
 .validation input::placeholder {
@@ -310,7 +323,7 @@ ul {
 }
 
 .container-form-view {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -331,7 +344,7 @@ ul {
 }
 
 .table {
-  max-width: 90%;
+  max-width: 100%;
   width: 100%;
   border-collapse: collapse;
   border-bottom: 1px solid #34384e;
@@ -346,7 +359,10 @@ ul {
   text-align: justify;
 }
 .table th {
-  color: #3F7446;
+  color: #f9f9f9;
+}
+.table tr:nth-child(even) {
+  background: #191721;
 }
 .table i {
   transition: 0.8s;
@@ -387,7 +403,7 @@ ul {
 }
 
 .default-container {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -439,7 +455,7 @@ ul {
 }
 
 .container-view {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -457,7 +473,7 @@ ul {
 }
 
 .container-topic {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -476,7 +492,7 @@ ul {
 }
 
 .container-topic-list {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -496,7 +512,7 @@ ul {
 }
 
 .default-container-title {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

@@ -3,12 +3,18 @@
 @use '../base/base-mixins'
 
 #footer
-  position: static
+  position: absolute
+  width: 100%
+
   border-top:  1px solid variables.$border-color
+  z-index: 99999 !important
+  background: variables.$bg-primary-color
   
   .container-footer
     @include mixins.center-content()
+    margin: 0 5%
 
+    
     @include base-mixins.smartphone
       flex-direction: column
 
