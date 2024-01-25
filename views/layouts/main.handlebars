@@ -2,6 +2,7 @@
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
     <link
       href='https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'
       rel='stylesheet'
@@ -15,31 +16,63 @@
       href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css'
     />
     <link rel='stylesheet' href='/css/style.css' />
+
     <title>ticketCVTR</title>
   </head>
   <body>
-    <nav>
-      <ul>
-        {{#if session.userid}}
-          <li><a href='/ticket/'>Ticket</a></li>
-          <li><a href='/instituicao/'>Instituição</a></li>
-          <li><a href='/setor/'>Setor</a></li>
-          <li><a href='/colaborador/'>Pessoa</a></li>
-          <li><a href='/tipo-de-referencia/'>Tipo de Referência</a></li>
-          <li><a href='/equipamento/'>Equipamento/Sistema</a></li>
-          <li><a href='/administrador/'>Administrador</a></li>
-          <li><a href='/logout'>Sair</a></li>
-        {{/if}}
-      </ul>
-    </nav>
-    <div class='container-body'>
-      {{{body}}}
+    {{#if session.userid}}
+    <div class='layout'>
+      <nav id="nav-bar">
+        <div class='header-nav'>
+          <a href='/'>
+            <img
+              src='/image/logo-completa-transparente.svg'
+              alt='Logo da Câmara Municipal de Três Rios'
+              width='150px'
+            /></a>
+          <h3>Ticket<span>CVTR</span></h3>
+          <button class='btn'><a href="/ticket/cadastro">Novo Ticket</a></button>
+        </div>
+        <ul class="navigation">
+            <li><a href='/ticket/'>Ticket</a></li>
+            <li><a href='/instituicao/'>Instituição</a></li>
+            <li><a href='/setor/'>Setor</a></li>
+            <li><a href='/colaborador/'>Pessoa</a></li>
+            <li><a href='/tipo-de-referencia/'>Tipo de Referência</a></li>
+            <li><a href='/equipamento/'>Equipamento/Sistema</a></li>
+            <li><a href='/administrador/'>Administrador</a></li>
+            <li><a href='/logout'>Sair</a></li>
+          {{/if}}
+        </ul>
+      </nav>
+      <div class='container-body'>
+      {{#if session.userid}}
+        <div class='form-conatiner'>
+          <form action='/' method='POST' class='form'>
+            <input type='hidden' name='id' value="" />
+            <div class='form-control'>
+              <input
+                id='name'
+                name='name'
+                placeholder='Pesquisar por ticket'
+              />
+            </div>
+            <input type='submit' value='Pesquisar' class='btn' />
+          </form>
+        </div>
+      {{/if}}
+        {{{body}}}
+      </div>
     </div>
     <footer id='footer'>
       <div class='container-footer'>
-        <a href='/'> <img src='/image/logo-completa-transparente.svg' alt='Logo Câmara Municipal de TRês Rios' /></a>
+        <a href='/'>
+          <img
+            src='/image/logo-completa-transparente.svg'
+            alt='Logo da Câmara Municipal de Três Rios'
+          /></a>
         <div>
-          <h6><span>ticketTI</span> &copy; 2024</h6>
+          <h6><span>ticketCVTR</span> &copy; 2024</h6>
           <p>Todos os direitos reservados</p>
         </div>
       </div>
