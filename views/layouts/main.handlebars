@@ -28,22 +28,23 @@
             <img
               src='/image/logo-completa-transparente.svg'
               alt='Logo da Câmara Municipal de Três Rios'
-              width='150px'
+            
             /></a>
           <h3>Ticket<span>CVTR</span></h3>
-          <button class='btn'><a href="/ticket/cadastro">Novo Ticket</a></button>
+          <a href="/ticket/cadastro" class="btn">Novo Ticket</a>
         </div>
         <ul class="navigation">
-            <li><a href='/ticket/'>Ticket</a></li>
-            <li><a href='/instituicao/'>Instituição</a></li>
-            <li><a href='/setor/'>Setor</a></li>
-            <li><a href='/colaborador/'>Pessoa</a></li>
-            <li><a href='/tipo-de-referencia/'>Tipo de Referência</a></li>
-            <li><a href='/equipamento/'>Equipamento/Sistema</a></li>
-            <li><a href='/administrador/'>Administrador</a></li>
-            <li><a href='/logout'>Sair</a></li>
-          {{/if}}
+            <li><a href='/ticket/'><i class="bi bi-receipt-cutoff"></i>Ticket</a></li>
+            <li><a href='/instituicao/'><i class="bi bi-bank"></i> Instituição</a></li>
+            <li><a href='/setor/'><i class="bi bi-diagram-3"></i>Setor</a></li>
+            <li><a href='/colaborador/'><i class="bi bi-person"></i>Pessoa</a></li>
+            <li><a href='/tipo-de-referencia/'><i class="bi bi-file-binary"></i>Tipo de Referência</a></li>
+            <li><a href='/equipamento/'><i class="bi bi-laptop"></i>Equipamento/Sistema</a></li>
+            <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li>
+            <li><a href='/logout'><i class="bi bi-box-arrow-right"></i>Sair</a></li>
         </ul>
+          {{/if}}
+
       </nav>
       <div class='container-body'>
       {{#if session.userid}}

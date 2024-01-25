@@ -24,7 +24,6 @@
   margin-bottom: 1rem
 
   label
-    color: variables.$primary-color
     text-transform: uppercase
 
     @include base-mixins.smartphone
@@ -35,7 +34,6 @@
     padding: 1rem
     width: 85%
     border-radius: variables.$radius
-    background-color: variables.$primary-color !important
     color: variables.$second-text-color
 
     @include base-mixins.smartphone
@@ -47,7 +45,7 @@
       color: variables.$text-color
 
     &::placeholder
-      color: #ffffff4f
+      color: variables.$border-color
 
 .validation
   input
