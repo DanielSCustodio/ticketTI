@@ -39,7 +39,7 @@
             <li><a href='/setor/'><i class="bi bi-diagram-3"></i>Setor</a></li>
             <li><a href='/colaborador/'><i class="bi bi-person"></i>Pessoa</a></li>
             <li><a href='/tipo-de-referencia/'><i class="bi bi-file-binary"></i>Tipo de Referência</a></li>
-            <li><a href='/equipamento/'><i class="bi bi-laptop"></i>Equipamento/Sistema</a></li>
+            <li><a href='/equipamento/'><i class="bi bi-hdd-network"></i>Equipamento/Sistema</a></li>
             <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li>
             <li><a href='/logout'><i class="bi bi-box-arrow-right"></i>Sair</a></li>
         </ul>
@@ -48,18 +48,20 @@
       </nav>
       <div class='container-body'>
       {{#if session.userid}}
-        <div class='form-conatiner'>
-          <form action='/' method='POST' class='form'>
+        <div class='container-search'>
+          <form action='/' method='POST' class="form-search">
             <input type='hidden' name='id' value="" />
-            <div class='form-control'>
               <input
                 id='name'
                 name='name'
-                placeholder='Pesquisar por ticket'
+                placeholder='&#128269;&nbsp; &nbsp; &nbsp; &nbsp;  Pesquisar por ticket '
               />
-            </div>
-            <input type='submit' value='Pesquisar' class='btn' />
+            <input type='submit' value='Pesquisar ' class='btn btn-search' />
           </form>
+          <div class="user-name">
+            <i class="bi bi-person-circle"></i>
+            <h6>Daniel Custódio</h6>
+          </div>
         </div>
       {{/if}}
         {{{body}}}

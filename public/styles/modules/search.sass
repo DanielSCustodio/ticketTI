@@ -4,36 +4,44 @@
 
 .container-search
   width: 100%
-  margin: 0 auto
-
-
-  form
+  padding: 2rem
+  border-bottom: 1px solid variables.$border-color
+  margin-bottom: 3rem
+  display: flex
+  justify-content:  space-between
+  align-items: center
+  
+  .form-search
     display: flex
+    justify-content: start
+    gap: 1rem
+    width: 50%
 
     input
-      background: none
-      border: 0
-      box-shadow: none
-      border-bottom: 1px solid variables.$border-color
+      padding: 1rem
+      width: 80%
+      border-radius: variables.$radius
+      background-color: variables.$bg-second-color
+      color: variables.$second-text-color
 
-      @include base-mixins.smartphone
-        max-width: 70%
-
-    .btn
-      background-color:  variables.$text-color
-      margin-left: 1rem
-      transition: .8s
+    .btn-search
+      background-color: variables.$color-red-primary
+      color: variables.$second-text-color
+      width: 20%
 
       &:hover
-        background-color: variables.$second-color
+        background-color: variables.$color-red-second
+        
+  .user-name
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 1rem
 
-.container-search-center
-  display: flex
-  align-items: center
-  justify-content: center
+    h6
+      color: variables.$second-text-color
+      margin: 0
 
-.form-search
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
+    i
+      font-size: 1.5rem
+      color: variables.$second-text-color

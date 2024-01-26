@@ -32,7 +32,6 @@ body {
 a {
   text-decoration: none;
   transition: 0.8s;
-  font-weight: 500;
 }
 a:hover {
   color: #3F7446;
@@ -119,7 +118,7 @@ ul {
   top: 0px;
   height: 100vh;
   padding-right: 2%;
-  margin-left: 5%;
+  padding-left: 5%;
   border-right: 1px solid #34384e;
 }
 #nav-bar .header-nav {
@@ -235,7 +234,6 @@ ul {
 
 .btn {
   padding: 0.6rem 2.8rem;
-  margin-top: 1rem;
   cursor: pointer;
   transition: 0.8s;
   background-color: #3F7446;
@@ -249,7 +247,7 @@ ul {
   }
 }
 .btn:hover {
-  background-color: #427a49;
+  background-color: #4a9554;
   color: #f9f9f9;
 }
 
@@ -284,6 +282,7 @@ ul {
 }
 
 .form-control {
+  background-color: #16141C;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -345,7 +344,7 @@ ul {
 
 .table {
   max-width: 100%;
-  width: 100%;
+  width: 100vw;
   border-collapse: collapse;
   border-bottom: 1px solid #34384e;
 }
@@ -566,42 +565,47 @@ ul {
 
 .container-search {
   width: 100%;
-  margin: 0 auto;
-}
-.container-search form {
-  display: flex;
-}
-.container-search form input {
-  background: none;
-  border: 0;
-  box-shadow: none;
+  padding: 2rem;
   border-bottom: 1px solid #34384e;
-}
-@media (max-width: 720px) {
-  .container-search form input {
-    max-width: 70%;
-  }
-}
-.container-search form .btn {
-  background-color: #828597;
-  margin-left: 1rem;
-  transition: 0.8s;
-}
-.container-search form .btn:hover {
-  background-color: #427a49;
-}
-
-.container-search-center {
+  margin-bottom: 3rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
 }
-
-.form-search {
+.container-search .form-search {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+  width: 50%;
+}
+.container-search .form-search input {
+  padding: 1rem;
+  width: 80%;
+  border-radius: 6px;
+  background-color: #25283A;
+  color: #f9f9f9;
+}
+.container-search .form-search .btn-search {
+  background-color: #CD432D;
+  color: #f9f9f9;
+  width: 20%;
+}
+.container-search .form-search .btn-search:hover {
+  background-color: #B23714;
+}
+.container-search .user-name {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.container-search .user-name h6 {
+  color: #f9f9f9;
+  margin: 0;
+}
+.container-search .user-name i {
+  font-size: 1.5rem;
+  color: #f9f9f9;
 }
 
 /*# sourceMappingURL=style.css.map */
