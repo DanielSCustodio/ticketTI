@@ -26,20 +26,19 @@
       <th>ID</th>
       <th>Título</th>
       <th>Equipamento</th>
-      <th>Departamento</th>
+      <th>Setor</th>
       <th>Data</th>
       <th>Início do atendimento</th>
       <th>Final do atendimento</th>
       <th>Solicitante</th>
       <th>Agente de suporte</th>
-      <th>Duração(minutos)</th>
     </tr>
   </thead>
   <tbody>
     {{#each ticketsDuration}}
       <tr>
         <td>{{this.id}}</td>
-        <td>{{this.title}}</td>
+        <td class="table-align-left">{{this.title}}</td>
         <td>{{this.Equipment.dataValues.name}}</td>
         <td>{{this.Departament.dataValues.name}}</td>
         <td>{{this.date}}</td>
@@ -47,12 +46,8 @@
         <td>{{this.endTime}}</td>
         <td>{{this.Person.dataValues.name}}</td>
         <td>{{this.Administrator.dataValues.username}}</td>
-        <td>{{duration}}</td>
       </tr>
     {{/each}}
   </tbody>
 </table>
-  {{#if privilege}}
-    <a href="/ticket/cadastro">Cadastar</a>
-  {{/if}}
 </section>

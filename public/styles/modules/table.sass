@@ -12,23 +12,32 @@
     display: none
 
   th, td
-    padding: 1rem
-    text-align: justify
-
+    padding: 0.8rem
+    text-align: center
+    border-right:  1px solid variables.$border-color    
+    
   th
     color: variables.$second-text-color
+    background-color: variables.$second-color
+    border-bottom: 1px solid variables.$border-color
+    border: none
+    padding-left: 2rem
 
-  tr:nth-child(odd)
+  tr, td
+    padding-left:  2rem
 
   tr:nth-child(even)
     background: #191721
 
   i
     transition: .8s
-    margin-left: 1.2rem
+    font-size: 1.3rem
     &:hover
       cursor: pointer
-      color: variables.$primary-color
+      color:  variables.$second-text-color
+
+  .table-align-left
+    text-align: left
 
 .table-mobile
   display: none
@@ -55,3 +64,37 @@
   &:nth-child(even)
     background-color: variables.$bg-second-color
 
+.btn-delete
+  background-color: transparent
+  border: none
+  
+  i
+    color: variables.$color-red-primary
+    transition: .8s
+
+    &:hover
+      color: variables.$color-red-second
+
+.btn-table
+  margin: 2rem
+  background-color: variables.$bg-second-color
+  border:  1px solid variables.$primary-color
+
+  &:hover
+    border:  1px solid variables.$second-text-color
+
+.btn-edit
+  i 
+    color: #ebe376
+    transition: .8s
+
+    &:hover
+      color: #ccbf02
+
+.btn-detail
+  i
+    color: variables.$primary-color
+    transition: .8s
+
+    &:hover
+      color: #98e79f
