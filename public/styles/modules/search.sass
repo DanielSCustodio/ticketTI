@@ -8,9 +8,9 @@
   border-bottom: 1px solid variables.$border-color
   margin-bottom: 3rem
   display: flex
-  justify-content:  space-between
+  justify-content: space-between
   align-items: center
-  
+
   .form-search
     display: flex
     justify-content: start
@@ -18,20 +18,21 @@
     width: 50%
 
     input
-      padding: 1rem
+      padding: 0.5rem
       width: 80%
       border-radius: variables.$radius
       background-color: variables.$bg-second-color
       color: variables.$second-text-color
 
     .btn-search
-      background-color: variables.$color-red-primary
+      background-color: variables.$primary-color
       color: variables.$second-text-color
       width: 20%
+      transition: 0.8s
 
       &:hover
-        background-color: variables.$color-red-second
-        
+        background-color: variables.$second-color
+
   .user-name
     display: flex
     justify-content: center
@@ -45,3 +46,24 @@
     i
       font-size: 1.5rem
       color: variables.$second-text-color
+
+    div
+      margin-left: 2rem
+
+      a
+        display: flex
+        justify-content: center
+        align-items: center
+        gap: 1rem
+        color: variables.$text-color
+        transition: .8s
+
+        &:hover
+          color: variables.$color-red-primary
+
+          i
+            font-size: 1.5rem
+            color: variables.$color-red-primary
+
+        i
+          color: variables.$text-color

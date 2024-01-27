@@ -41,14 +41,14 @@
           <td>{{this.ReferenceType.name}}</td>
           <td>{{this.reference}}</td>
           <td>
-            <a href='/equipamento/editar/{{this.id}}' class='btn'><i
+            <a href='/equipamento/editar/{{this.id}}' class="btn-edit"><i
                 class='bi bi-pencil-square'
               ></i></a>
           </td>
           <td>
             <form action='/equipamento/remove' method='post'>
-              <input type='hidden' name='id' value='{{this.id}}' />
-              <button type='submit' class='btn'><i
+              <input type='hidden' name='id' value='{{this.id}}'  />
+              <button type='submit' class="btn-delete"><i
                   class='bi bi-x-square'
                 ></i></button>
             </form>
@@ -58,7 +58,7 @@
     </tbody>
   </table>
   {{#if privilege}}
-    <a href="/equipamento/cadastro">Cadastar</a>
+    <a href="/equipamento/cadastro" class="btn btn-table">Cadastar</a>
   {{/if}}
 
 </section>
