@@ -32,6 +32,7 @@ router.post('/remove', checkPrivilege, InstitutionController.removeInstitution);
 router.post(
   '/edit',
   checkPrivilege,
+  checkNameInput,
   InstitutionController.updateInstituitonSave,
 );
 

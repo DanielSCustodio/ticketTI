@@ -6,52 +6,67 @@
   @include mixins.center-content()
   justify-content: center
   flex-direction: column
-  
+  width: 100vw
+
 .form
-  padding: 1.5rem 0
-  width: 100%
-  border-radius: variables.$radius
   display: flex
   flex-direction: column
-  align-items: center
+  align-items: flex-start
   justify-content: center
+  width: 100%
+
+  input[type=submit]
+    margin: 2rem 0
+    margin-left: 25.7%
 
 .form-control
   background-color: variables.$bg-primary-color
   display: flex
-  align-items: center
-  justify-content: space-between
-  width: 100%
+  flex-direction: column
+  align-items: flex-start
+  gap: 0.4rem
+  justify-content: center
+  width: 50%
   margin-bottom: 1rem
+  margin-left: 25%
+  border: 0
+
+  div
+    width: 100%
+
+    i
+      color: variables.$second-text-color
+      margin-left: 0.4rem
 
   label
-    text-transform: uppercase
+    text-transform: capitalize
+    color: variables.$second-text-color
 
     @include base-mixins.smartphone
       font-size: 0.8rem
 
-
   input, textarea, select
+    background-color: variables.$bg-second-color
     padding: 0.7rem
-    width: 85%
+    width: 90%
     border-radius: variables.$radius
     color: variables.$second-text-color
+    border: 1px solid variables.$border-color
+
+  input[type="date"]::-webkit-calendar-picker-indicator
+    cursor: pointer
+    filter: invert(1)
+
+  input[type="time"]::-webkit-calendar-picker-indicator
+    cursor: pointer
+    filter: invert(1)
 
     @include base-mixins.smartphone
       width: 75%
       padding: 0.8rem
-      
-    &:disabled
-      background-color: variables.$bg-second-color !important
+
+    &::placeholder
       color: variables.$text-color
-
-    &::placeholder
-      color: variables.$border-color
-
-.validation
-  input
-    &::placeholder
-      color: variables.$alert-color
 
 .container-form-view
   @include mixins.center-content()

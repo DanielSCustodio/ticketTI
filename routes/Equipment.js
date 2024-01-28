@@ -16,6 +16,10 @@ router.post('/remove', checkPrivilege, EquipmentController.removeEquipment);
 
 router.post('/add', checkEquipment, EquipmentController.createEquipmentSave);
 
-router.post('/edit', checkPrivilege, EquipmentController.updateEquipmentSave);
+router.post(
+  '/edit',
+  checkPrivilege,
+  checkEquipment, EquipmentController.updateEquipmentSave,
+);
 
 module.exports = router;

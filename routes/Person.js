@@ -17,6 +17,6 @@ router.post('/add', checkPerson, PersonController.createPersonSave);
 
 router.post('/remove', checkPrivilege, PersonController.removePerson);
 
-router.post('/edit', checkPrivilege, PersonController.updatePersonSave);
+router.post('/edit', checkPrivilege,checkPerson, PersonController.updatePersonSave);
 
 module.exports = router;
