@@ -27,6 +27,7 @@ router.post(
 router.post(
   '/edit',
   checkPrivilege,
+  checkNameInput,
   DepartamentController.updateDepartamentSave,
 );
 

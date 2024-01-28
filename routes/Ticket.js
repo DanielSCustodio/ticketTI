@@ -16,6 +16,6 @@ router.post('/remove', checkPrivilege, TicketController.removeTicket);
 
 router.post('/add', checkTicket, TicketController.createTicketSave);
 
-router.post('/edit', checkPrivilege, TicketController.updateTicketSave);
+router.post('/edit', checkPrivilege, checkTicket, TicketController.updateTicketSave);
 
 module.exports = router;

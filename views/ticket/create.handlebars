@@ -9,6 +9,15 @@
       <label for='title'>Assunto:</label>
       <input type='text' name='title' id='title' placeholder='Assunto do ticket' />
     </div>
+
+    <div class='form-control'>
+      <label>Solicitante:</label>
+      <div>
+        <input name='requesterSelected' id='requesterSelected' placeholder="Nome do solicitante" readonly/>
+        <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
+      </div>
+    </div>
+
     <div class='form-control'>
       <label for='description'>Descrição do incidente:</label>
       <textarea
@@ -16,47 +25,52 @@
         name='description'
         id='description'
         cols='30'
-        rows='10'
+        rows='5'
       ></textarea>
     </div>
+
     <div class='form-control'>
       <label for='solution'>Solução:</label>
-      <textarea name='solution' placeholder="Descrição completa da solução" id='solution' cols='30' rows='10'></textarea>
+      <textarea name='solution' placeholder="Descrição completa da solução" id='solution' cols='30' rows='5'></textarea>
     </div>
+
     <div class='form-control'>
       <label for='date'>Data do ticket:</label>
       <input type='date' name='date' id='date' />
     </div>
+
     <div class='form-control'>
       <label for='startTime'>Início do suporte</label>
       <input type='time' name='startTime' id='startTime' />
     </div>
+
     <div class='form-control'>
       <label for='endTime'>Final do suporte</label>
       <input type='time' name='endTime' id='endTime' />
     </div>
-        <div class='form-control'>
-      <label>Agente de atendimento:</label>
-      <input name='administratorIdSelected' id='administratorIdSelected'  readonly/>
-      <a href='#' id='openModalBtnAdministrator'><i class='bi bi-search'></i></a>
-    </div>
-    
+
     <div class='form-control'>
-      <label>Solicitante:</label>
-      <input name='requesterSelected' id='requesterSelected'  readonly/>
-      <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
+      <label>Agente de atendimento:</label>
+        <div>
+          <input name='administratorIdSelected' id='administratorIdSelected' placeholder="Nome do agente de atendimento" readonly/>
+          <a href='#' id='openModalBtnAdministrator'><i class='bi bi-search'></i></a>
+        </div>
     </div>
 
     <div class='form-control'>
       <label>Setor:</label>
-      <input name='departamentSelected' id='departamentSelected'  readonly/>
-      <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
+      <div>
+        <input name='departamentSelected' id='departamentSelected' placeholder="Nome do setor do incidente" readonly/>
+        <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
+      </div>
     </div>
     
     <div class='form-control'>
       <label>Equipamento/Sistema:</label>
-      <input name='equipmentSelected' id='equipmentSelected'  readonly/>
-      <a href='#' id='openModalBtnEquipment'><i class='bi bi-search'></i></a>
+      <div>
+        <input name='equipmentSelected' id='equipmentSelected' placeholder="Nome do equipamento/sistema" readonly/>
+        <a href='#' id='openModalBtnEquipment'><i class='bi bi-search'></i></a>
+      </div>
     </div>
 
     <input type='submit' value='Cadastar' class='btn' />
