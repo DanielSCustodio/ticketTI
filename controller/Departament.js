@@ -75,7 +75,7 @@ module.exports = class DepartamentController {
     try {
       req.flash(
         'update-departament',
-        `Setor "${departament.name}" atualizada com sucesso.`,
+        `Setor "${departament.name}" atualizado com sucesso.`,
       );
       await Departament.update(departament, { where: { id: id } });
       res.redirect('/setor');

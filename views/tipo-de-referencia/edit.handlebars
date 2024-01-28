@@ -1,6 +1,6 @@
 <section class='form-conatiner'>
   {{#if messages.error-input-name}}
-    <div class='message'>
+    <div class='message-error'>
       <span>{{messages.error-input-name}}</span>
     </div>
   {{/if}}
@@ -16,6 +16,8 @@
         value="{{referenceType.name}}"
       />
     </div>
-    <input type='submit' value='Atualizar' class='btn' />
+    <div class="btn-submit">
+      <input type='submit' value='Atualizar' class='btn' />
+    </div>
   </form>
 </section>

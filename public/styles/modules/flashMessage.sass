@@ -1,0 +1,36 @@
+@use '../base/variables'
+@use '../base/base-mixins'
+
+.message-error, .message
+  display: flex
+  justify-content: flex-start
+  margin: 0 auto
+  width: 50%
+  margin-bottom: 2rem
+  animation: 5.0s ease-in-out 1 forwards visibility
+  
+  span
+    padding: 0.7rem
+    background-color: #dbcfcf
+    color: variables.$color-red-second
+    border-radius: variables.$radius
+    font-weight: bold
+    box-shadow: variables.$shadow
+
+.message
+  width: 100%
+  
+  span
+    display: flex
+    justify-content: center
+    border-radius: 0
+    width: 100%
+    color: variables.$primary-color
+
+@keyframes visibility
+  0%
+    opacity: 1
+  90%
+    opacity: 1
+  100%
+    opacity: 0

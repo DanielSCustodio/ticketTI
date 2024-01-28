@@ -1,6 +1,6 @@
 <section class='form-conatiner'>
   {{#if messages.error-input-equipment}}
-    <div class='message'>
+    <div class='message-error'>
       <span>{{messages.error-input-equipment}}</span>
     </div>
   {{/if}}
@@ -45,7 +45,9 @@
         placeholder='Referência do equipamento/sistema'
       />
     </div>
-    <input type='submit' value='Cadastar' class='btn' />
+    <div class="btn-submit">
+      <input type='submit' value='Cadastrar' class='btn' />
+    </div>
   </form>
 </section>
 
@@ -97,8 +99,10 @@
       </div>
       <div class='modal-footer'>
         <span id='currentPage'></span>
-        <button type='button' class='btn btn-secondary' id='prevPageBtn'>Anterior</button>
-        <button type='button' class='btn btn-secondary' id='nextPageBtn'>Próximo</button>
+        <div class="btn-pagination">
+          <button type='button' class='btn btn-table' id='prevPageBtn'>Anterior</button>
+          <button type='button' class='btn btn-table' id='nextPageBtn'>Próximo</button>
+        </div>
       </div>
 
     </div>

@@ -1,6 +1,6 @@
 <section class='form-conatiner'>
   {{#if messages.error-input-name}}
-    <div class='message'>
+    <div class='message-error'>
       <span>{{messages.error-input-name}}</span>
     </div>
   {{/if}}
@@ -14,6 +14,8 @@
         placeholder='Nome do tipo de referência'
       />
     </div>
-    <input type='submit' value='Cadastar' class='btn' />
+    <div class="btn-submit">
+      <input type='submit' value='Cadastrar' class='btn' />
+    </div>
   </form>
 </section>

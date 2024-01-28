@@ -1,6 +1,6 @@
 <section class='form-conatiner'>
   {{#if messages.error-input-ticket}}
-    <div class='message'>
+    <div class='message-error'>
       <span>{{messages.error-input-ticket}}</span>
     </div>
   {{/if}}
@@ -72,8 +72,9 @@
         <a href='#' id='openModalBtnEquipment'><i class='bi bi-search'></i></a>
       </div>
     </div>
-
-    <input type='submit' value='Cadastar' class='btn' />
+    <div class="btn-submit">
+      <input type='submit' value='Cadastar' class='btn' />
+    </div>
   </form>
 </section>
 
@@ -125,8 +126,10 @@
       </div>
       <div class='modal-footer'>
         <span id='currentPage'></span>
-        <button type='button' class='btn btn-secondary' id='prevPageBtn'>Anterior</button>
-        <button type='button' class='btn btn-secondary' id='nextPageBtn'>Próximo</button>
+        <div class="btn-pagination">
+          <button type='button' class='btn btn-table' id='prevPageBtn'>Anterior</button>
+          <button type='button' class='btn btn-table' id='nextPageBtn'>Próximo</button>
+        </div>
       </div>
 
     </div>
