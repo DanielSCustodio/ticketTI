@@ -3,6 +3,8 @@ const router = express.Router();
 const InstitutionController = require('../controller/Institution');
 const checkNameInput = require('../middleware/validations').checkNameInput;
 const checkPrivilege = require('../middleware/validations').checkPrivilege;
+const checkDeleteInstitution =
+  require('../middleware/validations').checkDeleteInstitution;
 
 //Get
 router.get(
@@ -27,7 +29,12 @@ router.post(
   InstitutionController.createInstitutionSave,
 );
 
-router.post('/remove', checkPrivilege, InstitutionController.removeInstitution);
+router.post(
+  '/remove',
+  checkPrivilege,
+  checkDeleteInstitution,
+  InstitutionController.removeInstitution,
+);
 
 router.post(
   '/edit',

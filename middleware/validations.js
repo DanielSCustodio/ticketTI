@@ -202,6 +202,7 @@ module.exports.checkPrivilege = async function async(req, res, next) {
   }
   next();
 };
+
 //Ticket
 module.exports.checkTicket = async function async(req, res, next) {
   const {
@@ -380,4 +381,25 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
   next();
+};
+
+//DELETE
+
+//Institution
+module.exports.checkDeleteInstitution = async function async(req, res, next) {
+  const institutionId = req.body.id;
+
+  const personWithInstitution = await Person.findOne({ raw:true,
+    where: {  InstitutionId: institutionId },
+  });
+
+  if (personWithInstitution) {
+    req.flash(
+      'error-privilege',
+      `Esta instituição não pode ser removida, pois está associada a ${personWithInstitution.name}.`,
+    );
+    res.redirect('/instituicao');
+    return;
+  }
+  next()
 };
