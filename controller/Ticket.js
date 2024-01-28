@@ -95,6 +95,7 @@ module.exports = class TicketController {
 
   static async viewTickets(req, res) {
     const id = req.session.userid;
+    const test = false
 
     try {
       const user = await Administrator.findOne({
@@ -120,7 +121,7 @@ module.exports = class TicketController {
         plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
         return plainResult;
       });
-      res.render('ticket/all', { tickets, privilege });
+      res.render('ticket/all', { tickets, privilege, test });
     } catch (error) {
       console.log(
         'Aconteceu um erro no controller viewTickets ticket ===>',
@@ -172,10 +173,17 @@ module.exports = class TicketController {
         result.get({ plain: true }),
       );
 
-      const supportAgent = await Person.findOne({
+      const person = await Administrator.findOne({
         raw: true,
         where: { id: ticket.AdministratorId },
       });
+
+      const supportAgent = await Person.findOne({
+        raw: true,
+        where: { id: person.PersonId },
+      });
+
+      
 
       const departament = await Departament.findOne({
         raw: true,
@@ -214,7 +222,6 @@ module.exports = class TicketController {
   static async updateTicketSave(req, res) {
     const id = req.body.id;
 
-    console.log('---->', id);
 
     const {
       title,
@@ -230,10 +237,17 @@ module.exports = class TicketController {
     } = req.body;
 
     try {
-      const administrator = await Administrator.findOne({
+      const administrator = await Person.findOne({
         raw: true,
-        where: { username: administratorIdSelected },
+        where: { name: administratorIdSelected },
       });
+
+
+      const agent = await Administrator.findOne({
+        raw: true,
+        where: { PersonId: administrator.id },
+      });
+
 
       const requester = await Person.findOne({
         raw: true,
@@ -257,7 +271,7 @@ module.exports = class TicketController {
         date,
         startTime,
         endTime,
-        AdministratorId: administrator.id,
+        AdministratorId: agent.id,
         PersonId: requester.id,
         DepartamentId: departament.id,
         EquipmentId: equipment.id,

@@ -13,10 +13,9 @@
       </div>
     </div>
     <div class='form-control'>
-      <label for="">Nome de usuário:</label>
+      <label for="usernameSelected">Nome de usuário:</label>
       <input
         id="usernameSelected"
-        readonly
         type='text'
         name='username'
         placeholder='Nome de usuário'
@@ -129,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function () {
       let personId = row.getAttribute('data-id');
       let personName = row.getAttribute('data-name');
       personSelectedInput.value = personName;
-      usernameSelectedInput.value = personName;
       personModel.hide();
     });
   });
