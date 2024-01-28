@@ -1,0 +1,83 @@
+@use '../base/variables'
+@use '../layouts/mixins'
+@use '../base/base-mixins'
+
+.modal.show .modal-dialog
+  display: flex
+  justify-content: center
+
+.modal
+  background: rgba( 255, 255, 255, 0.05 )
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
+  backdrop-filter: blur( 8px )
+  -webkit-backdrop-filter: blur( 8px )
+  border-radius: 10px
+  border: 1px solid rgba( 255, 255, 255, 0.18 )
+  margin: 0 auto
+  padding: 0
+
+.modal-body
+  input
+    padding: 1rem
+    margin: 2rem 0
+    width: 100%
+    border-radius: variables.$radius
+    background-color: variables.$bg-primary-color
+    color: variables.$second-text-color
+    border: 1px solid variables.$border-color
+
+.modal-title
+  color: variables.$second-text-color
+
+.close
+  border: none
+  background: transparent
+
+  span
+    font-size: 2rem
+    color: variables.$color-red-primary
+    transition: 0.8s
+
+    &:hover
+      color: variables.$color-red-second
+
+.modal-header
+  border: none
+
+.modal-footer
+  margin-top: 2rem
+  border-top: none
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  .btn-pagination
+    display: flex
+    gap: 1rem
+
+    button
+      margin: 0
+
+  #currentPage
+    color: variables.$second-text-color
+
+.modal-content
+  padding: 2rem
+  background-color: #01050c
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgb(15, 15, 15) 0px 2px 16px 0px
+  border-radius: variables.$radius
+  width: 700px
+  border: 1px solid variables.$border-color
+
+  .table>:not(caption)>*>*
+    border: 1px solid variables.$border-color
+
+  .table
+    background-color: variables.$bg-primary-color
+
+    th
+      background-color: variables.$bg-second-color
+      border: 1px solid variables.$border-color
+
+    tr:hover td
+      color: variables.$second-text-color

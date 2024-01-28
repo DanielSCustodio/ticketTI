@@ -11,6 +11,13 @@
       <input type='text' name='title' id='title' placeholder='Assunto do ticket' value="{{ticket.title}}" />
     </div>
     <div class='form-control'>
+      <label>Solicitante:</label>
+      <div>
+        <input name='requesterSelected' id='requesterSelected'  value="{{requester.name}}"  readonly/>
+        <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
+      </div>
+    </div>
+    <div class='form-control'>
       <label for='description'>Descrição do incidente:</label>
       <textarea
         placeholder="Descrição completa do incidente"
@@ -45,13 +52,6 @@
       </div>
     </div>
     
-    <div class='form-control'>
-      <label>Solicitante:</label>
-      <div>
-        <input name='requesterSelected' id='requesterSelected'  value="{{requester.name}}"  readonly/>
-        <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
-      </div>
-    </div>
 
     <div class='form-control'>
       <label>Setor:</label>
@@ -123,8 +123,10 @@
       </div>
       <div class='modal-footer'>
         <span id='currentPage'></span>
-        <button type='button' class='btn btn-secondary' id='prevPageBtn'>Anterior</button>
-        <button type='button' class='btn btn-secondary' id='nextPageBtn'>Próximo</button>
+        <div class="btn-pagination">
+          <button type='button' class='btn btn-table' id='prevPageBtn'>Anterior</button>
+          <button type='button' class='btn btn-table' id='nextPageBtn'>Próximo</button>
+        </div>
       </div>
 
     </div>
