@@ -1,4 +1,5 @@
 const Administrator = require('../models/Administrator');
+const Person = require('../models/Person');
 const bcrypt = require('bcryptjs');
 
 module.exports = class AuthController {
@@ -9,7 +10,12 @@ module.exports = class AuthController {
   static async loginUser(req, res) {
     const { username, password } = req.body;
 
-    const user = await Administrator.findOne({ where: { username: username } });
+    const user = await Administrator.findOne({raw:true, where: { username: username } });
+
+    const person = await Person.findOne({
+      raw: true,
+      where: { id: user.PersonId },
+    });
 
     if (!user) {
       req.flash('error-login', 'Usuário não encontrado.');
@@ -27,7 +33,7 @@ module.exports = class AuthController {
 
     req.session.userid = user.id;
 
-    req.flash('sucess-login', `Olá, ${user.username}!`);
+    req.flash('sucess-login', `Olá, ${person.name}!`);
     req.session.save(() => {
       res.redirect('/dashboard');
     });
