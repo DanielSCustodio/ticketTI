@@ -1,0 +1,92 @@
+@use '../base/variables'
+@use '../base/base-mixins'
+
+.auth-container
+  width: 100%
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  margin: 0 auto
+  overflow: hidden
+  background-image: url("https://i.imgur.com/GyuiNi2.png")
+  background-repeat: none
+
+  .card-auth
+    width: 500px
+    height: 500px
+    border: 1px solid #ffffff27
+    padding: 1.5rem
+    border-radius: variables.$radius
+    background: rgba(255, 255, 255, 0)
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px
+    backdrop-filter: blur( 5.5px )
+    -webkit-backdrop-filter: blur( 10.5px )
+    border-radius: variables.$radius
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    flex-direction: column
+
+    div
+      width: 100%
+
+    .title-auth
+      display: flex
+      justify-content: center
+      border-bottom: 1px solid variables.$border-color
+      margin-bottom: 3rem
+      margin-top: -1rem
+      padding-bottom: 1rem
+
+      h1
+        font-size: 1.5rem
+        object-fit: cover
+        font-weight: 200
+        color: variables.$second-text-color
+
+        span
+          font-size: 1.8rem
+          font-weight: 300
+          color: variables.$second-text-color
+
+    .logo
+      display: flex
+      justify-content: center
+
+      img
+        width: 230px
+        object-fit: cover
+
+    .form-auth
+      .form-control
+        background-color: transparent
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: row
+        gap: 1rem
+
+        input
+          background-color: #d8d0d034
+          color: variables.$second-text-color
+          border: 1px solid #c3c3c35e
+
+        input::placeholder
+          color: #c3c3c3bb
+
+        i
+          font-size: 1.5rem
+          color: variables.$second-text-color
+
+      .btn
+        margin-top: 3rem
+        box-shadow: none
+      
+.message-login
+    justify-content: center
+    width: 100%
+
+    span
+      padding: 0.7rem 5rem      

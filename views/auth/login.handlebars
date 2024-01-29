@@ -1,33 +1,40 @@
-<div class='auth-container' style="width: 100%;">
-  <div class='title-container'>
-
-  </div>
-  <form action='/login' method='post' class='form'>
-
-    <div class='form-control'>
-      <i class="bi bi-person"></i>
-      <input
-        type='text'
-        name='username'
-        placeholder='Digite o seu nome de usuário'
-        required
-      />
+<div class='auth-container'>
+  {{#if messages.error-login }}
+    <div class='message-error message-login'>
+      <span>{{messages.error-login}}</span>
     </div>
-    <div class='form-control'>
-      <i class='bi bi-lock'></i>
-      <input
-        type='password'
-        name='password'
-        placeholder='Disgite a sua senha'
-        required
-      />
+  {{/if}}
+  <section class="card-auth">
+
+    <div class='logo'>
+      <img src='/image/logo-completa-transparente.svg' alt='Logo da Câmara Municipal de Três Rios'/></a>
     </div>
-    {{#if messages.error-login}}
-      <div class='message-error'>
-        {{messages.error-login}}
+
+    <div class='title-auth'>
+      <h1>ticket<span>CVTR</span></h1>
+    </div>
+
+    <form action='/login' method='post' class='form form-auth'>
+      <div class='form-control'>
+        <i class='bi bi-person'></i>
+        <input
+          type='text'
+          name='username'
+          placeholder='Digite o seu nome de usuário'
+          required
+        />
       </div>
-    {{/if}}
-    <input type='submit' value='Entrar' class='btn' />
+      <div class='form-control'>
+        <i class='bi bi-lock'></i>
+        <input
+          type='password'
+          name='password'
+          placeholder='Disgite a sua senha'
+          required
+        />
+      </div>
+      <input type='submit' value='Entrar' class='btn' />
 
-  </form>
+    </form>
+  </section>
 </div>

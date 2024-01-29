@@ -30,7 +30,7 @@
               alt='Logo da Câmara Municipal de Três Rios'
             
             /></a>
-          <h3>Ticket<span>CVTR</span></h3>
+          <h3>ticket<span>CVTR</span></h3>
           <a href="/ticket/cadastro" class="btn">Novo Ticket</a>
         </div>
         <ul class="navigation">
@@ -43,10 +43,11 @@
             <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li>
             <li><a href='/dashboard/'><i class="bi bi-clipboard-pulse"></i>Dashboard</a></li>
         </ul>
-          {{/if}}
+      {{/if}}
       </nav>
-      <div class='container-body'>
       {{#if session.userid}}
+
+      <div class='container-body'>
         <div class='container-search'>
           <form action='/' method='POST' class="form-search">
             <input type='hidden' name='id' value="" />

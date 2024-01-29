@@ -10,11 +10,9 @@ module.exports = class AuthController {
   static async loginUser(req, res) {
     const { username, password } = req.body;
 
-    const user = await Administrator.findOne({raw:true, where: { username: username } });
-
-    const person = await Person.findOne({
+    const user = await Administrator.findOne({
       raw: true,
-      where: { id: user.PersonId },
+      where: { username: username },
     });
 
     if (!user) {
@@ -22,6 +20,12 @@ module.exports = class AuthController {
       res.render('auth/login');
       return;
     }
+
+    const person = await Person.findOne({
+      raw: true,
+      where: { id: user.PersonId },
+    });
+
 
     const passwordMatch = bcrypt.compareSync(password, user.password);
 
