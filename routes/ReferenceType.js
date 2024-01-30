@@ -26,8 +26,8 @@ router.get('/', ReferenceTypeController.viewReferenceTypes);
 //post
 router.post(
   '/remove',
-  checkDeleteReferenceType,
   checkPrivilege,
+  checkDeleteReferenceType,
   ReferenceTypeController.removeReferenceType,
 );
 
