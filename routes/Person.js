@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const PersonController = require('../controller/Person');
-const checkPerson = require('../middleware/validation/person').checkPerson;
-const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
+const {
+  checkPerson,
+  checkDeletePerson,
+} = require('../middleware/validation/person');
+const checkPrivilege =
+  require('../middleware/validation/administrator').checkPrivilege;
 
 //get
 router.get('/cadastro', checkPrivilege, PersonController.createPerson);
@@ -15,8 +19,18 @@ router.get('/', PersonController.viewPeople);
 
 router.post('/add', checkPerson, PersonController.createPersonSave);
 
-router.post('/remove', checkPrivilege, PersonController.removePerson);
+router.post(
+  '/remove',
+  checkPrivilege,
+  checkDeletePerson,
+  PersonController.removePerson,
+);
 
-router.post('/edit', checkPrivilege,checkPerson, PersonController.updatePersonSave);
+router.post(
+  '/edit',
+  checkPrivilege,
+  checkPerson,
+  PersonController.updatePersonSave,
+);
 
 module.exports = router;

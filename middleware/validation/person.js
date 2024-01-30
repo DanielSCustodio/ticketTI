@@ -1,6 +1,8 @@
 //Person
 const Institution = require('../../models/Institution');
 const Departament = require('../../models/Departament');
+const Person = require('../../models/Person');
+const Administrator = require('../../models/Administrator');
 
 module.exports.checkPerson = async function async(req, res, next) {
   const { name, role, institutionSelected, departamentSelected } = req.body;
@@ -40,6 +42,29 @@ module.exports.checkPerson = async function async(req, res, next) {
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('colaborador/create', { departaments, institutions });
+    return;
+  }
+  next();
+};
+
+module.exports.checkDeletePerson = async function async(req, res, next) {
+  const PersonId = req.body.id;
+  let people = await Person.findAll({
+    include: [{ model: Departament }, { model: Institution }],
+  });
+  people = people.map((result) => result.get({ plain: true }));
+
+  const personWithAdministrator = await Administrator.findOne({
+    raw: true,
+    where: { PersonId: PersonId },
+  });
+
+  if (personWithAdministrator) {
+    req.flash(
+      'error-privilege',
+      'Esta pessoa não pode ser removida, pois é administradora.',
+    );
+    res.render('colaborador/all', { people });
     return;
   }
   next();
