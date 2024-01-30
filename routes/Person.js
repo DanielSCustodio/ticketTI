@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const PersonController = require('../controller/Person');
-const checkPerson = require('../middleware/validations').checkPerson;
-const checkPrivilege = require('../middleware/validations').checkPrivilege;
+const checkPerson = require('../middleware/validation/person').checkPerson;
+const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
 
 //get
 router.get('/cadastro', checkPrivilege, PersonController.createPerson);

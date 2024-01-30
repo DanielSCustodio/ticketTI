@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const EquipmentController = require('../controller/Equipment');
-const checkEquipment = require('../middleware/validations').checkEquipment;
-const checkPrivilege = require('../middleware/validations').checkPrivilege;
+const checkEquipment = require('../middleware/validation/equipment').checkEquipment;
+const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
 
 //get
 router.get('/cadastro', checkPrivilege, EquipmentController.createEquipment);

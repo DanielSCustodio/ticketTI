@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const TicketController = require('../controller/Ticket');
-const checkPrivilege = require('../middleware/validations').checkPrivilege;
-const checkTicket = require('../middleware/validations').checkTicket;
+const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
+const checkTicket = require('../middleware/validation/ticket').checkTicket;
 
 //get
 router.get('/cadastro', checkPrivilege, TicketController.createTicket);
