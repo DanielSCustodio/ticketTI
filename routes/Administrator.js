@@ -3,7 +3,7 @@ const router = express.Router();
 const AdministratorController = require('../controller/Administrator');
 const checkAdministrator =
   require('../middleware/validation/administrator').checkAdministrator;
-const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
+const {checkPrivilege, checkDeleteAdministator} = require('../middleware/validation/administrator');
 
 //get
 router.get(
@@ -17,6 +17,7 @@ router.get('/', AdministratorController.viewAdministrators);
 //post
 router.post(
   '/remove',
+  checkDeleteAdministator,
   checkPrivilege,
   AdministratorController.removeAdministrator,
 );

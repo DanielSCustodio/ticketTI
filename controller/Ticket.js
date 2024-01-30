@@ -95,7 +95,6 @@ module.exports = class TicketController {
 
   static async viewTickets(req, res) {
     const id = req.session.userid;
-    const test = false
 
     try {
       const user = await Administrator.findOne({
@@ -121,7 +120,7 @@ module.exports = class TicketController {
         plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
         return plainResult;
       });
-      res.render('ticket/all', { tickets, privilege, test });
+      res.render('ticket/all', { tickets, privilege });
     } catch (error) {
       console.log(
         'Aconteceu um erro no controller viewTickets ticket ===>',
