@@ -2,7 +2,7 @@
 @use '../layouts/mixins'
 @use '../base/base-mixins'
 
-.table 
+.table
   max-width: variables.$container-width
   width: 100vw
   border-collapse: collapse
@@ -14,8 +14,8 @@
   th, td
     padding: 0.8rem
     text-align: center
-    border-right:  1px solid variables.$border-color    
-    
+    border-right: 1px solid variables.$border-color
+
   th
     color: variables.$second-text-color
     background-color: variables.$second-color
@@ -33,7 +33,7 @@
     font-size: 1.3rem
     &:hover
       cursor: pointer
-      color:  variables.$second-text-color
+      color: variables.$second-text-color
 
   .table-align-left
     text-align: left
@@ -69,7 +69,7 @@
 .btn-delete
   background-color: transparent
   border: none
-  
+
   i
     color: variables.$color-red-primary
     transition: .8s
@@ -80,13 +80,13 @@
 .btn-table
   margin: 2rem
   background-color: variables.$bg-second-color
-  border:  1px solid variables.$primary-color
+  border: 1px solid variables.$primary-color
 
   &:hover
-    border:  1px solid variables.$second-text-color
+    border: 1px solid variables.$second-text-color
 
 .btn-edit
-  i 
+  i
     color: #ebe376
     transition: .8s
 
@@ -95,8 +95,8 @@
 
 .btn-detail
   i
-    color: variables.$primary-color
+    color: #98e79f
     transition: .8s
 
     &:hover
-      color: #98e79f
+      color: variables.$primary-color

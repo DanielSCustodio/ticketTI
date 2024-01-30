@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const ReferenceTypeController = require('../controller/ReferenceType');
-const checkNameInput = require('../middleware/validations').checkNameInput;
-const checkPrivilege = require('../middleware/validations').checkPrivilege;
+const checkNameInput = require('../middleware/validation/validations').checkNameInput;
+const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
 
 //get
 router.get(

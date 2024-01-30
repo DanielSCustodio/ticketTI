@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const InstitutionController = require('../controller/Institution');
-const checkNameInput = require('../middleware/validations').checkNameInput;
-const checkPrivilege = require('../middleware/validations').checkPrivilege;
+const checkNameInput = require('../middleware/validation/validations').checkNameInput;
+const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
 const checkDeleteInstitution =
-  require('../middleware/validations').checkDeleteInstitution;
+  require('../middleware/validation/instituiton').checkDeleteInstitution;
 
 //Get
 router.get(
