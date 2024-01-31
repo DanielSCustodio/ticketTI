@@ -48,9 +48,14 @@ module.exports = class TicketController {
     /*  const id = (await Ticket.findAll({ raw: true })).length + 1; */
 
     try {
-      const supportAgent = await Person.findOne({
+      const person = await Person.findOne({
         raw: true,
         where: { name: administratorIdSelected },
+      });
+
+      const supportAgent = await Administrator.findOne({
+        raw: true,
+        where: { PersonId: person.id },
       });
 
       const departament = await Departament.findOne({
@@ -182,8 +187,6 @@ module.exports = class TicketController {
         where: { id: person.PersonId },
       });
 
-      
-
       const departament = await Departament.findOne({
         raw: true,
         where: { id: ticket.DepartamentId },
@@ -221,7 +224,6 @@ module.exports = class TicketController {
   static async updateTicketSave(req, res) {
     const id = req.body.id;
 
-
     const {
       title,
       description,
@@ -241,12 +243,10 @@ module.exports = class TicketController {
         where: { name: administratorIdSelected },
       });
 
-
       const agent = await Administrator.findOne({
         raw: true,
         where: { PersonId: administrator.id },
       });
-
 
       const requester = await Person.findOne({
         raw: true,
