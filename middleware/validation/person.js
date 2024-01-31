@@ -4,6 +4,7 @@ const Departament = require('../../models/Departament');
 const Person = require('../../models/Person');
 const Administrator = require('../../models/Administrator');
 const Ticket = require('../../models/Ticket');
+const Equipment = require('../../models/Equipment');
 
 module.exports.checkPerson = async function async(req, res, next) {
   const { name, role, institutionSelected, departamentSelected } = req.body;
@@ -50,7 +51,6 @@ module.exports.checkPerson = async function async(req, res, next) {
 
 module.exports.checkDeletePerson = async function async(req, res, next) {
   const PersonId = req.body.id;
-  console.log('------->', PersonId);
 
   let people = await Person.findAll({
     include: [{ model: Departament }, { model: Institution }],
@@ -67,7 +67,10 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
     where: { PersonId: PersonId },
   });
 
-  console.log('------->', personWithTicket);
+  const personWithEquipment = await Equipment.findOne({
+    raw: true,
+    where: { PersonId: PersonId },
+  });
 
   if (personWithAdministrator) {
     req.flash(
@@ -82,6 +85,15 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
     req.flash(
       'error-privilege',
       `Esta pessoa não pode ser removida, pois está associada ao ticket ${personWithTicket.id} como solicitante.`,
+    );
+    res.render('colaborador/all', { people });
+    return;
+  }
+
+  if (personWithEquipment) {
+    req.flash(
+      'error-privilege',
+      `Esta pessoa não pode ser removida, pois está associada ao equipamento ${personWithEquipment.name}.`,
     );
     res.render('colaborador/all', { people });
     return;
