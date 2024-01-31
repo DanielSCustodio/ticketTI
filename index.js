@@ -92,9 +92,9 @@ app.get('/', checkAuth, (_req, res) => {
 });
 
 connection
-  .sync(/* {
-    force: true,
-  } */)
+  .sync({
+   /*  force: true, */
+  })
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(`Aplicação em execução na porta ${process.env.PORT}`);
