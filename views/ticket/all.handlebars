@@ -32,7 +32,6 @@
         <th>Agente de suporte</th>
         <th>Detalhe</th>
         <th>Editar</th>
-        <th>Excluir</th>
     </thead>
     <tbody>
       {{#each tickets}}
@@ -51,11 +50,7 @@
           <td>
             <a href='/ticket/editar/{{this.id}}' class="btn-edit"><i class='bi bi-pencil-square' ></i></a>
           </td>
-          <td>
-            <form action='/ticket/remove' method='post'>
-              <input type='hidden' name='id' value='{{this.id}}' />
-              <button type='submit' class="btn-delete"><i class='bi bi-x-square'></i></button>
-            </form></td>
+
         </tr>
       {{/each}}
     </tbody>

@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const DepartamentController = require('../controller/Departament');
-const checkNameInput = require('../middleware/validation/validations').checkNameInput;
-const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
+const checkNameInput =
+  require('../middleware/validation/validations').checkNameInput;
+const checkPrivilege =
+  require('../middleware/validation/administrator').checkPrivilege;
+const checkDeleteDepartament =
+  require('../middleware/validation/departamnet').checkDeleteDepartament;
 
 //get
 router.get(
@@ -18,7 +22,12 @@ router.get(
 router.get('/', DepartamentController.viewDepartaments);
 
 //post
-router.post('/remove', checkPrivilege, DepartamentController.removeDepartament);
+router.post(
+  '/remove',
+  checkPrivilege,
+  checkDeleteDepartament,
+  DepartamentController.removeDepartament,
+);
 router.post(
   '/add',
   checkNameInput,
