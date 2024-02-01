@@ -2,6 +2,8 @@
 const Departament = require('../../models/Departament');
 const Person = require('../../models/Person');
 const ReferenceType = require('../../models/ReferenceType');
+const Ticket = require('../../models/Ticket');
+const Equipment = require('../../models/Equipment');
 
 module.exports.checkEquipment = async function async(req, res, next) {
   const {
@@ -58,6 +60,36 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'O campo "referência" deve conter pelo menos 4 caracteres. ',
     );
     res.render('equipamento/create', { departaments, people, referenceType });
+    return;
+  }
+
+  next();
+};
+
+module.exports.checkDeleteEquipment = async function async(req, res, next) {
+  const EquipmentId = req.body.id;
+
+  let equipments = await Equipment.findAll({
+    include: [
+      { model: Departament },
+      { model: Person },
+      { model: ReferenceType },
+    ],
+  });
+
+  equipments = equipments.map((result) => result.get({ plain: true }));
+
+  const equipmentWithTicket = await Ticket.findOne({
+    raw: true,
+    where: { EquipmentId: EquipmentId },
+  });
+
+  if (equipmentWithTicket) {
+    req.flash(
+      'error-privilege',
+      `Este equipamento/sistema não pode ser removido, pois está associada ao ticket ${equipmentWithTicket.id}.`,
+    );
+    res.render('equipamento/all', { equipments });
     return;
   }
 
