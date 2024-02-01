@@ -71,7 +71,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
     raw: true,
     where: { PersonId: PersonId },
   });
-
+  
   if (personWithAdministrator) {
     req.flash(
       'error-privilege',
@@ -93,7 +93,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
   if (personWithEquipment) {
     req.flash(
       'error-privilege',
-      `Esta pessoa não pode ser removida, pois está associada ao equipamento ${personWithEquipment.name}.`,
+      `Esta pessoa não pode ser removida, pois está associada ao equipamento/sistema ${personWithEquipment.name}.`,
     );
     res.render('colaborador/all', { people });
     return;
