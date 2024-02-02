@@ -17,12 +17,13 @@ router.get('/', AdministratorController.viewAdministrators);
 //post
 router.post(
   '/remove',
-  checkDeleteAdministator,
   checkPrivilege,
+  checkDeleteAdministator,
   AdministratorController.removeAdministrator,
 );
 router.post(
   '/add',
+  checkPrivilege,
   checkAdministrator,
   AdministratorController.createAdministratorSave,
 );

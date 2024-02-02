@@ -33,6 +33,7 @@ router.post(
 
 router.post(
   '/add',
+  checkPrivilege,
   checkNameInput,
   ReferenceTypeController.createReferenceTypeSave,
 );
@@ -40,6 +41,7 @@ router.post(
 router.post(
   '/edit',
   checkPrivilege,
+  checkNameInput,
   ReferenceTypeController.updateReferenceTypeSave,
 );
 
