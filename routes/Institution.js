@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const InstitutionController = require('../controller/Institution');
-const checkNameInput = require('../middleware/validation/validations').checkNameInput;
-const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
-const checkDeleteInstitution =
-  require('../middleware/validation/instituiton').checkDeleteInstitution;
+const checkNameInput =
+  require('../middleware/validation/validations').checkNameInput;
+const checkPrivilege =
+  require('../middleware/validation/administrator').checkPrivilege;
+const {
+  checkDeleteInstitution,
+  checkUpdateInstitution,
+} = require('../middleware/validation/instituiton');
 
 //Get
 router.get(
@@ -39,7 +43,7 @@ router.post(
 router.post(
   '/edit',
   checkPrivilege,
-  checkNameInput,
+  checkUpdateInstitution,
   InstitutionController.updateInstituitonSave,
 );
 
