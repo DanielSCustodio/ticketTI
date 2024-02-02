@@ -5,8 +5,10 @@ const checkNameInput =
   require('../middleware/validation/validations').checkNameInput;
 const checkPrivilege =
   require('../middleware/validation/administrator').checkPrivilege;
-const checkDeleteReferenceType =
-  require('../middleware/validation/refrenceType').checkDeleteReferenceType;
+const {
+  checkDeleteReferenceType,
+  checkUpdateReferenceType,
+} = require('../middleware/validation/refrenceType');
 
 //get
 router.get(
@@ -41,7 +43,7 @@ router.post(
 router.post(
   '/edit',
   checkPrivilege,
-  checkNameInput,
+  checkUpdateReferenceType,
   ReferenceTypeController.updateReferenceTypeSave,
 );
 
