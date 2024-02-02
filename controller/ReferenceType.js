@@ -76,7 +76,7 @@ module.exports = class ReferenceTypeController {
         'update-reference-type',
         `Tipo de referência "${referenceType.name}" atualizada com sucesso.`,
       );
-      await referenceType.update(referenceType, { where: { id: id } });
+      await ReferenceType.update(referenceType, { where: { id: id } });
       res.redirect('/tipo-de-referencia');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
