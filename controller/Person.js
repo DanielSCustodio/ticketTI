@@ -134,6 +134,7 @@ module.exports = class PersonController {
         InstitutionId: institution.id,
         DepartamentId: departament.id,
       };
+
       req.flash(
         'update-person',
         `Registro de "${person.name}" atualizado com sucesso.`,

@@ -39,10 +39,10 @@ module.exports = class TicketController {
       date,
       startTime,
       endTime,
-      administratorIdSelected,
-      departamentSelected,
-      requesterSelected,
-      equipmentSelected,
+      administratorInput,
+      departamentInput,
+      requesterInput,
+      equipmentInput,
     } = req.body;
 
     /*  const id = (await Ticket.findAll({ raw: true })).length + 1; */
@@ -50,7 +50,7 @@ module.exports = class TicketController {
     try {
       const person = await Person.findOne({
         raw: true,
-        where: { name: administratorIdSelected },
+        where: { name: administratorInput },
       });
 
       const supportAgent = await Administrator.findOne({
@@ -60,17 +60,17 @@ module.exports = class TicketController {
 
       const departament = await Departament.findOne({
         raw: true,
-        where: { name: departamentSelected },
+        where: { name: departamentInput },
       });
 
       const requester = await Person.findOne({
         raw: true,
-        where: { name: requesterSelected },
+        where: { name: requesterInput },
       });
 
       const equipment = await Equipment.findOne({
         raw: true,
-        where: { name: equipmentSelected },
+        where: { name: equipmentInput },
       });
 
       const ticket = {
@@ -231,16 +231,16 @@ module.exports = class TicketController {
       date,
       startTime,
       endTime,
-      administratorIdSelected,
-      requesterSelected,
-      departamentSelected,
-      equipmentSelected,
+      administratorInput,
+      requesterInput,
+      departamentInput,
+      equipmentInput,
     } = req.body;
 
     try {
       const administrator = await Person.findOne({
         raw: true,
-        where: { name: administratorIdSelected },
+        where: { name: administratorInput },
       });
 
       const agent = await Administrator.findOne({
@@ -250,17 +250,17 @@ module.exports = class TicketController {
 
       const requester = await Person.findOne({
         raw: true,
-        where: { name: requesterSelected },
+        where: { name: requesterInput },
       });
 
       const departament = await Departament.findOne({
         raw: true,
-        where: { name: departamentSelected },
+        where: { name: departamentInput },
       });
 
       const equipment = await Equipment.findOne({
         raw: true,
-        where: { name: equipmentSelected },
+        where: { name: equipmentInput },
       });
 
       const ticket = {

@@ -2,7 +2,7 @@ const Departament = require('../../models/Departament');
 const Person = require('../../models/Person');
 const Administrator = require('../../models/Administrator');
 const Equipment = require('../../models/Equipment');
-
+const Ticket = require('../../models/Ticket');
 module.exports.checkTicket = async function async(req, res, next) {
   const {
     title,
@@ -11,10 +11,10 @@ module.exports.checkTicket = async function async(req, res, next) {
     date,
     startTime,
     endTime,
-    administratorIdSelected,
-    requesterSelected,
-    departamentSelected,
-    equipmentSelected,
+    administratorInput,
+    requesterInput,
+    departamentInput,
+    equipmentInput,
   } = req.body;
 
   const departaments = await Departament.findAll({ raw: true });
@@ -40,8 +40,7 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-
-  if (!requesterSelected) {
+  if (!requesterInput) {
     req.flash(
       'error-input-ticket',
       'O campo "solicitante" deve ser preenchido. Clique na lupa para selecionar.',
@@ -139,7 +138,7 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (!administratorIdSelected) {
+  if (!administratorInput) {
     req.flash(
       'error-input-ticket',
       'O campo "agente de atendimento" deve ser preenchido. Clique na lupa para selecionar.',
@@ -153,7 +152,7 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (!departamentSelected) {
+  if (!departamentInput) {
     req.flash(
       'error-input-ticket',
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
@@ -167,7 +166,7 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (!equipmentSelected) {
+  if (!equipmentInput) {
     req.flash(
       'error-input-ticket',
       'O campo "Equipamento/Sistema" deve ser preenchido. Clique na lupa para selecionar.',
@@ -180,5 +179,272 @@ module.exports.checkTicket = async function async(req, res, next) {
     });
     return;
   }
+  next();
+};
+
+module.exports.checkUpdateTicket = async function async(req, res, next) {
+  const id = req.body.id;
+
+  const {
+    title,
+    description,
+    solution,
+    date,
+    startTime,
+    endTime,
+    administratorInput,
+    requesterInput,
+    departamentInput,
+    equipmentInput,
+  } = req.body;
+
+  const ticket = await Ticket.findOne({
+    where: { id: id },
+    raw: true,
+  });
+
+  const person = await Administrator.findOne({
+    raw: true,
+    where: { id: ticket.AdministratorId },
+  });
+
+  const supportAgent = await Person.findOne({
+    raw: true,
+    where: { id: person.PersonId },
+  });
+
+  const departament = await Departament.findOne({
+    raw: true,
+    where: { id: ticket.DepartamentId },
+  });
+
+  const requester = await Person.findOne({
+    raw: true,
+    where: { id: ticket.PersonId },
+  });
+
+  const equipment = await Equipment.findOne({
+    raw: true,
+    where: { id: ticket.EquipmentId },
+  });
+
+  const departaments = await Departament.findAll({ raw: true });
+  const people = await Person.findAll({ raw: true });
+  let administrators = await Administrator.findAll({
+    include: [{ model: Person }],
+  });
+  const equipments = await Equipment.findAll({ raw: true });
+
+  administrators = administrators.map((result) => result.get({ plain: true }));
+
+  if (title.length <= 9) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "assunto" deve conter pelo menos 10 caracteres. ',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!requesterInput) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "solicitante" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (description.length <= 9) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "descrição do problema" deve conter pelo menos 10 caracteres. ',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (solution.length <= 9) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "solução" deve conter pelo menos 10 caracteres. ',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!date) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "data do ticket" deve ser preenchido.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!startTime) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "início do atendimento" deve ser preenchido.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!startTime) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "início do atendimento" deve ser preenchido.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!endTime) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "final do atendimento" deve ser preenchido.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!administratorInput) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "agente de atendimento" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!departamentInput) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
+  if (!equipmentInput) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "Equipamento/Sistema" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+    });
+    return;
+  }
+
   next();
 };
