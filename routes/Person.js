@@ -4,6 +4,7 @@ const PersonController = require('../controller/Person');
 const {
   checkPerson,
   checkDeletePerson,
+  checkUpdatePerson,
 } = require('../middleware/validation/person');
 const checkPrivilege =
   require('../middleware/validation/administrator').checkPrivilege;
@@ -29,7 +30,7 @@ router.post(
 router.post(
   '/edit',
   checkPrivilege,
-  checkPerson,
+  checkUpdatePerson,
   PersonController.updatePersonSave,
 );
 

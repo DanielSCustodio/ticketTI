@@ -115,17 +115,17 @@ module.exports = class PersonController {
 
   static async updatePersonSave(req, res) {
     const id = req.body.id;
-    const { name, role, institutionSelected, departamentSelected } = req.body;
+    const { name, role, institutionInput, departamentInput } = req.body;
 
     try {
       const departament = await Departament.findOne({
         raw: true,
-        where: { name: departamentSelected },
+        where: { name: departamentInput },
       });
 
       const institution = await Institution.findOne({
         raw: true,
-        where: { name: institutionSelected },
+        where: { name: institutionInput },
       });
 
       const person = {
@@ -134,6 +134,7 @@ module.exports = class PersonController {
         InstitutionId: institution.id,
         DepartamentId: departament.id,
       };
+
       req.flash(
         'update-person',
         `Registro de "${person.name}" atualizado com sucesso.`,

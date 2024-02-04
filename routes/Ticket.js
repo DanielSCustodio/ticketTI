@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const TicketController = require('../controller/Ticket');
-const checkPrivilege = require('../middleware/validation/administrator').checkPrivilege;
-const checkTicket = require('../middleware/validation/ticket').checkTicket;
+const checkPrivilege =
+  require('../middleware/validation/administrator').checkPrivilege;
+const {
+  checkTicket,
+  checkUpdateTicket,
+} = require('../middleware/validation/ticket');
 
 //get
 router.get('/cadastro', checkPrivilege, TicketController.createTicket);
@@ -16,6 +20,11 @@ router.post('/remove', checkPrivilege, TicketController.removeTicket);
 
 router.post('/add', checkTicket, TicketController.createTicketSave);
 
-router.post('/edit', checkPrivilege, checkTicket, TicketController.updateTicketSave);
+router.post(
+  '/edit',
+  checkPrivilege,
+  checkUpdateTicket,
+  TicketController.updateTicketSave,
+);
 
 module.exports = router;

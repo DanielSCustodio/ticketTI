@@ -71,7 +71,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
     raw: true,
     where: { PersonId: PersonId },
   });
-  
+
   if (personWithAdministrator) {
     req.flash(
       'error-privilege',
@@ -99,5 +99,91 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
     return;
   }
 
+  next();
+};
+
+module.exports.checkUpdatePerson = async function async(req, res, next) {
+  const id = req.body.id;
+
+  const { name, role, departamentInput, institutionInput } = req.body;
+
+  const person = await Person.findOne({
+    where: { id: id },
+    raw: true,
+  });
+
+  const departaments = await Departament.findAll({ raw: true });
+  const institutions = await Institution.findAll({ raw: true });
+
+  const institutionSelected = await Institution.findOne({
+    raw: true,
+    where: { id: person.InstitutionId },
+  });
+
+  const departamentSelected = await Departament.findOne({
+    raw: true,
+    where: { id: person.DepartamentId },
+  });
+
+  if (name.length <= 3) {
+    req.flash(
+      'error-input-person',
+      'O campo "nome" deve conter pelo menos 4 caracteres. ',
+    );
+    res.render('colaborador/edit', {
+      person,
+      departaments,
+      institutions,
+      institutionSelected,
+      departamentSelected,
+    });
+    return;
+  }
+
+  if (role.length <= 3) {
+    req.flash(
+      'error-input-person',
+      'O campo "função" deve conter pelo menos 4 caracteres.',
+    );
+    res.render('colaborador/edit', {
+      person,
+      departaments,
+      institutions,
+      institutionSelected,
+      departamentSelected,
+    });
+    return;
+  }
+
+  if (!institutionInput) {
+    req.flash(
+      'error-input-person',
+      'O campo "instituição" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('colaborador/edit', {
+      person,
+      departaments,
+      institutions,
+      institutionSelected,
+      departamentSelected,
+    });
+    return;
+  }
+
+  if (!departamentInput) {
+    req.flash(
+      'error-input-person',
+      'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+
+    res.render('colaborador/edit', {
+      person,
+      departaments,
+      institutions,
+      institutionSelected,
+      departamentSelected,
+    });
+    return;
+  }
   next();
 };
