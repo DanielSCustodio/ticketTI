@@ -3,7 +3,10 @@ const router = express.Router();
 const AdministratorController = require('../controller/Administrator');
 const checkAdministrator =
   require('../middleware/validation/administrator').checkAdministrator;
-const {checkPrivilege, checkDeleteAdministator} = require('../middleware/validation/administrator');
+const {
+  checkPrivilege,
+  checkDeleteAdministator,
+} = require('../middleware/validation/administrator');
 
 //get
 router.get(
