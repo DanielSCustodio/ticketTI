@@ -3,8 +3,10 @@ const router = express.Router();
 const EquipmentController = require('../controller/Equipment');
 const checkEquipment =
   require('../middleware/validation/equipment').checkEquipment;
-const checkDeleteEquipment =
-  require('../middleware/validation/equipment').checkDeleteEquipment;
+const {
+  checkDeleteEquipment,
+  checkUpdateEquipment,
+} = require('../middleware/validation/equipment');
 const checkPrivilege =
   require('../middleware/validation/administrator').checkPrivilege;
 
@@ -28,7 +30,7 @@ router.post('/add', checkEquipment, EquipmentController.createEquipmentSave);
 router.post(
   '/edit',
   checkPrivilege,
-  checkEquipment,
+  checkUpdateEquipment,
   EquipmentController.updateEquipmentSave,
 );
 

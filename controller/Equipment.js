@@ -13,29 +13,24 @@ module.exports = class EquipmentController {
   }
 
   static async createEquipmentSave(req, res) {
-    const {
-      name,
-      personSelected,
-      reference,
-      referenceTypeSelected,
-      departamentSelected,
-    } = req.body;
+    const { name, personInput, reference, referenceInput, departamentInput } =
+      req.body;
     /*  const id = (await Equipment.findAll({ raw: true })).length + 1; */
 
     try {
       const departament = await Departament.findOne({
         raw: true,
-        where: { name: departamentSelected },
+        where: { name: departamentInput },
       });
 
       const person = await Person.findOne({
         raw: true,
-        where: { name: personSelected },
+        where: { name: personInput },
       });
 
       const referenceType = await ReferenceType.findOne({
         raw: true,
-        where: { name: referenceTypeSelected },
+        where: { name: referenceInput },
       });
 
       const equipment = {
@@ -141,28 +136,23 @@ module.exports = class EquipmentController {
   static async updateEquipmentSave(req, res) {
     const id = req.body.id;
 
-    const {
-      name,
-      personSelected,
-      reference,
-      referenceTypeSelected,
-      departamentSelected,
-    } = req.body;
+    const { name, personInput, reference, referenceInput, departamentInput } =
+      req.body;
 
     try {
       const departament = await Departament.findOne({
         raw: true,
-        where: { name: departamentSelected },
+        where: { name: departamentInput },
       });
 
       const person = await Person.findOne({
         raw: true,
-        where: { name: personSelected },
+        where: { name: personInput },
       });
 
       const referenceType = await ReferenceType.findOne({
         raw: true,
-        where: { name: referenceTypeSelected },
+        where: { name: referenceInput },
       });
 
       const equipment = {
