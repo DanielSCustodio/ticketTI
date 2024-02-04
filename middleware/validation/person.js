@@ -105,7 +105,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
 module.exports.checkUpdatePerson = async function async(req, res, next) {
   const id = req.body.id;
 
-  const { name, role } = req.body;
+  const { name, role, departamentInput, institutionInput } = req.body;
 
   const person = await Person.findOne({
     where: { id: id },
@@ -155,7 +155,7 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
     return;
   }
 
-  if (!institutionSelected) {
+  if (!institutionInput) {
     req.flash(
       'error-input-person',
       'O campo "instituição" deve ser preenchido. Clique na lupa para selecionar.',
@@ -170,7 +170,7 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
     return;
   }
 
-  if (!departamentSelected) {
+  if (!departamentInput) {
     req.flash(
       'error-input-person',
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
