@@ -5,8 +5,10 @@ const checkNameInput =
   require('../middleware/validation/validations').checkNameInput;
 const checkPrivilege =
   require('../middleware/validation/administrator').checkPrivilege;
-const checkDeleteDepartament =
-  require('../middleware/validation/departamnet').checkDeleteDepartament;
+const {
+  checkDeleteDepartament,
+  checkUpdateDepartament,
+} = require('../middleware/validation/departamnet');
 
 //get
 router.get(
@@ -36,7 +38,7 @@ router.post(
 router.post(
   '/edit',
   checkPrivilege,
-  checkNameInput,
+  checkUpdateDepartament,
   DepartamentController.updateDepartamentSave,
 );
 

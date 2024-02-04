@@ -51,3 +51,24 @@ module.exports.checkDeleteDepartament = async function async(req, res, next) {
 
   next();
 };
+
+module.exports.checkUpdateDepartament = async function async(req, res, next) {
+  const id = req.body.id;
+  const response = { name: req.body.name };
+
+  const departament = await Departament.findOne({
+    where: { id: id },
+    raw: true,
+  });
+
+  if (response.name.length <= 1) {
+    req.flash(
+      'error-input-name',
+      'Este campo deve conter pelo menos 2 caracteres.',
+    );
+    res.render('setor/edit', { departament });
+    return;
+  }
+  next();
+};
+

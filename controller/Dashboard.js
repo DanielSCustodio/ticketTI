@@ -13,6 +13,7 @@ module.exports = class DashboardController {
         where: { id: id },
       });
       let privilege = user.privilege;
+
       let tickets = await Ticket.findAll({
         include: [
           { model: Departament },
@@ -25,38 +26,18 @@ module.exports = class DashboardController {
         ],
       });
 
-      const ticketsDuration = tickets.map((ticket) => {
-        const startTimeString = ticket.startTime;
-        const endTimeString = ticket.endTime;
-
-        const startTime = new Date(`1970-01-01T${startTimeString}`);
-        const endTime = new Date(`1970-01-01T${endTimeString}`);
-
-        if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
-          return {
-            ...ticket.get(),
-            duration: 'Erro: startTime ou endTime inválidos',
-          };
-        }
-
-        const diffMilliseconds = endTime - startTime;
-        const diffInSeconds = diffMilliseconds / 1000 / 60; // Converta para segundos
-
-        return {
-          ...ticket.get(),
-          duration: diffInSeconds,
-        };
-      });
-
       tickets = tickets.map((result) => {
         const plainResult = result.get({ plain: true });
+        // Renomeia o campo AdministratorId para AdministratorName
         plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
         return plainResult;
       });
-
-      res.render('dashboard/all', { ticketsDuration, privilege });
+      res.render('dashboard/all', { tickets, privilege });
     } catch (error) {
-      console.log('Aconteceu um erro ===>', error);
+      console.log(
+        'Aconteceu um erro no controller viewTickets ticket ===>',
+        error,
+      );
     }
   }
 };

@@ -21,3 +21,24 @@ module.exports.checkDeleteReferenceType = async function async(req, res, next) {
   }
   next();
 };
+
+module.exports.checkUpdateReferenceType = async function async(req, res, next) {
+  const id = req.body.id;
+  const response = { name: req.body.name };
+
+  const referenceType = await ReferenceType.findOne({
+    where: { id: id },
+    raw: true,
+  });
+
+  if (response.name.length <= 1) {
+    req.flash(
+      'error-input-name',
+      'Este campo deve conter pelo menos 2 caracteres.',
+    );
+    res.render('tipo-de-referencia/edit', { referenceType });
+    return;
+  }
+  next();
+};
+
