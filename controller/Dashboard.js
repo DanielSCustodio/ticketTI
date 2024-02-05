@@ -3,10 +3,12 @@ const Person = require('../models/Person');
 const Administrator = require('../models/Administrator');
 const Equipment = require('../models/Equipment');
 const Ticket = require('../models/Ticket');
+const { getName } = require('../middleware/helpers/getName');
 
 module.exports = class DashboardController {
   static async viewDashboard(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -32,7 +34,7 @@ module.exports = class DashboardController {
         plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
         return plainResult;
       });
-      res.render('dashboard/all', { tickets, privilege });
+      res.render('dashboard/all', { tickets, privilege, loggedInUser });
     } catch (error) {
       console.log(
         'Aconteceu um erro no controller viewTickets ticket ===>',

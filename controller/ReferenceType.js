@@ -1,9 +1,11 @@
 const ReferenceType = require('../models/ReferenceType');
 const Administrator = require('../models/Administrator');
+const { getName } = require('../middleware/helpers/getName');
 
 module.exports = class ReferenceTypeController {
-  static createReferenceType(_req, res) {
-    res.render('tipo-de-referencia/create');
+  static async createReferenceType(req, res) {
+    const loggedInUser = await getName(req);
+    res.render('tipo-de-referencia/create', { loggedInUser });
   }
   static async createReferenceTypeSave(req, res) {
     const response = { name: req.body.name };
@@ -22,6 +24,7 @@ module.exports = class ReferenceTypeController {
 
   static async viewReferenceTypes(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -30,7 +33,11 @@ module.exports = class ReferenceTypeController {
       let privilege = user.privilege;
       const referenceTypes = await ReferenceType.findAll({ raw: true });
       req.session.save(() => {
-        res.render('tipo-de-referencia/all', { referenceTypes, privilege });
+        res.render('tipo-de-referencia/all', {
+          referenceTypes,
+          privilege,
+          loggedInUser,
+        });
       });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
@@ -59,11 +66,12 @@ module.exports = class ReferenceTypeController {
 
   static async updateReferenceType(req, res) {
     const id = req.params.id;
+    const loggedInUser = await getName(req);
     const referenceType = await ReferenceType.findOne({
       where: { id: id },
       raw: true,
     });
-    res.render('tipo-de-referencia/edit', { referenceType });
+    res.render('tipo-de-referencia/edit', { referenceType, loggedInUser });
   }
 
   static async updateReferenceTypeSave(req, res) {

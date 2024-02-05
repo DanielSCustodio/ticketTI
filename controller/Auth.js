@@ -26,7 +26,6 @@ module.exports = class AuthController {
       where: { id: user.PersonId },
     });
 
-
     const passwordMatch = bcrypt.compareSync(password, user.password);
 
     if (!passwordMatch) {

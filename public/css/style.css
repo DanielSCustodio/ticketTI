@@ -862,6 +862,12 @@ ul {
   align-items: center;
   gap: 0.5rem;
 }
+.container-search .user-name a {
+  color: #f9f9f9;
+}
+.container-search .user-name a:hover {
+  color: #9c9faf;
+}
 @media (max-width: 912px) {
   .container-search .user-name {
     margin-bottom: 1.5rem;

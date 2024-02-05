@@ -2,12 +2,19 @@ const Departament = require('../models/Departament');
 const Institution = require('../models/Institution');
 const Person = require('../models/Person');
 const Administrator = require('../models/Administrator');
+const { getName } = require('../middleware/helpers/getName');
 
 module.exports = class PersonController {
-  static async createPerson(_req, res) {
+  static async createPerson(req, res) {
+    const loggedInUser = await getName(req);
+
     const departaments = await Departament.findAll({ raw: true });
     const institutions = await Institution.findAll({ raw: true });
-    res.render('colaborador/create', { departaments, institutions });
+    res.render('colaborador/create', {
+      departaments,
+      institutions,
+      loggedInUser,
+    });
   }
 
   static async createPersonSave(req, res) {
@@ -42,6 +49,7 @@ module.exports = class PersonController {
 
   static async viewPeople(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -53,7 +61,7 @@ module.exports = class PersonController {
         include: [{ model: Departament }, { model: Institution }],
       });
       people = people.map((result) => result.get({ plain: true }));
-      res.render('colaborador/all', { people, privilege });
+      res.render('colaborador/all', { people, privilege, loggedInUser });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
@@ -81,6 +89,7 @@ module.exports = class PersonController {
 
   static async updatePerson(req, res) {
     const id = req.params.id;
+    const loggedInUser = await getName(req);
 
     try {
       const person = await Person.findOne({
@@ -102,6 +111,7 @@ module.exports = class PersonController {
       });
 
       res.render('colaborador/edit', {
+        loggedInUser,
         person,
         departaments,
         institutions,

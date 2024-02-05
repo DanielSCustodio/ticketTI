@@ -1,10 +1,13 @@
 const Institution = require('../models/Institution');
 const Administrator = require('../models/Administrator');
+const { getName } = require('../middleware/helpers/getName');
 
 module.exports = class InstitutionController {
-  static createInstitution(_req, res) {
-    res.render('instituicao/create');
+  static async createInstitution(req, res) {
+    const loggedInUser = await getName(req);
+    res.render('instituicao/create', { loggedInUser });
   }
+
   static async createInstitutionSave(req, res) {
     const response = { name: req.body.name };
     try {
@@ -21,6 +24,7 @@ module.exports = class InstitutionController {
 
   static async viewInstitutions(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -29,7 +33,11 @@ module.exports = class InstitutionController {
       let privilege = user.privilege;
       const institutions = await Institution.findAll({ raw: true });
       req.session.save(() => {
-        res.render('instituicao/all', { institutions, privilege });
+        res.render('instituicao/all', {
+          institutions,
+          privilege,
+          loggedInUser,
+        });
       });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
@@ -58,11 +66,13 @@ module.exports = class InstitutionController {
 
   static async updateInstituiton(req, res) {
     const id = req.params.id;
+    const loggedInUser = await getName(req);
+
     const institution = await Institution.findOne({
       where: { id: id },
       raw: true,
     });
-    res.render('instituicao/edit', { institution });
+    res.render('instituicao/edit', { institution, loggedInUser });
   }
 
   static async updateInstituitonSave(req, res) {

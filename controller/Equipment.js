@@ -3,13 +3,22 @@ const Person = require('../models/Person');
 const Equipment = require('../models/Equipment');
 const ReferenceType = require('../models/ReferenceType');
 const Administrator = require('../models/Administrator');
+const { getName } = require('../middleware/helpers/getName');
 
 module.exports = class EquipmentController {
-  static async createEquipment(_req, res) {
+  static async createEquipment(req, res) {
+    const loggedInUser = await getName(req);
+
     const departaments = await Departament.findAll({ raw: true });
     const people = await Person.findAll({ raw: true });
     const referenceType = await ReferenceType.findAll({ raw: true });
-    res.render('equipamento/create', { departaments, people, referenceType });
+
+    res.render('equipamento/create', {
+      departaments,
+      people,
+      referenceType,
+      loggedInUser,
+    });
   }
 
   static async createEquipmentSave(req, res) {
@@ -51,6 +60,7 @@ module.exports = class EquipmentController {
 
   static async viewEquipments(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -65,7 +75,7 @@ module.exports = class EquipmentController {
         ],
       });
       equipments = equipments.map((result) => result.get({ plain: true }));
-      res.render('equipamento/all', { equipments, privilege });
+      res.render('equipamento/all', { equipments, privilege, loggedInUser });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
@@ -93,6 +103,7 @@ module.exports = class EquipmentController {
 
   static async updateEquipment(req, res) {
     const id = req.params.id;
+    const loggedInUser = await getName(req);
 
     try {
       const equipment = await Equipment.findOne({
@@ -120,6 +131,7 @@ module.exports = class EquipmentController {
       });
 
       res.render('equipamento/edit', {
+        loggedInUser,
         equipment,
         people,
         departaments,
