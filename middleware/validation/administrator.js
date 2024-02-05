@@ -2,9 +2,11 @@
 const Administrator = require('../../models/Administrator');
 const Person = require('../../models/Person');
 const Ticket = require('../../models/Ticket');
+const { getName } = require('../../middleware/helpers/getName');
 
 module.exports.checkAdministrator = async function async(req, res, next) {
   const { personSelected, username, password, confirmpassword } = req.body;
+  const loggedInUser = await getName(req);
 
   let people = await Person.findAll({ raw: true });
   const adm = await Administrator.findAll({ raw: true });
@@ -21,14 +23,14 @@ module.exports.checkAdministrator = async function async(req, res, next) {
       'error-input-administrator',
       'O campo "colaborador" deve ser preenchido. Clique na lupa para selecionar.',
     );
-    res.render('administrador/create', { people });
+    res.render('administrador/create', { people, loggedInUser });
     return;
   }
 
   if (checkIfUserExists) {
     req.flash('error-input-administrator', 'Nome de usuário já cadastrado');
     const people = await Person.findAll({ raw: true });
-    res.render('administrador/create', { people });
+    res.render('administrador/create', { people, loggedInUser });
     return;
   }
 
@@ -37,14 +39,14 @@ module.exports.checkAdministrator = async function async(req, res, next) {
       'error-input-administrator',
       'O campo "senha" deve conter pelo menos 6 caracteres. ',
     );
-    res.render('administrador/create', { people });
+    res.render('administrador/create', { people, loggedInUser });
     return;
   }
 
   if (password !== confirmpassword) {
     req.flash('error-input-administrator', 'Senhas não conferem!');
     const people = await Person.findAll({ raw: true });
-    res.render('administrador/create', { people });
+    res.render('administrador/create', { people, loggedInUser });
     return;
   }
 
@@ -77,6 +79,7 @@ module.exports.checkPrivilege = async function async(req, res, next) {
 module.exports.checkDeleteAdministator = async function async(req, res, next) {
   const AdministratorId = req.body.id;
   const administrators = await Administrator.findAll({ raw: true });
+  const loggedInUser = await getName(req);
 
   const administratorWithTicket = await Ticket.findOne({
     raw: true,
@@ -88,7 +91,7 @@ module.exports.checkDeleteAdministator = async function async(req, res, next) {
       'error-privilege',
       `Este administrador não pode ser removido, pois está associado ao ticket ${administratorWithTicket.id}.`,
     );
-    res.render('administrador/all', { administrators });
+    res.render('administrador/all', { administrators, loggedInUser });
     return;
   }
   next();

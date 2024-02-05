@@ -4,10 +4,12 @@ const Person = require('../../models/Person');
 const ReferenceType = require('../../models/ReferenceType');
 const Ticket = require('../../models/Ticket');
 const Equipment = require('../../models/Equipment');
+const { getName } = require('../../middleware/helpers/getName');
 
 module.exports.checkEquipment = async function async(req, res, next) {
   const { name, personInput, reference, referenceInput, departamentInput } =
     req.body;
+  const loggedInUser = await getName(req);
 
   const departaments = await Departament.findAll({ raw: true });
   const people = await Person.findAll({ raw: true });
@@ -18,7 +20,12 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'error-input-equipment',
       'O campo "equipamento" deve conter pelo menos 4 caracteres.',
     );
-    res.render('equipamento/create', { departaments, people, referenceType });
+    res.render('equipamento/create', {
+      departaments,
+      people,
+      referenceType,
+      loggedInUser,
+    });
     return;
   }
 
@@ -27,7 +34,12 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'error-input-equipment',
       'O campo "colaborador" deve ser preenchido. Clique na lupa para selecionar.',
     );
-    res.render('equipamento/create', { departaments, people, referenceType });
+    res.render('equipamento/create', {
+      departaments,
+      people,
+      referenceType,
+      loggedInUser,
+    });
     return;
   }
 
@@ -36,7 +48,12 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'error-input-equipment',
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
     );
-    res.render('equipamento/create', { departaments, people, referenceType });
+    res.render('equipamento/create', {
+      departaments,
+      people,
+      referenceType,
+      loggedInUser,
+    });
     return;
   }
 
@@ -45,7 +62,12 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'error-input-equipment',
       'O campo "tipo de referência" deve ser preenchido. Clique na lupa para selecionar.',
     );
-    res.render('equipamento/create', { departaments, people, referenceType });
+    res.render('equipamento/create', {
+      departaments,
+      people,
+      referenceType,
+      loggedInUser,
+    });
     return;
   }
 
@@ -54,7 +76,12 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'error-input-equipment',
       'O campo "referência" deve conter pelo menos 4 caracteres. ',
     );
-    res.render('equipamento/create', { departaments, people, referenceType });
+    res.render('equipamento/create', {
+      departaments,
+      people,
+      referenceType,
+      loggedInUser,
+    });
     return;
   }
 
@@ -63,6 +90,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
 
 module.exports.checkDeleteEquipment = async function async(req, res, next) {
   const EquipmentId = req.body.id;
+  const loggedInUser = await getName(req);
 
   let equipments = await Equipment.findAll({
     include: [
@@ -84,7 +112,7 @@ module.exports.checkDeleteEquipment = async function async(req, res, next) {
       'error-privilege',
       `Este equipamento/sistema não pode ser removido, pois está associada ao ticket ${equipmentWithTicket.id}.`,
     );
-    res.render('equipamento/all', { equipments });
+    res.render('equipamento/all', { equipments, loggedInUser });
     return;
   }
 
@@ -93,6 +121,7 @@ module.exports.checkDeleteEquipment = async function async(req, res, next) {
 
 module.exports.checkUpdateEquipment = async function async(req, res, next) {
   const id = req.body.id;
+  const loggedInUser = await getName(req);
 
   const { name, reference, personInput, departamentInput, referenceInput } =
     req.body;
@@ -135,6 +164,7 @@ module.exports.checkUpdateEquipment = async function async(req, res, next) {
       personSelected,
       referenceTypeSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
@@ -152,6 +182,7 @@ module.exports.checkUpdateEquipment = async function async(req, res, next) {
       personSelected,
       referenceTypeSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
@@ -169,6 +200,7 @@ module.exports.checkUpdateEquipment = async function async(req, res, next) {
       personSelected,
       referenceTypeSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
@@ -186,6 +218,7 @@ module.exports.checkUpdateEquipment = async function async(req, res, next) {
       personSelected,
       referenceTypeSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
@@ -203,6 +236,7 @@ module.exports.checkUpdateEquipment = async function async(req, res, next) {
       personSelected,
       referenceTypeSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
