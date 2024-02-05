@@ -5,9 +5,12 @@ const Person = require('../../models/Person');
 const Administrator = require('../../models/Administrator');
 const Ticket = require('../../models/Ticket');
 const Equipment = require('../../models/Equipment');
+const { getName } = require('../../middleware/helpers/getName');
 
 module.exports.checkPerson = async function async(req, res, next) {
   const { name, role, institutionSelected, departamentSelected } = req.body;
+  const loggedInUser = await getName(req);
+
   const departaments = await Departament.findAll({ raw: true });
   const institutions = await Institution.findAll({ raw: true });
 
@@ -16,7 +19,11 @@ module.exports.checkPerson = async function async(req, res, next) {
       'error-input-person',
       'O campo "nome" deve conter pelo menos 4 caracteres. ',
     );
-    res.render('colaborador/create', { departaments, institutions });
+    res.render('colaborador/create', {
+      departaments,
+      institutions,
+      loggedInUser,
+    });
     return;
   }
 
@@ -25,7 +32,11 @@ module.exports.checkPerson = async function async(req, res, next) {
       'error-input-person',
       'O campo "função" deve conter pelo menos 4 caracteres.',
     );
-    res.render('colaborador/create', { departaments, institutions });
+    res.render('colaborador/create', {
+      departaments,
+      institutions,
+      loggedInUser,
+    });
     return;
   }
 
@@ -34,7 +45,11 @@ module.exports.checkPerson = async function async(req, res, next) {
       'error-input-person',
       'O campo "instituição" deve ser preenchido. Clique na lupa para selecionar.',
     );
-    res.render('colaborador/create', { departaments, institutions });
+    res.render('colaborador/create', {
+      departaments,
+      institutions,
+      loggedInUser,
+    });
     return;
   }
 
@@ -43,7 +58,11 @@ module.exports.checkPerson = async function async(req, res, next) {
       'error-input-person',
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
     );
-    res.render('colaborador/create', { departaments, institutions });
+    res.render('colaborador/create', {
+      departaments,
+      institutions,
+      loggedInUser,
+    });
     return;
   }
   next();
@@ -51,6 +70,7 @@ module.exports.checkPerson = async function async(req, res, next) {
 
 module.exports.checkDeletePerson = async function async(req, res, next) {
   const PersonId = req.body.id;
+  const loggedInUser = await getName(req);
 
   let people = await Person.findAll({
     include: [{ model: Departament }, { model: Institution }],
@@ -77,7 +97,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
       'error-privilege',
       'Esta pessoa não pode ser removida, pois é administradora.',
     );
-    res.render('colaborador/all', { people });
+    res.render('colaborador/all', { people, loggedInUser });
     return;
   }
 
@@ -86,7 +106,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
       'error-privilege',
       `Esta pessoa não pode ser removida, pois está associada ao ticket ${personWithTicket.id} como solicitante.`,
     );
-    res.render('colaborador/all', { people });
+    res.render('colaborador/all', { people, loggedInUser });
     return;
   }
 
@@ -95,7 +115,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
       'error-privilege',
       `Esta pessoa não pode ser removida, pois está associada ao equipamento/sistema ${personWithEquipment.name}.`,
     );
-    res.render('colaborador/all', { people });
+    res.render('colaborador/all', { people, loggedInUser });
     return;
   }
 
@@ -104,6 +124,7 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
 
 module.exports.checkUpdatePerson = async function async(req, res, next) {
   const id = req.body.id;
+  const loggedInUser = await getName(req);
 
   const { name, role, departamentInput, institutionInput } = req.body;
 
@@ -136,6 +157,7 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
       institutions,
       institutionSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
@@ -151,6 +173,7 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
       institutions,
       institutionSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
@@ -166,6 +189,7 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
       institutions,
       institutionSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }
@@ -182,6 +206,7 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
       institutions,
       institutionSelected,
       departamentSelected,
+      loggedInUser,
     });
     return;
   }

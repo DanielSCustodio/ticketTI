@@ -1,6 +1,10 @@
 //Institution, Departament, ReferenceType
-module.exports.checkNameInput = function (req, res, next) {
+const { getName } = require('../../middleware/helpers/getName');
+
+module.exports.checkNameInput = async function (req, res, next) {
   const response = { name: req.body.name };
+  const loggedInUser = await getName(req);
+
   const urlString = req.protocol + '://' + req.get('host') + req.originalUrl;
   const url = new URL(urlString);
   const pathSegments = url.pathname.split('/');
@@ -11,7 +15,7 @@ module.exports.checkNameInput = function (req, res, next) {
       'error-input-name',
       'Este campo deve conter pelo menos 2 caracteres.',
     );
-    res.render(`${instance}/create`);
+    res.render(`${instance}/create`, { loggedInUser });
 
     return;
   }

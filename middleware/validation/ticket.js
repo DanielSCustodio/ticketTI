@@ -3,6 +3,8 @@ const Person = require('../../models/Person');
 const Administrator = require('../../models/Administrator');
 const Equipment = require('../../models/Equipment');
 const Ticket = require('../../models/Ticket');
+const { getName } = require('../../middleware/helpers/getName');
+
 module.exports.checkTicket = async function async(req, res, next) {
   const {
     title,
@@ -16,6 +18,7 @@ module.exports.checkTicket = async function async(req, res, next) {
     departamentInput,
     equipmentInput,
   } = req.body;
+  const loggedInUser = await getName(req);
 
   const departaments = await Departament.findAll({ raw: true });
   const people = await Person.findAll({ raw: true });
@@ -36,6 +39,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -50,6 +54,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -64,6 +69,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -78,6 +84,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -92,6 +99,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -106,6 +114,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -120,6 +129,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -134,6 +144,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -148,6 +159,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -162,6 +174,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -176,6 +189,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       people,
       equipments,
       administrators,
+      loggedInUser,
     });
     return;
   }
@@ -184,6 +198,7 @@ module.exports.checkTicket = async function async(req, res, next) {
 
 module.exports.checkUpdateTicket = async function async(req, res, next) {
   const id = req.body.id;
+  const loggedInUser = await getName(req);
 
   const {
     title,
@@ -252,6 +267,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -271,6 +287,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -290,6 +307,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -309,6 +327,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -328,6 +347,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -347,6 +367,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -366,6 +387,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -385,6 +407,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -404,6 +427,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -423,6 +447,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
@@ -442,6 +467,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       departament,
       requester,
       equipment,
+      loggedInUser,
     });
     return;
   }
