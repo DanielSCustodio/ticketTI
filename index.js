@@ -31,7 +31,7 @@ const authRotes = require('./routes/Auth');
 const DashboardRotes = require('./routes/Dashboard');
 
 //middleware
-const { checkAuth } = require('./helpers/auth');
+const { checkAuth } = require('./middleware/helpers/auth');
 
 //Template Engine
 app.engine('handlebars', exphbs.engine());
@@ -93,7 +93,7 @@ app.get('/', checkAuth, (_req, res) => {
 
 connection
   .sync({
-   /*  force: true, */
+    /*  force: true, */
   })
   .then(() => {
     app.listen(process.env.PORT, () => {

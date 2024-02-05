@@ -1,8 +1,3 @@
-const Departament = require('../../models/Departament');
-const Person = require('../../models/Person');
-const Administrator = require('../../models/Administrator');
-const Equipment = require('../../models/Equipment');
-
 //Institution, Departament, ReferenceType
 module.exports.checkNameInput = function (req, res, next) {
   const response = { name: req.body.name };
@@ -22,4 +17,3 @@ module.exports.checkNameInput = function (req, res, next) {
   }
   next();
 };
-

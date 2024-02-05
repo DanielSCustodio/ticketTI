@@ -1,9 +1,12 @@
 const Departament = require('../models/Departament');
 const Administrator = require('../models/Administrator');
+const { getName } = require('../middleware/helpers/getName');
 
 module.exports = class DepartamentController {
-  static createDepartament(_req, res) {
-    res.render('setor/create');
+  static async createDepartament(req, res) {
+    const loggedInUser = await getName(req);
+
+    res.render('setor/create', { loggedInUser });
   }
 
   static async createDepartamentSave(req, res) {
@@ -23,6 +26,7 @@ module.exports = class DepartamentController {
 
   static async viewDepartaments(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -31,7 +35,7 @@ module.exports = class DepartamentController {
       let privilege = user.privilege;
       const departaments = await Departament.findAll({ raw: true });
       req.session.save(() => {
-        res.render('setor/all', { departaments, privilege });
+        res.render('setor/all', { departaments, privilege, loggedInUser });
       });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
@@ -60,11 +64,12 @@ module.exports = class DepartamentController {
 
   static async updateDepartament(req, res) {
     const id = req.params.id;
+    const loggedInUser = await getName(req);
     const departament = await Departament.findOne({
       where: { id: id },
       raw: true,
     });
-    res.render('setor/edit', { departament });
+    res.render('setor/edit', { departament, loggedInUser });
   }
 
   static async updateDepartamentSave(req, res) {

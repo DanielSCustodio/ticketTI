@@ -93,4 +93,3 @@ module.exports.checkDeleteAdministator = async function async(req, res, next) {
   }
   next();
 };
-

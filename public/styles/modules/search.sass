@@ -47,6 +47,12 @@
     align-items: center
     gap: 0.5rem
 
+    a
+      color: variables.$second-text-color
+
+      &:hover
+        color: variables.$text-color
+
     @include base-mixins.tablet
       margin-bottom: 1.5rem
       justify-content: space-between

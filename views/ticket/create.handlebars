@@ -103,11 +103,12 @@
       <div class='modal-body'>
         <section>
           <input type="text" id="searchInputPerson" placeholder="Buscar por nome do colaborador">
-          <table class='table'>
+          <table class='table' id="table">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Função</th>
               </tr>
             </thead>
             <tbody>
@@ -118,10 +119,12 @@
                 >
                   <td>{{this.id}}</td>
                   <td>{{this.name}}</td>
+                  <td>{{this.role}}</td>
                 </tr>
               {{/each}}
             </tbody>
           </table>
+          <h6 id="no-results" class="remove">Sem resultados</h6>
         </section>
       </div>
       <div class='modal-footer'>
@@ -167,6 +170,7 @@
               <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Função</th>
               </tr>
             </thead>
             <tbody>
@@ -177,6 +181,7 @@
                 >
                   <td>{{this.id}}</td>
                   <td>{{this.Person.name}}</td>
+                  <td>{{this.Person.role}}</td>
                 </tr>
               {{/each}}
             </tbody>
@@ -308,6 +313,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let openModalBtnPerson = document.getElementById('openModalBtnPerson');
   let personModel = new bootstrap.Modal(document.getElementById('personModel'));
   let requesterSelectedInput = document.getElementById('requesterSelected');
+  let table = document.getElementById('table');
+  let noResults = document.getElementById('no-results');
 
   openModalBtnPerson.addEventListener('click', function () {
     personModel.show();
@@ -330,13 +337,32 @@ document.addEventListener('DOMContentLoaded', function () {
       let rowNamePerson = row.getAttribute('data-name').toLowerCase();
       let isVisible = rowNamePerson.includes(searchTerm);
 
+      if(!isVisible){
+        table.classList.add('remove');
+        noResults.classList.remove('remove')
+
+      }else{
+        table.classList.remove('remove');
+        noResults.classList.add('remove')
+      }
+
       // Define a visibilidade da linha com base no termo de busca
       row.style.display = isVisible ? 'table-row' : 'none';
     });
   });
+
+// Pagination
+
   let currentPage = 1;
-  const itemsPerPage = 10;
+  const itemsPerPage = 2;
   const totalItems = selectableRowsPerson.length;
+  const btnNextPageBtn = document.getElementById('nextPageBtn');
+  const btnPrevPageBtn = document.getElementById('prevPageBtn');
+
+  if(totalItems < itemsPerPage){
+    btnNextPageBtn.classList.add('disabled');
+    btnPrevPageBtn.classList.add('disabled');
+  }
 
   function paginate(page) {
     const startIndex = (page - 1) * itemsPerPage;
@@ -350,6 +376,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('currentPage').innerText = `Página ${page}`;
   }
 
+
+  if(currentPage ===1){
+    btnPrevPageBtn.classList.add('disabled');
+  }
+  
+
   paginate(currentPage);
 
   document.getElementById('prevPageBtn').addEventListener('click', function () {
@@ -357,14 +389,30 @@ document.addEventListener('DOMContentLoaded', function () {
       currentPage--;
       paginate(currentPage);
     }
+
+    if(currentPage === 1){
+      btnPrevPageBtn.classList.add('disabled');
+    }
+
+    btnNextPageBtn.classList.remove('disabled');
+
   });
 
   document.getElementById('nextPageBtn').addEventListener('click', function () {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
+    let total =  itemsPerPage * currentPage
+
     if (currentPage < totalPages) {
       currentPage++;
       paginate(currentPage);
     }
+    
+    if(total>= totalItems){
+      btnNextPageBtn.classList.add('disabled');
+    }
+
+    btnPrevPageBtn.classList.remove('disabled');
+
   });
 
 });

@@ -1,14 +1,19 @@
 const Person = require('../models/Person');
 const Administrator = require('../models/Administrator');
 const bcrypt = require('bcryptjs');
+const { getName } = require('../middleware/helpers/getName');
+
 module.exports = class AdministratorController {
-  static async createAdministrator(_req, res) {
+  static async createAdministrator(req, res) {
+    const loggedInUser = await getName(req);
+
     let people = await Person.findAll({ raw: true });
     const adm = await Administrator.findAll({ raw: true });
     const adminIds = adm.map((admin) => admin.PersonId);
     people = people.filter((person) => !adminIds.includes(person.id));
-    res.render('administrador/create', { people });
+    res.render('administrador/create', { people, loggedInUser });
   }
+
   static async createAdministratorSave(req, res) {
     const { personSelected, username, password, confirmpassword, privilege } =
       req.body;
@@ -41,6 +46,7 @@ module.exports = class AdministratorController {
 
   static async viewAdministrators(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -53,7 +59,11 @@ module.exports = class AdministratorController {
       administrators = administrators.map((result) =>
         result.get({ plain: true }),
       );
-      res.render('administrador/all', { administrators, privilege });
+      res.render('administrador/all', {
+        administrators,
+        privilege,
+        loggedInUser,
+      });
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }

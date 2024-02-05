@@ -3,9 +3,12 @@ const Person = require('../models/Person');
 const Administrator = require('../models/Administrator');
 const Equipment = require('../models/Equipment');
 const Ticket = require('../models/Ticket');
+const { getName } = require('../middleware/helpers/getName');
 
 module.exports = class TicketController {
-  static async createTicket(_req, res) {
+  static async createTicket(req, res) {
+    const loggedInUser = await getName(req);
+
     try {
       const departaments = await Departament.findAll({ raw: true });
       const people = await Person.findAll({ raw: true });
@@ -18,6 +21,7 @@ module.exports = class TicketController {
         result.get({ plain: true }),
       );
       res.render('ticket/create', {
+        loggedInUser,
         departaments,
         people,
         equipments,
@@ -100,6 +104,7 @@ module.exports = class TicketController {
 
   static async viewTickets(req, res) {
     const id = req.session.userid;
+    const loggedInUser = await getName(req);
 
     try {
       const user = await Administrator.findOne({
@@ -125,7 +130,7 @@ module.exports = class TicketController {
         plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
         return plainResult;
       });
-      res.render('ticket/all', { tickets, privilege });
+      res.render('ticket/all', { tickets, privilege, loggedInUser });
     } catch (error) {
       console.log(
         'Aconteceu um erro no controller viewTickets ticket ===>',
@@ -156,6 +161,7 @@ module.exports = class TicketController {
 
   static async updateTicket(req, res) {
     const id = req.params.id;
+    const loggedInUser = await getName(req);
 
     try {
       const ticket = await Ticket.findOne({
@@ -203,6 +209,7 @@ module.exports = class TicketController {
       });
 
       res.render('ticket/edit', {
+        loggedInUser,
         ticket,
         departaments,
         people,
