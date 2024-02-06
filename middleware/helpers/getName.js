@@ -13,6 +13,7 @@ module.exports.getName = async function (req) {
   const loggedInUser = {
     id: user.id,
     name: user['Person.name'],
+    master: user.allPrivileges,
   };
   return loggedInUser;
 };

@@ -18,29 +18,31 @@ module.exports = class PersonController {
   }
 
   static async createPersonSave(req, res) {
-    const { name, role, institutionSelected, departamentSelected } = req.body;
+    const { name, role, institutionInput, departamentInput } = req.body;
     /*     const id = (await Person.findAll({ raw: true })).length + 1; */
 
     try {
       const departament = await Departament.findOne({
         raw: true,
-        where: { name: departamentSelected },
+        where: { name: departamentInput },
       });
       const institution = await Institution.findOne({
         raw: true,
-        where: { name: institutionSelected },
+        where: { name: institutionInput },
       });
+
       const person = {
         name,
         role,
         InstitutionId: institution.id,
         DepartamentId: departament.id,
       };
+
+      await Person.create(person);
       req.flash(
         'create-person',
         `Colaborador "${name}" cadastrado com sucesso.`,
       );
-      await Person.create(person);
       res.redirect(`/colaborador`);
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);

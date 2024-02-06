@@ -40,7 +40,7 @@
             <li><a href='/colaborador/'><i class="bi bi-person"></i>Pessoa</a></li>
             <li><a href='/tipo-de-referencia/'><i class="bi bi-file-binary"></i>Tipo de Referência</a></li>
             <li><a href='/equipamento/'><i class="bi bi-hdd-network"></i>Equipamento/Sistema</a></li>
-            <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li>
+            {{#if loggedInUser.master}} <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li> {{/if}}
             <li><a href='/dashboard/'><i class="bi bi-clipboard-pulse"></i>Dashboard</a></li>
         </ul>
       {{/if}}

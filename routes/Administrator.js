@@ -5,17 +5,19 @@ const checkAdministrator =
   require('../middleware/validation/administrator').checkAdministrator;
 const {
   checkPrivilege,
+  checkAllPrivilege,
   checkDeleteAdministator,
 } = require('../middleware/validation/administrator');
 
 //get
 router.get(
   '/cadastro',
+  checkAllPrivilege,
   checkPrivilege,
   AdministratorController.createAdministrator,
 );
 
-router.get('/', AdministratorController.viewAdministrators);
+router.get('/', checkAllPrivilege, AdministratorController.viewAdministrators);
 
 //post
 router.post(
