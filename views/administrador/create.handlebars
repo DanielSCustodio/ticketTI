@@ -34,17 +34,19 @@
       />
     </div>
     <div class='form-control'>
-      <label>Privilégios de admistrador?</label>
+      <label>Privilégios de criação e edição?</label>
       <select name='privilege'>
         <option value='1'>Sim</option>
         <option value='0'>Não</option>
       </select>
     </div>
-    {{#if messages.error-registro}}
-      <div class='message-error'>
-        {{messages.error-registro}}
-      </div>
-    {{/if}}
+        <div class='form-control'>
+      <label>Todos os privilégios?</label>
+      <select name='allPrivileges'>
+        <option value='1'>Sim</option>
+        <option value='0'>Não</option>
+      </select>
+    </div>
     <div class="btn-submit">
       <input type='submit' value='Cadastrar' class='btn' />
     </div>

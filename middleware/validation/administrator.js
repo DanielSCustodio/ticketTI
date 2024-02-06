@@ -11,7 +11,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
   let people = await Person.findAll({ raw: true });
   const adm = await Administrator.findAll({ raw: true });
 
-  const adminIds = adm.map((admin) => admin.AdministratorId);
+  const adminIds = adm.map((admin) => admin.PersonId);
   people = people.filter((person) => !adminIds.includes(person.id));
 
   const checkIfUserExists = await Administrator.findOne({
@@ -27,9 +27,19 @@ module.exports.checkAdministrator = async function async(req, res, next) {
     return;
   }
 
+  if (username.length <= 3) {
+    req.flash(
+      'error-input-administrator',
+      'O campo "nome de de usuário" deve conter pelo menos 4 caracteres. ',
+    );
+    res.render('administrador/create', { people, loggedInUser });
+    return;
+  }
+
   if (checkIfUserExists) {
     req.flash('error-input-administrator', 'Nome de usuário já cadastrado');
-    const people = await Person.findAll({ raw: true });
+    people = people.filter((person) => !adminIds.includes(person.id));
+
     res.render('administrador/create', { people, loggedInUser });
     return;
   }
@@ -45,7 +55,8 @@ module.exports.checkAdministrator = async function async(req, res, next) {
 
   if (password !== confirmpassword) {
     req.flash('error-input-administrator', 'Senhas não conferem!');
-    const people = await Person.findAll({ raw: true });
+    people = people.filter((person) => !adminIds.includes(person.id));
+
     res.render('administrador/create', { people, loggedInUser });
     return;
   }
@@ -92,6 +103,19 @@ module.exports.checkDeleteAdministator = async function async(req, res, next) {
       `Este administrador não pode ser removido, pois está associado ao ticket ${administratorWithTicket.id}.`,
     );
     res.render('administrador/all', { administrators, loggedInUser });
+    return;
+  }
+  next();
+};
+
+module.exports.checkAllPrivilege = async function async(req, res, next) {
+  const id = req.session.userid;
+  const user = await Administrator.findOne({
+    where: { id: id },
+  });
+
+  if (!user.allPrivileges) {
+    res.redirect('/dashboard');
     return;
   }
   next();

@@ -8,7 +8,7 @@ const Equipment = require('../../models/Equipment');
 const { getName } = require('../../middleware/helpers/getName');
 
 module.exports.checkPerson = async function async(req, res, next) {
-  const { name, role, institutionSelected, departamentSelected } = req.body;
+  const { name, role, institutionInput, departamentInput } = req.body;
   const loggedInUser = await getName(req);
 
   const departaments = await Departament.findAll({ raw: true });
@@ -40,7 +40,7 @@ module.exports.checkPerson = async function async(req, res, next) {
     return;
   }
 
-  if (!institutionSelected) {
+  if (!institutionInput) {
     req.flash(
       'error-input-person',
       'O campo "instituição" deve ser preenchido. Clique na lupa para selecionar.',
@@ -53,7 +53,7 @@ module.exports.checkPerson = async function async(req, res, next) {
     return;
   }
 
-  if (!departamentSelected) {
+  if (!departamentInput) {
     req.flash(
       'error-input-person',
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',

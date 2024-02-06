@@ -15,8 +15,14 @@ module.exports = class AdministratorController {
   }
 
   static async createAdministratorSave(req, res) {
-    const { personSelected, username, password, confirmpassword, privilege } =
-      req.body;
+    const {
+      personSelected,
+      username,
+      password,
+      confirmpassword,
+      privilege,
+      allPrivileges,
+    } = req.body;
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
@@ -31,6 +37,7 @@ module.exports = class AdministratorController {
         password: hashedPassword,
         confirmpassword,
         privilege,
+        allPrivileges,
         PersonId: person.id,
       };
       await Administrator.create(adm);
@@ -53,6 +60,7 @@ module.exports = class AdministratorController {
         where: { id: id },
       });
       let privilege = user.privilege;
+      let allPrivileges = user.allPrivileges;
       let administrators = await Administrator.findAll({
         include: [{ model: Person }],
       });
@@ -62,6 +70,7 @@ module.exports = class AdministratorController {
       res.render('administrador/all', {
         administrators,
         privilege,
+        allPrivileges,
         loggedInUser,
       });
     } catch (error) {

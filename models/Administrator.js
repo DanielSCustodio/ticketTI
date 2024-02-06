@@ -20,6 +20,12 @@ const Administrator = db.define('Administrator', {
     allowNull: false,
     require: true,
   },
+
+  allPrivileges: {
+    type: DataTypes.BOOLEAN, // 1 All - 0 Default
+    allowNull: false,
+    require: true,
+  },
 });
 
 Administrator.belongsTo(Person);
