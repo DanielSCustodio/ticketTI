@@ -1,0 +1,55 @@
+<section class='form-conatiner'>
+  {{#if messages.error-input-administrator}}
+    <div class='message-error'>
+      <span>{{messages.error-input-administrator}}</span>
+    </div>
+  {{/if}}
+  {{#if messages.update-administrator}}
+    <div class='message'>
+      <span>{{messages.update-administrator}}</span>
+    </div>
+  {{/if}}
+  <form action='/administrador/edit' method='POST' class='form'>
+    <input type='hidden' name='id' value='{{administrator.id}}' />
+    <div class='form-control'>
+      <label for='usernameSelected'>Nome de usuário:</label>
+      <input
+        id='usernameSelected'
+        type='text'
+        name='username'
+        placeholder='Nome de usuário'
+        value='{{administrator.username}}'
+      />
+    </div>
+    <div class='form-control'>
+      <label for='passwordOld'>Senha Atual:</label>
+      <input
+        type='password'
+        name='passwordOld'
+        id='passwordOld'
+        placeholder='Digite sua senha atual'
+      />
+    </div>
+    <div class='form-control'>
+      <label for='password'>Nova senha:</label>
+      <input
+        type='password'
+        name='password'
+        id='password'
+        placeholder='Nova senha'
+      />
+    </div>
+    <div class='form-control'>
+      <label for='confirmpassword'>Confirme a senha:</label>
+      <input
+        id='confirmpassword'
+        type='password'
+        name='confirmpassword'
+        placeholder='Confirme a nova senha'
+      />
+    </div>
+    <div class='btn-submit'>
+      <input type='submit' value='Atualizar' class='btn' />
+    </div>
+  </form>
+</section>

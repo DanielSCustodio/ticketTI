@@ -7,6 +7,8 @@ const {
   checkPrivilege,
   checkAllPrivilege,
   checkDeleteAdministator,
+  redirectAdministrator,
+  checkUpdateAdministrator,
 } = require('../middleware/validation/administrator');
 
 //get
@@ -15,6 +17,12 @@ router.get(
   checkAllPrivilege,
   checkPrivilege,
   AdministratorController.createAdministrator,
+);
+
+router.get(
+  '/editar/:id',
+  redirectAdministrator,
+  AdministratorController.updateAdministrator,
 );
 
 router.get('/', checkAllPrivilege, AdministratorController.viewAdministrators);
@@ -32,5 +40,9 @@ router.post(
   checkAdministrator,
   AdministratorController.createAdministratorSave,
 );
-
+router.post(
+  '/edit',
+  checkUpdateAdministrator,
+  AdministratorController.updateAdministratorSave,
+);
 module.exports = router;

@@ -3,6 +3,7 @@ const Administrator = require('../../models/Administrator');
 const Person = require('../../models/Person');
 const Ticket = require('../../models/Ticket');
 const { getName } = require('../../middleware/helpers/getName');
+const bcrypt = require('bcryptjs');
 
 module.exports.checkAdministrator = async function async(req, res, next) {
   const { personSelected, username, password, confirmpassword } = req.body;
@@ -30,7 +31,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
   if (username.length <= 3) {
     req.flash(
       'error-input-administrator',
-      'O campo "nome de de usuário" deve conter pelo menos 4 caracteres. ',
+      'O campo "nome de de usuário" deve conter pelo menos 4 caracteres.',
     );
     res.render('administrador/create', { people, loggedInUser });
     return;
@@ -54,7 +55,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
   }
 
   if (password !== confirmpassword) {
-    req.flash('error-input-administrator', 'Senhas não conferem!');
+    req.flash('error-input-administrator', 'Senhas não conferem.');
     people = people.filter((person) => !adminIds.includes(person.id));
 
     res.render('administrador/create', { people, loggedInUser });
@@ -118,5 +119,68 @@ module.exports.checkAllPrivilege = async function async(req, res, next) {
     res.redirect('/dashboard');
     return;
   }
+  next();
+};
+
+module.exports.redirectAdministrator = async function async(req, res, next) {
+  const id = req.params.id;
+  const userId = req.session.userid;
+
+  // Verifica se o ID na URL é diferente do ID do usuário na sessão
+  if (Number(id) !== userId) {
+    // Verifica se já foi redirecionado antes para evitar o loop de redirecionamento
+    if (!req.session.redirected) {
+      // Define a flag na sessão para indicar que o redirecionamento ocorreu
+      req.session.redirected = true;
+    }
+    res.redirect(`/administrador/editar/${userId}`);
+    return;
+  }
+
+  // Se o ID na URL for igual ao ID do usuário na sessão ou se já foi redirecionado, passa para o próximo middleware
+  next();
+};
+
+module.exports.checkUpdateAdministrator = async function async(req, res, next) {
+  const userId = req.session.userid;
+
+  const { username, passwordOld, password, confirmpassword } = req.body;
+  const user = await Administrator.findOne({
+    where: { id: userId },
+    raw: true,
+  });
+
+  const passwordOldMatch = bcrypt.compareSync(passwordOld, user.password);
+
+  if (username.length <= 3) {
+    req.flash(
+      'error-input-administrator',
+      'O campo "nome de de usuário" deve conter pelo menos 4 caracteres.',
+    );
+    res.redirect(`/administrador/editar/${userId}`);
+    return;
+  }
+
+  if (!passwordOldMatch) {
+    req.flash('error-input-administrator', 'Senha antiga inválida.');
+    res.redirect(`/administrador/editar/${userId}`);
+    return;
+  }
+
+  if (password !== confirmpassword) {
+    req.flash('error-input-administrator', 'Senhas não conferem.');
+    res.redirect(`/administrador/editar/${userId}`);
+    return;
+  }
+
+  if (password.length <= 5) {
+    req.flash(
+      'error-input-administrator',
+      'O campo "senha" deve conter pelo menos 6 caracteres.',
+    );
+    res.redirect(`/administrador/editar/${userId}`);
+    return;
+  }
+
   next();
 };

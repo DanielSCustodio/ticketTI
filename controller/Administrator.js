@@ -97,4 +97,51 @@ module.exports = class AdministratorController {
       console.log('Aconteceu um erro ===>', error);
     }
   }
+
+  static async updateAdministrator(req, res) {
+    const id = req.params.id;
+    const loggedInUser = await getName(req);
+    try {
+      const administrator = await Administrator.findOne({
+        where: { id: id },
+        raw: true,
+      });
+
+      res.render('administrador/edit', {
+        loggedInUser,
+        administrator,
+      });
+    } catch (error) {
+      console.log(
+        'Aconteceu um erro Controller updateAdministrator ===>',
+        error,
+      );
+    }
+  }
+
+  static async updateAdministratorSave(req, res) {
+    const id = req.body.id;
+    const { username, password } = req.body;
+
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
+    const admin = await Administrator.findOne({
+      where: { id: id },
+      raw: true,
+    });
+
+    const administrator = {
+      username,
+      password: hashedPassword,
+      privilege: admin.privilege,
+      allPrivileges: admin.allPrivileges,
+      PersonId: admin.PersonId,
+    };
+
+    await Administrator.update(administrator, { where: { id: id } });
+
+    req.flash('update-administrator', 'Credenciasis atualizadas com sucesso.');
+    res.redirect(`/administrador/editar/${id}`);
+  }
 };
