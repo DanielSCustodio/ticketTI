@@ -99,8 +99,8 @@ module.exports.checkDeleteAdministator = async function async(req, res, next) {
   });
 
   if (administratorWithTicket) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Este administrador não pode ser removido, pois está associado ao ticket ${administratorWithTicket.id}.`,
     );
     res.render('administrador/all', { administrators, loggedInUser });
