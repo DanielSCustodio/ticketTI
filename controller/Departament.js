@@ -50,13 +50,11 @@ module.exports = class DepartamentController {
         raw: true,
       });
       await Departament.destroy({ where: { id: id } });
-      req.flash(
-        'delete-departament',
+      res.set(
+        'delete-message',
         `Setor "${departament.name}" excluído com sucesso.`,
       );
-      req.session.save(() => {
-        res.redirect('/setor');
-      });
+      res.status(200).send('Instituição excluída com sucesso.');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }

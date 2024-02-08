@@ -8,7 +8,7 @@ const checkPrivilege =
 const {
   checkDeleteDepartament,
   checkUpdateDepartament,
-} = require('../middleware/validation/departamnet');
+} = require('../middleware/validation/departament');
 
 //get
 router.get(

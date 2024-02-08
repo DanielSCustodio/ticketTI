@@ -93,8 +93,8 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
   });
 
   if (personWithAdministrator) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       'Esta pessoa não pode ser removida, pois é administradora.',
     );
     res.render('colaborador/all', { people, loggedInUser });
@@ -102,8 +102,8 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
   }
 
   if (personWithTicket) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Esta pessoa não pode ser removida, pois está associada ao ticket ${personWithTicket.id} como solicitante.`,
     );
     res.render('colaborador/all', { people, loggedInUser });
@@ -111,8 +111,8 @@ module.exports.checkDeletePerson = async function async(req, res, next) {
   }
 
   if (personWithEquipment) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Esta pessoa não pode ser removida, pois está associada ao equipamento/sistema ${personWithEquipment.name}.`,
     );
     res.render('colaborador/all', { people, loggedInUser });
