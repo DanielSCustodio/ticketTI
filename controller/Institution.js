@@ -52,13 +52,11 @@ module.exports = class InstitutionController {
         raw: true,
       });
       await Institution.destroy({ where: { id: id } });
-      req.flash(
-        'delete-institution',
+      res.set(
+        'delete-message',
         `Instituição "${institution.name}" excluída com sucesso.`,
       );
-      req.session.save(() => {
-        res.redirect('/instituicao');
-      });
+      res.status(200).send('Instituição excluída com sucesso.');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }

@@ -15,8 +15,8 @@ module.exports.checkDeleteInstitution = async function async(req, res, next) {
   });
 
   if (personWithInstitution) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Esta instituição não pode ser removida, pois está associada a ${personWithInstitution.name}.`,
     );
     res.render('instituicao/all', { institutions, loggedInUser });
