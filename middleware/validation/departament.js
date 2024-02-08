@@ -2,7 +2,7 @@ const Person = require('../../models/Person');
 const Equipment = require('../../models/Equipment');
 const Ticket = require('../../models/Ticket');
 const Departament = require('../../models/Departament');
-const { getName } = require('../../middleware/helpers/getName');
+const { getName } = require('../helpers/getName');
 
 module.exports.checkDeleteDepartament = async function async(req, res, next) {
   const DepartamentId = req.body.id;
@@ -25,8 +25,8 @@ module.exports.checkDeleteDepartament = async function async(req, res, next) {
   });
 
   if (departamentWithTicket) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Este setor não pode ser removido, pois está associado ao ticket ${departamentWithTicket.id}.`,
     );
     res.render('setor/all', { departaments, loggedInUser });
