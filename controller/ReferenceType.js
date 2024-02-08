@@ -52,13 +52,11 @@ module.exports = class ReferenceTypeController {
         raw: true,
       });
       await ReferenceType.destroy({ where: { id: id } });
-      req.flash(
-        'delete-reference-type',
+      res.set(
+        'delete-message',
         `Tipo de referência "${referenceType.name}" excluída com sucesso.`,
       );
-      req.session.save(() => {
-        res.redirect('/tipo-de-referencia');
-      });
+      res.status(200).send('Tipo de referência excluída com sucesso.');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }

@@ -34,8 +34,8 @@ module.exports.checkDeleteDepartament = async function async(req, res, next) {
   }
 
   if (departamentWithEquipment) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Este setor não pode ser removido, pois está associado ao equipamento/sistema ${departamentWithEquipment.name}.`,
     );
     res.render('setor/all', { departaments, loggedInUser });
@@ -43,8 +43,8 @@ module.exports.checkDeleteDepartament = async function async(req, res, next) {
   }
 
   if (departamentWithPerson) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Este setor não pode ser removido, pois está associado a ${departamentWithPerson.name}.`,
     );
     res.render('setor/all', { departaments, loggedInUser });

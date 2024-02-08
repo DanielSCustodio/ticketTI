@@ -14,8 +14,8 @@ module.exports.checkDeleteReferenceType = async function async(req, res, next) {
   });
 
   if (referenceTypeWithEquipment) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Este tipo de referência não pode ser removido, pois está associado ao equipamento ${referenceTypeWithEquipment.name}.`,
     );
     res.render('tipo-de-referencia/all', { referenceTypes, loggedInUser });

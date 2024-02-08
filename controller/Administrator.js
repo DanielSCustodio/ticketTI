@@ -86,13 +86,11 @@ module.exports = class AdministratorController {
         raw: true,
       });
       await Administrator.destroy({ where: { id: id } });
-      req.flash(
-        'delete-administrator',
+      res.set(
+        'delete-message',
         `Administrador "${administrator.username}" excluído com sucesso.`,
       );
-      req.session.save(() => {
-        res.redirect('/administrador');
-      });
+      res.status(200).send('Administrador excluído com sucesso.');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }

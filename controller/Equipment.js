@@ -89,13 +89,11 @@ module.exports = class EquipmentController {
         raw: true,
       });
       await Equipment.destroy({ where: { id: id } });
-      req.flash(
-        'delete-equipment',
+      res.set(
+        'delete-message',
         `Item "${equipment.name}" excluído com sucesso.`,
       );
-      req.session.save(() => {
-        res.redirect('/equipamento');
-      });
+      res.status(200).send('Equipamento/Sistema excluído com sucesso.');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }

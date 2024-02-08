@@ -54,7 +54,7 @@ module.exports = class DepartamentController {
         'delete-message',
         `Setor "${departament.name}" excluído com sucesso.`,
       );
-      res.status(200).send('Instituição excluída com sucesso.');
+      res.status(200).send('Setor excluído com sucesso.');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }

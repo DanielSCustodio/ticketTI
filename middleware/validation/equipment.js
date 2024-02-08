@@ -108,8 +108,8 @@ module.exports.checkDeleteEquipment = async function async(req, res, next) {
   });
 
   if (equipmentWithTicket) {
-    req.flash(
-      'error-privilege',
+    res.set(
+      'delete-message',
       `Este equipamento/sistema não pode ser removido, pois está associada ao ticket ${equipmentWithTicket.id}.`,
     );
     res.render('equipamento/all', { equipments, loggedInUser });
