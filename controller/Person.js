@@ -77,13 +77,11 @@ module.exports = class PersonController {
         raw: true,
       });
       await Person.destroy({ where: { id: id } });
-      req.flash(
-        'delete-person',
+      res.set(
+        'delete-message',
         `Colaborador "${person.name}" excluído com sucesso.`,
       );
-      req.session.save(() => {
-        res.redirect('/colaborador');
-      });
+      res.status(200).send('Colaborador excluído com sucesso.');
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
