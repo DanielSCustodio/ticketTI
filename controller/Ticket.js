@@ -4,7 +4,7 @@ const Administrator = require('../models/Administrator');
 const Equipment = require('../models/Equipment');
 const Ticket = require('../models/Ticket');
 const { getName } = require('../middleware/helpers/getName');
-const { formatDate } = require('../middleware/helpers/formatDate');
+const { formatDateBd } = require('../middleware/helpers/formatDate');
 
 module.exports = class TicketController {
   static async createTicket(req, res) {
@@ -131,7 +131,7 @@ module.exports = class TicketController {
         // Renomeia o campo AdministratorId para AdministratorName
         plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
         // Formate o campo de data para o formato brasileiro
-        plainResult.date = formatDate(plainResult.date);
+        plainResult.date = formatDateBd(plainResult.date);
         return plainResult;
       });
 

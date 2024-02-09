@@ -4,6 +4,7 @@ const Administrator = require('../../models/Administrator');
 const Equipment = require('../../models/Equipment');
 const Ticket = require('../../models/Ticket');
 const { getName } = require('../../middleware/helpers/getName');
+const { formatDateBd, formatDate } = require('../helpers/formatDate');
 
 module.exports.checkTicket = async function async(req, res, next) {
   const {
@@ -20,6 +21,10 @@ module.exports.checkTicket = async function async(req, res, next) {
   } = req.body;
   const loggedInUser = await getName(req);
 
+  const dateNow = new Date();
+
+  const hourNow = dateNow.toLocaleTimeString('pt-BR');
+
   const departaments = await Departament.findAll({ raw: true });
   const people = await Person.findAll({ raw: true });
   let administrators = await Administrator.findAll({
@@ -28,13 +33,26 @@ module.exports.checkTicket = async function async(req, res, next) {
   const equipments = await Equipment.findAll({ raw: true });
 
   administrators = administrators.map((result) => result.get({ plain: true }));
+  const ticket = {
+    title,
+    description,
+    solution,
+    date,
+    startTime,
+    endTime,
+    administratorInput,
+    requesterInput,
+    departamentInput,
+    equipmentInput,
+  };
 
   if (title.length <= 9) {
     req.flash(
       'error-input-ticket',
-      'O campo "assunto" deve conter pelo menos 10 caracteres. ',
+      'O campo "assunto" deve conter pelo menos 10 caracteres.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -50,6 +68,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "solicitante" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -65,6 +84,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "descrição do problema" deve conter pelo menos 10 caracteres. ',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -80,6 +100,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "solução" deve conter pelo menos 10 caracteres. ',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -95,6 +116,71 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "data do ticket" deve ser preenchido.',
     );
     res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
+  if (formatDate(dateNow) < formatDateBd(date)) {
+    req.flash(
+      'error-input-ticket',
+      'A data do ticket não pode ser posterior à data atual.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
+  if (endTime < startTime) {
+    req.flash(
+      'error-input-ticket',
+      'A hora de início não pode ser posterior à hora de término.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
+  if (startTime > hourNow) {
+    req.flash(
+      'error-input-ticket',
+      'O horário de início não pode ser posterior ao horário atual.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
+  if (endTime > hourNow) {
+    req.flash(
+      'error-input-ticket',
+      'O horário de término não pode ser posterior ao horário atual.',
+    );
+    res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -110,6 +196,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "início do atendimento" deve ser preenchido.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -125,6 +212,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "início do atendimento" deve ser preenchido.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -140,6 +228,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "final do atendimento" deve ser preenchido.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -155,6 +244,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "agente de atendimento" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -170,6 +260,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
@@ -185,6 +276,7 @@ module.exports.checkTicket = async function async(req, res, next) {
       'O campo "Equipamento/Sistema" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('ticket/create', {
+      ticket,
       departaments,
       people,
       equipments,
