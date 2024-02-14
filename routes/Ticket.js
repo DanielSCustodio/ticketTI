@@ -13,6 +13,8 @@ router.get('/cadastro', checkPrivilege, TicketController.createTicket);
 
 router.get('/editar/:id', checkPrivilege, TicketController.updateTicket);
 
+router.get('/detalhes/:id', checkPrivilege, TicketController.detailsTicket);
+
 router.get('/', TicketController.viewTickets);
 
 //post
@@ -24,6 +26,7 @@ router.post(
   '/edit',
   checkPrivilege,
   checkUpdateTicket,
+  checkTicket,
   TicketController.updateTicketSave,
 );
 

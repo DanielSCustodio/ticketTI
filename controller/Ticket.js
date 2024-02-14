@@ -301,4 +301,58 @@ module.exports = class TicketController {
       );
     }
   }
+
+  static async detailsTicket(req, res) {
+    const id = req.params.id;
+    const loggedInUser = await getName(req);
+
+    try {
+      let ticket = await Ticket.findOne({
+        where: { id: id },
+        raw: true,
+      });
+
+      const person = await Administrator.findOne({
+        raw: true,
+        where: { id: ticket.AdministratorId },
+      });
+
+      const supportAgent = await Person.findOne({
+        raw: true,
+        where: { id: person.PersonId },
+      });
+
+      const departament = await Departament.findOne({
+        raw: true,
+        where: { id: ticket.DepartamentId },
+      });
+
+      const requester = await Person.findOne({
+        raw: true,
+        where: { id: ticket.PersonId },
+      });
+
+      const equipment = await Equipment.findOne({
+        raw: true,
+        where: { id: ticket.EquipmentId },
+      });
+
+      const formattedDate = formatDateBd(ticket.date);
+
+      res.render('ticket/detalhes', {
+        formattedDate,
+        loggedInUser,
+        ticket,
+        supportAgent,
+        departament,
+        requester,
+        equipment,
+      });
+    } catch (error) {
+      console.log(
+        'Aconteceu um erro no controller updateTicket ticket ===>',
+        error,
+      );
+    }
+  }
 };
