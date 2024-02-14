@@ -19,6 +19,7 @@ module.exports.checkTicket = async function async(req, res, next) {
     departamentInput,
     equipmentInput,
   } = req.body;
+
   const loggedInUser = await getName(req);
 
   const dateNow = new Date();
