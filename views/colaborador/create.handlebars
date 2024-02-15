@@ -12,6 +12,7 @@
         type='text'
         name='name'
         placeholder='Nome completo do colaborador'
+        value="{{person.name}}"
       />
     </div>
     <div class='form-control'>
@@ -21,19 +22,20 @@
         type='text'
         name='role'
         placeholder='Função do colaborador'
+        value="{{person.role}}"
       />
     </div>
     <div class='form-control'>
       <label>Instituição:</label>
       <div>
-        <input name='institutionInput' id='institutionSelected' placeholder="Instituição do colaborador"  readonly/>
+        <input name='institutionInput' id='institutionSelected' placeholder="Instituição do colaborador" value="{{person.institutionInput}}"  readonly/>
         <a href='#' id='openModalBtnInstitution'><i class='bi bi-search'></i></a>
       </div>
     </div>
     <div class='form-control'>
       <label>Setor:</label>
       <div>
-        <input name='departamentInput' id='departamentSelected' placeholder="Setor do colaborador"  readonly/>
+        <input name='departamentInput' id='departamentSelected' placeholder="Setor do colaborador" value="{{person.departamentInput}}"  readonly/>
         <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
       </div>
     </div>

@@ -9,6 +9,14 @@ const { getName } = require('../../middleware/helpers/getName');
 
 module.exports.checkPerson = async function async(req, res, next) {
   const { name, role, institutionInput, departamentInput } = req.body;
+
+  const person = {
+    name,
+    role,
+    institutionInput,
+    departamentInput,
+  };
+
   const loggedInUser = await getName(req);
 
   const departaments = await Departament.findAll({ raw: true });
@@ -20,6 +28,7 @@ module.exports.checkPerson = async function async(req, res, next) {
       'O campo "nome" deve conter pelo menos 4 caracteres. ',
     );
     res.render('colaborador/create', {
+      person,
       departaments,
       institutions,
       loggedInUser,
@@ -33,6 +42,7 @@ module.exports.checkPerson = async function async(req, res, next) {
       'O campo "função" deve conter pelo menos 4 caracteres.',
     );
     res.render('colaborador/create', {
+      person,
       departaments,
       institutions,
       loggedInUser,
@@ -46,6 +56,7 @@ module.exports.checkPerson = async function async(req, res, next) {
       'O campo "instituição" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('colaborador/create', {
+      person,
       departaments,
       institutions,
       loggedInUser,
@@ -59,6 +70,7 @@ module.exports.checkPerson = async function async(req, res, next) {
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('colaborador/create', {
+      person,
       departaments,
       institutions,
       loggedInUser,

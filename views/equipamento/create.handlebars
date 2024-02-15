@@ -12,26 +12,27 @@
         type='text'
         name='name'
         placeholder='Nome do equipamento'
+        value="{{equipment.name}}"
       />
     </div>
     <div class='form-control'>
       <label>Colaborador:</label>
       <div>
-        <input name='personInput' placeholder="Responsável pelo equipamento" id='personSelected'  readonly/>
+        <input name='personInput' placeholder="Responsável pelo equipamento" id='personSelected' value="{{equipment.personInput}}" readonly/>
         <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
       </div>
     </div>
     <div class='form-control'>
       <label>Setor:</label>
       <div>
-        <input name='departamentInput' placeholder="Onde se encontra o equipamento" id='departamentSelected'  readonly/>
+        <input name='departamentInput' placeholder="Onde se encontra o equipamento" id='departamentSelected' value="{{equipment.departamentInput}}" readonly/>
         <a href='#' id='openModalBtnDepartament'><i class='bi bi-search'></i></a>
       </div>
     </div>
     <div class='form-control'>
       <label>Tipo de referência:</label>
       <div>
-        <input name='referenceInput' placeholder="Tipo de referência" id='referenceTypeSelected'  readonly/>
+        <input name='referenceInput' placeholder="Tipo de referência" id='referenceTypeSelected' value="{{equipment.referenceInput}}" readonly/>
         <a href='#' id='openModalBtnReferenceType'><i class='bi bi-search'></i></a>
       </div>
     </div>
@@ -43,6 +44,7 @@
         type='text'
         name='reference'
         placeholder='Referência do equipamento/sistema'
+        value="{{equipment.reference}}"
       />
     </div>
     <div class="btn-submit">
