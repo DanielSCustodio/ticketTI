@@ -15,7 +15,8 @@ module.exports.checkNameInput = async function (req, res, next) {
       'error-input-name',
       'Este campo deve conter pelo menos 2 caracteres.',
     );
-    res.render(`${instance}/create`, { loggedInUser });
+    console.log('====+>', response);
+    res.render(`${instance}/create`, { loggedInUser, response });
 
     return;
   }
