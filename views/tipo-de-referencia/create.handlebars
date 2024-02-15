@@ -6,15 +6,16 @@
   {{/if}}
   <form action='/tipo-de-referencia/add' method='POST' class='form'>
     <div class='form-control'>
-      <label for="name">Tipo de referência:</label>
+      <label for='name'>Tipo de referência:</label>
       <input
-        id="name"
+        id='name'
         type='text'
         name='name'
         placeholder='Nome do tipo de referência'
+        value='{{response.name}}'
       />
     </div>
-    <div class="btn-submit">
+    <div class='btn-submit'>
       <input type='submit' value='Cadastrar' class='btn' />
     </div>
   </form>
