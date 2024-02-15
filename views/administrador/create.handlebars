@@ -8,7 +8,7 @@
     <div class='form-control'>
       <label>Colaborador:</label>
       <div>
-        <input name='personSelected' id='personSelected' placeholder="Escolha um colaborador" readonly/>
+        <input name='personSelected' id='personSelected' placeholder="Escolha um colaborador" value="{{administrador.personSelected}}" readonly/>
         <a href='#' id='openModalBtnPerson'><i class='bi bi-search'></i></a>
       </div>
     </div>
@@ -19,11 +19,12 @@
         type='text'
         name='username'
         placeholder='Nome de usuário'
+        value="{{administrador.username}}"
       />
     </div>
     <div class='form-control'>
       <label for="">Senha:</label>
-      <input type='password' name='password' placeholder='Escolha uma senha' />
+      <input type='password' name='password' placeholder='Escolha uma senha'  />
     </div>
     <div class='form-control'>
       <label for="">Confirme a senha:</label>

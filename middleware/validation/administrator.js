@@ -6,7 +6,22 @@ const { getName } = require('../../middleware/helpers/getName');
 const bcrypt = require('bcryptjs');
 
 module.exports.checkAdministrator = async function async(req, res, next) {
-  const { personSelected, username, password, confirmpassword } = req.body;
+  const {
+    personSelected,
+    username,
+    password,
+    confirmpassword,
+    privilege,
+    allPrivileges,
+  } = req.body;
+  const administrador = {
+    personSelected,
+    username,
+    password,
+    confirmpassword,
+    privilege,
+    allPrivileges,
+  };
   const loggedInUser = await getName(req);
 
   let people = await Person.findAll({ raw: true });
@@ -24,7 +39,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
       'error-input-administrator',
       'O campo "colaborador" deve ser preenchido. Clique na lupa para selecionar.',
     );
-    res.render('administrador/create', { people, loggedInUser });
+    res.render('administrador/create', { administrador, people, loggedInUser });
     return;
   }
 
@@ -33,7 +48,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
       'error-input-administrator',
       'O campo "nome de de usuário" deve conter pelo menos 4 caracteres.',
     );
-    res.render('administrador/create', { people, loggedInUser });
+    res.render('administrador/create', { administrador, people, loggedInUser });
     return;
   }
 
@@ -41,7 +56,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
     req.flash('error-input-administrator', 'Nome de usuário já cadastrado');
     people = people.filter((person) => !adminIds.includes(person.id));
 
-    res.render('administrador/create', { people, loggedInUser });
+    res.render('administrador/create', { administrador, people, loggedInUser });
     return;
   }
 
@@ -50,7 +65,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
       'error-input-administrator',
       'O campo "senha" deve conter pelo menos 6 caracteres. ',
     );
-    res.render('administrador/create', { people, loggedInUser });
+    res.render('administrador/create', { administrador, people, loggedInUser });
     return;
   }
 
@@ -58,7 +73,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
     req.flash('error-input-administrator', 'Senhas não conferem.');
     people = people.filter((person) => !adminIds.includes(person.id));
 
-    res.render('administrador/create', { people, loggedInUser });
+    res.render('administrador/create', { administrador, people, loggedInUser });
     return;
   }
 
