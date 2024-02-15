@@ -9,6 +9,13 @@ const { getName } = require('../../middleware/helpers/getName');
 module.exports.checkEquipment = async function async(req, res, next) {
   const { name, personInput, reference, referenceInput, departamentInput } =
     req.body;
+  const equipment = {
+    name,
+    personInput,
+    reference,
+    referenceInput,
+    departamentInput,
+  };
   const loggedInUser = await getName(req);
 
   const departaments = await Departament.findAll({ raw: true });
@@ -21,6 +28,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'O campo "equipamento" deve conter pelo menos 4 caracteres.',
     );
     res.render('equipamento/create', {
+      equipment,
       departaments,
       people,
       referenceType,
@@ -35,6 +43,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'O campo "colaborador" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('equipamento/create', {
+      equipment,
       departaments,
       people,
       referenceType,
@@ -49,6 +58,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('equipamento/create', {
+      equipment,
       departaments,
       people,
       referenceType,
@@ -63,6 +73,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'O campo "tipo de referência" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('equipamento/create', {
+      equipment,
       departaments,
       people,
       referenceType,
@@ -77,6 +88,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
       'O campo "referência" deve conter pelo menos 4 caracteres. ',
     );
     res.render('equipamento/create', {
+      equipment,
       departaments,
       people,
       referenceType,
