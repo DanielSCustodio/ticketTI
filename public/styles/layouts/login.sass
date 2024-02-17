@@ -22,7 +22,7 @@
 
   .card-auth
     width: 500px
-    height: 500px
+    height: auto
     border: 1px solid #ffffff27
     padding: 1.5rem
     border-radius: variables.$radius
@@ -35,6 +35,12 @@
     justify-content: flex-start
     align-items: center
     flex-direction: column
+
+    @include base-mixins.tablet
+      width: 80%
+
+    @include base-mixins.smartphone
+      width: 85%
 
     div
       width: 100%
