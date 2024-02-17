@@ -17,6 +17,7 @@
         <th>Username</th>
         <th>Edição e criação</th>
         <th>Administrador geral</th>
+        <th>Editar</th>
         <th>Excluir</th>
     </thead>
     <tbody>
@@ -27,6 +28,11 @@
           <td>{{this.username}}</td>
           <td>{{#if this.privilege}}Sim{{else}}Não{{/if}}</td>
           <td>{{#if this.allPrivileges}}Sim{{else}}Não{{/if}}</td>
+          <td>
+            <a href='/administrador/editar/{{this.id}}' class="btn-edit"><i
+                class='bi bi-pencil-square'
+              ></i></a>
+          </td>
           <td>
             <form action='/administrador/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />
