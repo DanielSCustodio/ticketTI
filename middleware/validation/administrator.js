@@ -142,16 +142,22 @@ module.exports.checkAllPrivilege = async function async(req, res, next) {
 module.exports.redirectAdministrator = async function async(req, res, next) {
   const id = req.params.id;
   const userId = req.session.userid;
+  const user = await Administrator.findOne({
+    where: { id: userId },
+    raw: true,
+  });
 
-  // Verifica se o ID na URL é diferente do ID do usuário na sessão
-  if (Number(id) !== userId) {
-    // Verifica se já foi redirecionado antes para evitar o loop de redirecionamento
-    if (!req.session.redirected) {
-      // Define a flag na sessão para indicar que o redirecionamento ocorreu
-      req.session.redirected = true;
+  if (user.allPrivileges === 0) {
+    // Verifica se o ID na URL é diferente do ID do usuário na sessão
+    if (Number(id) !== userId) {
+      // Verifica se já foi redirecionado antes para evitar o loop de redirecionamento
+      if (!req.session.redirected) {
+        // Define a flag na sessão para indicar que o redirecionamento ocorreu
+        req.session.redirected = true;
+      }
+      res.redirect(`/administrador/editar/${userId}`);
+      return;
     }
-    res.redirect(`/administrador/editar/${userId}`);
-    return;
   }
 
   // Se o ID na URL for igual ao ID do usuário na sessão ou se já foi redirecionado, passa para o próximo middleware
@@ -162,12 +168,15 @@ module.exports.checkUpdateAdministrator = async function async(req, res, next) {
   const userId = req.session.userid;
 
   const { username, passwordOld, password, confirmpassword } = req.body;
+  let passwordOldMatch;
   const user = await Administrator.findOne({
     where: { id: userId },
     raw: true,
   });
 
-  const passwordOldMatch = bcrypt.compareSync(passwordOld, user.password);
+  if (user.allPrivileges === 0) {
+    passwordOldMatch = bcrypt.compareSync(passwordOld, user.password);
+  }
 
   if (username.length <= 3) {
     req.flash(
@@ -178,10 +187,12 @@ module.exports.checkUpdateAdministrator = async function async(req, res, next) {
     return;
   }
 
-  if (!passwordOldMatch) {
-    req.flash('error-input-administrator', 'Senha antiga inválida.');
-    res.redirect(`/administrador/editar/${userId}`);
-    return;
+  if (user.allPrivileges === 0) {
+    if (!passwordOldMatch) {
+      req.flash('error-input-administrator', 'Senha antiga inválida.');
+      res.redirect(`/administrador/editar/${userId}`);
+      return;
+    }
   }
 
   if (password !== confirmpassword) {

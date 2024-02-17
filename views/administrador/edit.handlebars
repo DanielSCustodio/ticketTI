@@ -10,7 +10,7 @@
     </div>
   {{/if}}
   <form action='/administrador/edit' method='POST' class='form'>
-    <input type='hidden' name='id' value='{{administrator.id}}' />
+    <input type='hidden' name='id' value='{{administratorEdit.id}}' />
     <div class='form-control'>
       <label for='usernameSelected'>Nome de usuário:</label>
       <input
@@ -18,18 +18,20 @@
         type='text'
         name='username'
         placeholder='Nome de usuário'
-        value='{{administrator.username}}'
+        value='{{administratorEdit.username}}'
       />
     </div>
-    <div class='form-control'>
-      <label for='passwordOld'>Senha Atual:</label>
-      <input
-        type='password'
-        name='passwordOld'
-        id='passwordOld'
-        placeholder='Digite sua senha atual'
-      />
-    </div>
+    {{#if notAllPrivileges}}
+      <div class='form-control'>
+        <label for='passwordOld'>Senha Atual:</label>
+        <input
+          type='password'
+          name='passwordOld'
+          id='passwordOld'
+          placeholder='Digite sua senha atual'
+        />
+      </div>
+    {{/if}}
     <div class='form-control'>
       <label for='password'>Nova senha:</label>
       <input

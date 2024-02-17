@@ -97,17 +97,28 @@ module.exports = class AdministratorController {
   }
 
   static async updateAdministrator(req, res) {
-    const id = req.params.id;
+    const id = req.session.userid;
+    const idEdit = req.params.id;
+
     const loggedInUser = await getName(req);
+
     try {
       const administrator = await Administrator.findOne({
         where: { id: id },
         raw: true,
       });
 
+      const administratorEdit = await Administrator.findOne({
+        where: { id: idEdit },
+        raw: true,
+      });
+
+      const notAllPrivileges = administrator.allPrivileges === 0 ? true : false;
+
       res.render('administrador/edit', {
         loggedInUser,
-        administrator,
+        administratorEdit,
+        notAllPrivileges,
       });
     } catch (error) {
       console.log(
@@ -119,6 +130,7 @@ module.exports = class AdministratorController {
 
   static async updateAdministratorSave(req, res) {
     const id = req.body.id;
+
     const { username, password } = req.body;
 
     const salt = bcrypt.genSaltSync(10);
