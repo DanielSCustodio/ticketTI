@@ -14,6 +14,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
     privilege,
     allPrivileges,
   } = req.body;
+
   const administrador = {
     personSelected,
     username,
@@ -22,6 +23,7 @@ module.exports.checkAdministrator = async function async(req, res, next) {
     privilege,
     allPrivileges,
   };
+
   const loggedInUser = await getName(req);
 
   let people = await Person.findAll({ raw: true });
