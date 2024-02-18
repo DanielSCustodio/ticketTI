@@ -6,6 +6,7 @@ const checkPrivilege =
 const {
   checkTicket,
   checkUpdateTicket,
+  checkSearchTicket,
 } = require('../middleware/validation/ticket');
 
 //get
@@ -29,5 +30,6 @@ router.post(
   checkTicket,
   TicketController.updateTicketSave,
 );
+router.post('/', checkSearchTicket, TicketController.searchTicket);
 
 module.exports = router;

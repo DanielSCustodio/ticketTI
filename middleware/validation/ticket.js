@@ -567,3 +567,17 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
 
   next();
 };
+
+module.exports.checkSearchTicket = async function async(req, res, next) {
+  const { search } = req.body;
+  const tickets = await Ticket.findAll({ raw: true });
+
+  if (search.length <= 2) {
+    req.flash(
+      'error-search',
+      'O termo de busca deve conter pelo menos 3 caracteres.',
+    );
+    return res.render('ticket/all', { tickets });
+  }
+  next();
+};

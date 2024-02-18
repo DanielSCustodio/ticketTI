@@ -1,4 +1,4 @@
-<html lang='pt-BR'>
+<!DOCTYPE html>
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -49,15 +49,19 @@
 
       <div class='container-body'>
         <div class='container-search'>
-          <form action='/' method='POST' class="form-search">
-            <input type='hidden' name='id' value="" />
+          <form action='/ticket' method='POST' class="form-search">
               <input
+                autocomplete="off"  
                 id='name'
-                name='name'
-                placeholder='&#128269;&nbsp; &nbsp; &nbsp; &nbsp;  Pesquisar por ticket '
+                name="search"
+                placeholder='&#128269;&nbsp; Pesquisar ticket por título, descrição ou solução'
               />
             <input type='submit' value='Pesquisar ' class='btn btn-search' />
+            {{#if all}}
+                <a href="/ticket" class="btn clear">Limpar</a>
+            {{/if}}
           </form>
+
           <div class="user-name">
             <i class="bi bi-person-circle"></i>
             <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>

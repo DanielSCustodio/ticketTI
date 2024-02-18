@@ -440,6 +440,10 @@ ul {
   pointer-events: none !important;
 }
 
+.clear {
+  background-color: #25283A;
+}
+
 .form-conatiner {
   max-width: 100%;
   margin: 0 auto;
@@ -950,6 +954,10 @@ ul {
   border-radius: 0;
   width: 100%;
   color: #3F7446;
+}
+
+.message-large-error span {
+  color: #B23714;
 }
 
 @keyframes visibility {
