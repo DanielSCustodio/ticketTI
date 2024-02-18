@@ -5,6 +5,7 @@ const Equipment = require('../models/Equipment');
 const Ticket = require('../models/Ticket');
 const { getName } = require('../middleware/helpers/getName');
 const { formatDateBd } = require('../middleware/helpers/formatDate');
+const { Op } = require('sequelize');
 
 module.exports = class TicketController {
   static async createTicket(req, res) {
@@ -354,5 +355,52 @@ module.exports = class TicketController {
         error,
       );
     }
+  }
+
+  static async searchTicket(req, res) {
+    const { search } = req.body;
+    const all = true;
+    let tickets = await Ticket.findAll({
+      where: {
+        [Op.or]: [
+          {
+            title: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            description: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            solution: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+        ],
+      },
+      include: [
+        { model: Departament },
+        { model: Person },
+        {
+          model: Administrator,
+          include: [{ model: Person, attributes: ['name'] }],
+        },
+        { model: Equipment },
+      ],
+    });
+    // Formate a data antes de passá-la para o frontend
+    tickets = tickets.map((result) => {
+      const plainResult = result.get({ plain: true });
+      // Renomeia o campo AdministratorId para AdministratorName
+      plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
+      // Formate o campo de data para o formato brasileiro
+      plainResult.date = formatDateBd(plainResult.date);
+      return plainResult;
+    });
+    console.log(tickets);
+
+    res.render('ticket/all', { tickets, all });
   }
 };
