@@ -77,6 +77,8 @@ module.exports.checkUpdateDepartament = async function async(req, res, next) {
 
 module.exports.checkSearchDepartament = async function async(req, res, next) {
   const { search } = req.body;
+  const loggedInUser = await getName(req);
+
   const departaments = await Departament.findAll({ raw: true });
 
   if (search.length <= 2) {
@@ -84,7 +86,7 @@ module.exports.checkSearchDepartament = async function async(req, res, next) {
       'error-search',
       'O termo de busca deve conter pelo menos 3 caracteres.',
     );
-    return res.render('ticket/all', { departaments });
+    return res.render('setor/all', { departaments, loggedInUser });
   }
   next();
 };

@@ -8,6 +8,7 @@ const checkPrivilege =
 const {
   checkDeleteReferenceType,
   checkUpdateReferenceType,
+  checkSearchReferenceType,
 } = require('../middleware/validation/refrenceType');
 
 //get
@@ -45,6 +46,12 @@ router.post(
   checkPrivilege,
   checkUpdateReferenceType,
   ReferenceTypeController.updateReferenceTypeSave,
+);
+
+router.post(
+  '/',
+  checkSearchReferenceType,
+  ReferenceTypeController.searchReferenceType,
 );
 
 module.exports = router;

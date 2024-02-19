@@ -159,6 +159,7 @@ module.exports = class PersonController {
 
   static async searchPerson(req, res) {
     const { search } = req.body;
+    const loggedInUser = await getName(req);
 
     const all = true;
 
@@ -182,6 +183,6 @@ module.exports = class PersonController {
 
     people = people.map((result) => result.get({ plain: true }));
 
-    res.render('colaborador/all', { people, all });
+    res.render('colaborador/all', { people, all, loggedInUser });
   }
 };

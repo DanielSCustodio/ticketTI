@@ -90,6 +90,8 @@ module.exports = class DepartamentController {
 
   static async searchDepartament(req, res) {
     const { search } = req.body;
+    const loggedInUser = await getName(req);
+
     const all = true;
     const departaments = await Departament.findAll({
       raw: true,
@@ -99,6 +101,6 @@ module.exports = class DepartamentController {
         },
       },
     });
-    res.render('setor/all', { departaments, all });
+    res.render('setor/all', { departaments, all, loggedInUser });
   }
 };

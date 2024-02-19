@@ -93,6 +93,8 @@ module.exports = class InstitutionController {
 
   static async searchInstituiton(req, res) {
     const { search } = req.body;
+    const loggedInUser = await getName(req);
+
     const all = true;
     const institutions = await Institution.findAll({
       raw: true,
@@ -102,6 +104,6 @@ module.exports = class InstitutionController {
         },
       },
     });
-    res.render('instituicao/all', { institutions, all });
+    res.render('instituicao/all', { institutions, all, loggedInUser });
   }
 };

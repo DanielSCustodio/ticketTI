@@ -1,6 +1,7 @@
 const ReferenceType = require('../models/ReferenceType');
 const Administrator = require('../models/Administrator');
 const { getName } = require('../middleware/helpers/getName');
+const { Op } = require('sequelize');
 
 module.exports = class ReferenceTypeController {
   static async createReferenceType(req, res) {
@@ -87,5 +88,21 @@ module.exports = class ReferenceTypeController {
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
+  }
+
+  static async searchReferenceType(req, res) {
+    const { search } = req.body;
+    const loggedInUser = await getName(req);
+
+    const all = true;
+    const referenceTypes = await ReferenceType.findAll({
+      raw: true,
+      where: {
+        name: {
+          [Op.like]: `%${search}%`,
+        },
+      },
+    });
+    res.render('tipo-de-referencia/all', { referenceTypes, all, loggedInUser });
   }
 };
