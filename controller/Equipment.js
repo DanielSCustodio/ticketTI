@@ -4,6 +4,7 @@ const Equipment = require('../models/Equipment');
 const ReferenceType = require('../models/ReferenceType');
 const Administrator = require('../models/Administrator');
 const { getName } = require('../middleware/helpers/getName');
+const { Op } = require('sequelize');
 
 module.exports = class EquipmentController {
   static async createEquipment(req, res) {
@@ -182,5 +183,37 @@ module.exports = class EquipmentController {
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
+  }
+
+  static async searchEquipment(req, res) {
+    const { search } = req.body;
+
+    const all = true;
+
+    const loggedInUser = await getName(req);
+
+    let equipments = await Equipment.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            reference: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+        ],
+      },
+      include: [
+        { model: Departament },
+        { model: Person },
+        { model: ReferenceType },
+      ],
+    });
+    equipments = equipments.map((result) => result.get({ plain: true }));
+    res.render('equipamento/all', { equipments, all, loggedInUser });
   }
 };

@@ -14,44 +14,72 @@
       <span>{{messages.error-privilege}}</span>
     </div>
   {{/if}}
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Equipamento</th>
-        <th>Responsável</th>
-        <th>Setor</th>
-        <th>Tipo de refrência</th>
-        <th>Referência</th>
-        <th>Editar</th>
-        <th>Excluir</th>
-    </thead>
-    <tbody>
-      {{#each equipments}}
+  {{#if messages.error-search}}
+    <div class='message-error'>
+      <span>{{messages.error-search}}</span>
+    </div>
+  {{/if}}
+  <div class='container-search container-search-item  '>
+    <form action='/equipamento' method='POST' class="form-search">
+      <input
+          autocomplete="off"  
+          id='name'
+          name="search"
+          placeholder='Pesquisar euipamento por nome ou referência'
+      />
+      <input type='submit' value='Pesquisar ' class='btn btn-search' />
+      {{#if all}}
+          <a href="/equipamento" class="btn clear">Limpar</a>
+      {{/if}}
+    </form>
+  </div>
+  {{#if equipments}}
+    <table class='table'>
+      <thead>
         <tr>
-          <td>{{this.id}}</td>
-          <td>{{this.name}}</td>
-          <td>{{this.Person.name}}</td>
-          <td>{{this.Departament.name}}</td>
-          <td>{{this.ReferenceType.name}}</td>
-          <td>{{this.reference}}</td>
-          <td>
-            <a href='/equipamento/editar/{{this.id}}' class="btn-edit"><i
-                class='bi bi-pencil-square'
-              ></i></a>
-          </td>
-          <td>
-            <form action='/equipamento/remove' method='post'>
-              <input type='hidden' name='id' value='{{this.id}}'  />
-              <button type='submit' class="btn-delete"><i
-                  class='bi bi-x-square'
-                ></i></button>
-            </form>
-          </td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+          <th>ID</th>
+          <th>Equipamento</th>
+          <th>Responsável</th>
+          <th>Setor</th>
+          <th>Tipo de refrência</th>
+          <th>Referência</th>
+          <th>Editar</th>
+          <th>Excluir</th>
+      </thead>
+      <tbody>
+        {{#each equipments}}
+          <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.Person.name}}</td>
+            <td>{{this.Departament.name}}</td>
+            <td>{{this.ReferenceType.name}}</td>
+            <td>{{this.reference}}</td>
+            <td>
+              <a href='/equipamento/editar/{{this.id}}' class="btn-edit"><i
+                  class='bi bi-pencil-square'
+                ></i></a>
+            </td>
+            <td>
+              <form action='/equipamento/remove' method='post'>
+                <input type='hidden' name='id' value='{{this.id}}'  />
+                <button type='submit' class="btn-delete"><i
+                    class='bi bi-x-square'
+                  ></i></button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    {{#unless messages.error-search}}
+      <div class='message message-large-error'>
+        <span>Sem resultados</span>
+      </div>
+    {{/unless}}
+  {{/if}}
+
   {{#if privilege}}
     <a href="/equipamento/cadastro" class="btn btn-table">Cadastar</a>
   {{/if}}

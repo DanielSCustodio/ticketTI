@@ -6,6 +6,7 @@ const checkEquipment =
 const {
   checkDeleteEquipment,
   checkUpdateEquipment,
+  checkSearchEquipment,
 } = require('../middleware/validation/equipment');
 const checkPrivilege =
   require('../middleware/validation/administrator').checkPrivilege;
@@ -33,5 +34,7 @@ router.post(
   checkUpdateEquipment,
   EquipmentController.updateEquipmentSave,
 );
+
+router.post('/', checkSearchEquipment, EquipmentController.searchEquipment);
 
 module.exports = router;
