@@ -30,6 +30,7 @@ router.post(
   checkTicket,
   TicketController.updateTicketSave,
 );
+
 router.post('/', checkSearchTicket, TicketController.searchTicket);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const Institution = require('../models/Institution');
 const Administrator = require('../models/Administrator');
 const { getName } = require('../middleware/helpers/getName');
+const { Op } = require('sequelize');
 
 module.exports = class InstitutionController {
   static async createInstitution(req, res) {
@@ -88,5 +89,19 @@ module.exports = class InstitutionController {
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
+  }
+
+  static async searchInstituiton(req, res) {
+    const { search } = req.body;
+    const all = true;
+    const institutions = await Institution.findAll({
+      raw: true,
+      where: {
+        name: {
+          [Op.like]: `%${search}%`,
+        },
+      },
+    });
+    res.render('instituicao/all', { institutions, all });
   }
 };
