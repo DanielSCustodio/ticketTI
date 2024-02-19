@@ -1,6 +1,7 @@
 const Departament = require('../models/Departament');
 const Administrator = require('../models/Administrator');
 const { getName } = require('../middleware/helpers/getName');
+const { Op } = require('sequelize');
 
 module.exports = class DepartamentController {
   static async createDepartament(req, res) {
@@ -85,5 +86,19 @@ module.exports = class DepartamentController {
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
+  }
+
+  static async searchDepartament(req, res) {
+    const { search } = req.body;
+    const all = true;
+    const departaments = await Departament.findAll({
+      raw: true,
+      where: {
+        name: {
+          [Op.like]: `%${search}%`,
+        },
+      },
+    });
+    res.render('setor/all', { departaments, all });
   }
 };

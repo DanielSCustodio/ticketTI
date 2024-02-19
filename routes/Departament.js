@@ -8,6 +8,7 @@ const checkPrivilege =
 const {
   checkDeleteDepartament,
   checkUpdateDepartament,
+  checkSearchDepartament,
 } = require('../middleware/validation/departament');
 
 //get
@@ -16,11 +17,13 @@ router.get(
   checkPrivilege,
   DepartamentController.createDepartament,
 );
+
 router.get(
   '/editar/:id',
   checkPrivilege,
   DepartamentController.updateDepartament,
 );
+
 router.get('/', DepartamentController.viewDepartaments);
 
 //post
@@ -30,16 +33,24 @@ router.post(
   checkDeleteDepartament,
   DepartamentController.removeDepartament,
 );
+
 router.post(
   '/add',
   checkNameInput,
   DepartamentController.createDepartamentSave,
 );
+
 router.post(
   '/edit',
   checkPrivilege,
   checkUpdateDepartament,
   DepartamentController.updateDepartamentSave,
+);
+
+router.post(
+  '/',
+  checkSearchDepartament,
+  DepartamentController.searchDepartament,
 );
 
 module.exports = router;
