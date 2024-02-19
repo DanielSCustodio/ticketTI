@@ -360,6 +360,8 @@ module.exports = class TicketController {
   static async searchTicket(req, res) {
     const { search } = req.body;
     const all = true;
+    const loggedInUser = await getName(req);
+
     let tickets = await Ticket.findAll({
       where: {
         [Op.or]: [
@@ -399,8 +401,7 @@ module.exports = class TicketController {
       plainResult.date = formatDateBd(plainResult.date);
       return plainResult;
     });
-    console.log(tickets);
 
-    res.render('ticket/all', { tickets, all });
+    res.render('ticket/all', { tickets, all, loggedInUser });
   }
 };

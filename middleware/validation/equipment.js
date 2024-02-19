@@ -6,7 +6,7 @@ const Ticket = require('../../models/Ticket');
 const Equipment = require('../../models/Equipment');
 const { getName } = require('../../middleware/helpers/getName');
 
-module.exports.checkEquipment = async function async(req, res, next) {
+module.exports.checkEquipment = async function (req, res, next) {
   const { name, personInput, reference, referenceInput, departamentInput } =
     req.body;
   const equipment = {
@@ -100,7 +100,7 @@ module.exports.checkEquipment = async function async(req, res, next) {
   next();
 };
 
-module.exports.checkDeleteEquipment = async function async(req, res, next) {
+module.exports.checkDeleteEquipment = async function (req, res, next) {
   const EquipmentId = req.body.id;
   const loggedInUser = await getName(req);
 
@@ -131,7 +131,7 @@ module.exports.checkDeleteEquipment = async function async(req, res, next) {
   next();
 };
 
-module.exports.checkUpdateEquipment = async function async(req, res, next) {
+module.exports.checkUpdateEquipment = async function (req, res, next) {
   const id = req.body.id;
   const loggedInUser = await getName(req);
 
@@ -253,5 +253,28 @@ module.exports.checkUpdateEquipment = async function async(req, res, next) {
     return;
   }
 
+  next();
+};
+
+module.exports.checkSearchEquipment = async function async(req, res, next) {
+  const { search } = req.body;
+  const loggedInUser = await getName(req);
+
+  let equipments = await Equipment.findAll({
+    include: [
+      { model: Departament },
+      { model: Person },
+      { model: ReferenceType },
+    ],
+  });
+  equipments = equipments.map((result) => result.get({ plain: true }));
+
+  if (search.length <= 2) {
+    req.flash(
+      'error-search',
+      'O termo de busca deve conter pelo menos 3 caracteres.',
+    );
+    return res.render('equipamento/all', { equipments, loggedInUser });
+  }
   next();
 };

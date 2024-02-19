@@ -14,42 +14,70 @@
       <span>{{messages.error-privilege}}</span>
     </div>
   {{/if}}
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th >Nome</th>
-        <th>Cargo</th>
-        <th>Setor</th>
-        <th>Instituição</th>
-        <th>Editar</th>
-        <th>Excluir</th>
-    </thead>
-    <tbody>
-      {{#each people}}
+  {{#if messages.error-search}}
+    <div class='message-error'>
+      <span>{{messages.error-search}}</span>
+    </div>
+  {{/if}}
+  <div class='container-search container-search-item  '>
+    <form action='/colaborador' method='POST' class="form-search">
+      <input
+          autocomplete="off"  
+          id='name'
+          name="search"
+          placeholder='Pesquisar colaborador por nome ou função'
+      />
+      <input type='submit' value='Pesquisar ' class='btn btn-search' />
+      {{#if all}}
+          <a href="/colaborador" class="btn clear">Limpar</a>
+      {{/if}}
+    </form>
+  </div>
+  {{#if people}}
+    <table class='table'>
+      <thead>
         <tr>
-          <td>{{this.id}}</td>
-          <td class="table-align-left">{{this.name}}</td>
-          <td>{{this.role}}</td>
-          <td>{{this.Departament.name}}</td>
-          <td>{{this.Institution.name}}</td>
-          <td>
-            <a href='/colaborador/editar/{{this.id}}' class="btn-edit"><i
-                class='bi bi-pencil-square'
-              ></i></a>
-          </td>
-          <td>
-            <form action='/colaborador/remove' method='post'>
-              <input type='hidden' name='id' value='{{this.id}}' />
-              <button type='submit' class="btn-delete"><i
-                  class='bi bi-x-square'
-                ></i></button>
-            </form>
-          </td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+          <th>ID</th>
+          <th >Nome</th>
+          <th>Cargo</th>
+          <th>Setor</th>
+          <th>Instituição</th>
+          <th>Editar</th>
+          <th>Excluir</th>
+      </thead>
+      <tbody>
+        {{#each people}}
+          <tr>
+            <td>{{this.id}}</td>
+            <td class="table-align-left">{{this.name}}</td>
+            <td>{{this.role}}</td>
+            <td>{{this.Departament.name}}</td>
+            <td>{{this.Institution.name}}</td>
+            <td>
+              <a href='/colaborador/editar/{{this.id}}' class="btn-edit"><i
+                  class='bi bi-pencil-square'
+                ></i></a>
+            </td>
+            <td>
+              <form action='/colaborador/remove' method='post'>
+                <input type='hidden' name='id' value='{{this.id}}' />
+                <button type='submit' class="btn-delete"><i
+                    class='bi bi-x-square'
+                  ></i></button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    {{#unless messages.error-search}}
+      <div class='message message-large-error'>
+        <span>Sem resultados</span>
+      </div>
+    {{/unless}}
+  {{/if}}
+
   {{#if privilege}}
     <a href="/colaborador/cadastro" class="btn btn-table">Cadastar</a>
   {{/if}}

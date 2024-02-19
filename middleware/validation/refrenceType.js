@@ -44,3 +44,22 @@ module.exports.checkUpdateReferenceType = async function async(req, res, next) {
   }
   next();
 };
+
+module.exports.checkSearchReferenceType = async function async(req, res, next) {
+  const { search } = req.body;
+  const referenceTypes = await ReferenceType.findAll({ raw: true });
+
+  if (search.length <= 2) {
+    const loggedInUser = await getName(req);
+
+    req.flash(
+      'error-search',
+      'O termo de busca deve conter pelo menos 3 caracteres.',
+    );
+    return res.render('tipo-de-referencia/all', {
+      referenceTypes,
+      loggedInUser,
+    });
+  }
+  next();
+};
