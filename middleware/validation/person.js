@@ -227,8 +227,13 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
 
 module.exports.checkSearchPerson = async function async(req, res, next) {
   const { search } = req.body;
-  const people = await Person.findAll({ raw: true });
+
   const loggedInUser = await getName(req);
+
+  let people = await Person.findAll({
+    include: [{ model: Departament }, { model: Institution }],
+  });
+  people = people.map((result) => result.get({ plain: true }));
 
   if (search.length <= 2) {
     req.flash(
