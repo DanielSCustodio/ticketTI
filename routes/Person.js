@@ -5,6 +5,7 @@ const {
   checkPerson,
   checkDeletePerson,
   checkUpdatePerson,
+  checkSearchPerson,
 } = require('../middleware/validation/person');
 const checkPrivilege =
   require('../middleware/validation/administrator').checkPrivilege;
@@ -33,5 +34,7 @@ router.post(
   checkUpdatePerson,
   PersonController.updatePersonSave,
 );
+
+router.post('/', checkSearchPerson, PersonController.searchPerson);
 
 module.exports = router;

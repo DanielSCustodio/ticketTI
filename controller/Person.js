@@ -3,6 +3,7 @@ const Institution = require('../models/Institution');
 const Person = require('../models/Person');
 const Administrator = require('../models/Administrator');
 const { getName } = require('../middleware/helpers/getName');
+const { Op } = require('sequelize');
 
 module.exports = class PersonController {
   static async createPerson(req, res) {
@@ -154,5 +155,33 @@ module.exports = class PersonController {
     } catch (error) {
       console.log('Aconteceu um erro ===>', error);
     }
+  }
+
+  static async searchPerson(req, res) {
+    const { search } = req.body;
+
+    const all = true;
+
+    let people = await Person.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            role: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+        ],
+      },
+      include: [{ model: Departament }, { model: Institution }],
+    });
+
+    people = people.map((result) => result.get({ plain: true }));
+
+    res.render('colaborador/all', { people, all });
   }
 };

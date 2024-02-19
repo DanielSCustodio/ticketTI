@@ -399,7 +399,6 @@ module.exports = class TicketController {
       plainResult.date = formatDateBd(plainResult.date);
       return plainResult;
     });
-    console.log(tickets);
 
     res.render('ticket/all', { tickets, all });
   }

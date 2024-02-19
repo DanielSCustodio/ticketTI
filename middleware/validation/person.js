@@ -224,3 +224,17 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
   }
   next();
 };
+
+module.exports.checkSearchPerson = async function async(req, res, next) {
+  const { search } = req.body;
+  const people = await Person.findAll({ raw: true });
+
+  if (search.length <= 2) {
+    req.flash(
+      'error-search',
+      'O termo de busca deve conter pelo menos 3 caracteres.',
+    );
+    return res.render('colaborador/all', { people });
+  }
+  next();
+};
