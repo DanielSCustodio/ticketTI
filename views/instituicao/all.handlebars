@@ -14,38 +14,65 @@
       <span>{{messages.error-privilege}}</span>
     </div>
   {{/if}}
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Editar</th>
-        <th>Excluir</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each institutions}}
+  {{#if messages.error-search}}
+    <div class='message-error'>
+      <span>{{messages.error-search}}</span>
+    </div>
+  {{/if}}
+  <div class='container-search container-search-item  '>
+    <form action='/instituicao' method='POST' class="form-search">
+      <input
+          autocomplete="off"  
+          id='name'
+          name="search"
+          placeholder='Pesquisar instituição por nome'
+      />
+      <input type='submit' value='Pesquisar ' class='btn btn-search' />
+      {{#if all}}
+          <a href="/instituicao" class="btn clear">Limpar</a>
+      {{/if}}
+    </form>
+  </div>
+  {{#if institutions}}
+    <table class='table'>
+      <thead>
         <tr>
-          <td>{{this.id}}</td>
-          <td>{{this.name}}</td>
-          <td>
-            <a href='/instituicao/editar/{{this.id}}' class="btn-edit"><i
-                class='bi bi-pencil-square'
-              ></i></a>
-          </td>
-          <td>
-            <form action='/instituicao/remove' method='post'>
-              <input type='hidden' name='id' value='{{this.id}}' />
-              <button type='submit' class="btn-delete"><i
-                  class='bi bi-x-square'
-                ></i></button>
-            </form>
-          </td>
-
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Editar</th>
+          <th>Excluir</th>
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {{#each institutions}}
+          <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.name}}</td>
+            <td>
+              <a href='/instituicao/editar/{{this.id}}' class="btn-edit"><i
+                  class='bi bi-pencil-square'
+                ></i></a>
+            </td>
+            <td>
+              <form action='/instituicao/remove' method='post'>
+                <input type='hidden' name='id' value='{{this.id}}' />
+                <button type='submit' class="btn-delete"><i
+                    class='bi bi-x-square'
+                  ></i></button>
+              </form>
+            </td>
+
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    {{#unless messages.error-search}}
+      <div class='message message-large-error'>
+        <span>Sem resultados</span>
+      </div>
+    {{/unless}}
+  {{/if}}
   {{#if privilege}}
     <a href='/instituicao/cadastro' class="btn btn-table">Cadastar</a>
   {{/if}}

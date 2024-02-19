@@ -8,6 +8,7 @@ const checkPrivilege =
 const {
   checkDeleteInstitution,
   checkUpdateInstitution,
+  checkSearchInstituiton,
 } = require('../middleware/validation/instituiton');
 
 //Get
@@ -45,6 +46,11 @@ router.post(
   checkPrivilege,
   checkUpdateInstitution,
   InstitutionController.updateInstituitonSave,
+);
+router.post(
+  '/',
+  checkSearchInstituiton,
+  InstitutionController.searchInstituiton,
 );
 
 module.exports = router;
