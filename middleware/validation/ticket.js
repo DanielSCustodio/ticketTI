@@ -572,7 +572,27 @@ module.exports.checkSearchTicket = async function async(req, res, next) {
   const { search } = req.body;
   const loggedInUser = await getName(req);
 
-  const tickets = await Ticket.findAll({ raw: true });
+  let tickets = await Ticket.findAll({
+    include: [
+      { model: Departament },
+      { model: Person },
+      {
+        model: Administrator,
+        include: [{ model: Person, attributes: ['name'] }],
+      },
+      { model: Equipment },
+    ],
+  });
+
+  // Formate a data antes de passá-la para o frontend
+  tickets = tickets.map((result) => {
+    const plainResult = result.get({ plain: true });
+    // Renomeia o campo AdministratorId para AdministratorName
+    plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
+    // Formate o campo de data para o formato brasileiro
+    plainResult.date = formatDateBd(plainResult.date);
+    return plainResult;
+  });
 
   if (search.length <= 2) {
     req.flash(
