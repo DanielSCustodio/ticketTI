@@ -4,21 +4,11 @@
 
 #nav-bar
   display: flex
+  justify-content: space-between
   align-items: flex-start
-  justify-content: first baseline
-  flex-direction: column
-  position: fixed
-  overflow: hidden
-  max-width: 28%
-  top: 0px
-  height: 100vh
-  padding-right: 2%
-  padding-left: 5%
-  border-right: 1px solid variables.$border-color
 
   .header-nav
     img
-      margin-left: -10px
       width: 150px
 
     h3,span
@@ -35,19 +25,19 @@
       margin: 0
       margin-top: 1.5rem
 
-      margin-bottom: 2rem
-
   .navigation
     margin-top: 2rem
+    margin-left: 2rem
     padding: 0
     display: flex
-    flex-direction: column
     gap: 2rem
 
     li
       display: flex
-      justify-content: baseline
-      align-items: center
+      align-items: baseline
+
+      .btn
+        margin-top: -0.5rem
 
       a,i
         color: variables.$second-text-color

@@ -3,26 +3,12 @@
 @use '../base/base-mixins'
 
 .container-search
-  width: 100%
-  padding: 1rem
-  border-bottom: 1px solid variables.$border-color
-  margin-bottom: 1rem
-  display: flex
-  justify-content: space-between
-  align-items: center
 
-  @include base-mixins.tablet
-    flex-wrap: wrap-reverse
-    padding: 1rem 2rem
 
   .form-search
     display: flex
-    justify-content: start
     gap: 1rem
     width: 50%
-
-    @include base-mixins.tablet
-      width: 100%
 
 
     input

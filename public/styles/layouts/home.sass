@@ -4,14 +4,10 @@
 
 .layout
   @include mixins.center-content()
+  flex-direction: column
 
 .container-body
-  min-height: 100vh
-  overflow: hidden
-  margin-left: 15.9%
-  
-  @include base-mixins.tablet
-    margin-left: 30%
-    width: 100%
+  @include mixins.center-content()
+
 
 
