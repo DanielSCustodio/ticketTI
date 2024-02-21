@@ -3,12 +3,26 @@
 @use '../base/base-mixins'
 
 .container-search
+  width: 100%
+  padding: 1rem
+  border-bottom: 1px solid variables.$border-color
+  margin-bottom: 1rem
+  display: flex
+  justify-content: space-between
+  align-items: center
 
+  @include base-mixins.tablet
+    flex-wrap: wrap-reverse
+    padding: 1rem 2rem
 
   .form-search
     display: flex
+    justify-content: start
     gap: 1rem
     width: 50%
+
+    @include base-mixins.tablet
+      width: 100%
 
 
     input
@@ -17,48 +31,36 @@
       border-radius: variables.$radius
       background-color: variables.$bg-second-color
       color: variables.$second-text-color
-
     .btn-search
       background-color: variables.$primary-color
       color: variables.$second-text-color
       width: 20%
       transition: 0.8s
-
       &:hover
         background-color: variables.$second-color
-
   .user-name
     display: flex
     justify-content: center
     align-items: center
     gap: 0.5rem
-
     a
       color: variables.$second-text-color
-
       &:hover
         color: variables.$text-color
-
     @include base-mixins.tablet
       margin-bottom: 1.5rem
       justify-content: space-between
       width: 100%
-
     h6
       color: variables.$second-text-color
       margin: 0
-
     i
       font-size: 1.5rem
       color: variables.$second-text-color
-
       @include base-mixins.tablet
         display: none
-
-
     div
       margin-left: 2rem
-
       a
         display: flex
         justify-content: center
@@ -66,20 +68,15 @@
         gap: 0.5rem
         color: variables.$text-color
         transition: .8s
-
         &:hover
           color: variables.$color-red-primary
-
           i
             font-size: 1.5rem
             color: variables.$color-red-primary
-
         i
           color: variables.$text-color
-
   &-item
     padding-bottom: 1rem
     justify-content: end
-
     .form-search
       width: 30%

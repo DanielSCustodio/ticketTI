@@ -4,10 +4,104 @@
 
 .layout
   @include mixins.center-content()
-  flex-direction: column
+  flex-direction: column-reverse
 
-.container-body
+  .search-bar-container
+    display: flex
+    width: 100%
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 1rem
+    border-bottom: 1px solid variables.$border-color
+
+    .header-nav
+      width: 12%
+      a
+        img
+          max-width: 100%
+          margin-left: -11px
+          object-fit: cover
+    
+    .form-search
+      display: flex
+      gap: 1rem
+      width: 50%
+
+      input
+        padding: 0.5rem
+        width: 80%
+        border-radius: variables.$radius
+        background-color: variables.$bg-second-color
+        color: variables.$second-text-color
+
+      .btn-search
+        background-color: variables.$primary-color
+        color: variables.$second-text-color
+        width: 20%
+        transition: 0.8s
+
+        &:hover
+          background-color: variables.$second-color
+
+    .user-name
+      display: flex
+      justify-content: center
+      align-items: center
+      gap: 0.5rem
+
+      a
+        color: variables.$second-text-color
+
+        &:hover
+          color: variables.$text-color
+
+      @include base-mixins.tablet
+        margin-bottom: 1.5rem
+        justify-content: space-between
+        width: 100%
+
+      h6
+        color: variables.$second-text-color
+        margin: 0
+
+      i
+        font-size: 1.5rem
+        color: variables.$second-text-color
+
+        @include base-mixins.tablet
+          display: none
+
+
+      div
+        margin-left: 2rem
+
+        a
+          display: flex
+          justify-content: center
+          align-items: center
+          gap: 0.5rem
+          color: variables.$text-color
+          transition: .8s
+
+          &:hover
+            color: variables.$color-red-primary
+
+            i
+              font-size: 1.5rem
+              color: variables.$color-red-primary
+
+          i
+            color: variables.$text-color
+
+
+.main-content
+  min-height: 100vh
+  margin: 0 auto
+
+  &-item
   @include mixins.center-content()
-
+  overflow: hidden
+  justify-content: stretch
+  align-items: flex-start
 
 

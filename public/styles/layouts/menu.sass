@@ -3,50 +3,34 @@
 @use '../base/base-mixins'
 
 #nav-bar
+  margin: 0 auto
   display: flex
   justify-content: space-between
-  align-items: flex-start
-
-  .header-nav
-    img
-      width: 150px
-
-    h3,span
-      font-size: 1.5rem
-      color: variables.$second-text-color
-
-    h3
-      font-weight: 300
-
-    span
-      font-weight: 600
-
-    a
-      margin: 0
-      margin-top: 1.5rem
+  align-items: center
+  width: 100%
+  padding-bottom: 1rem
+  margin-bottom: 1rem
+  border-bottom: 1px solid variables.$border-color
 
   .navigation
-    margin-top: 2rem
-    margin-left: 2rem
-    padding: 0
     display: flex
+    justify-content: space-between
+    align-items: center
     gap: 2rem
 
     li
       display: flex
       align-items: baseline
+    
+    a,i
+      color: variables.$second-text-color
 
-      .btn
-        margin-top: -0.5rem
+      &:hover
+        color: variables.$text-color
 
-      a,i
-        color: variables.$second-text-color
-
-        &:hover
+        i
           color: variables.$text-color
-
-          i
-            color: variables.$text-color
-      i
-        font-size: 1.2rem
-        margin-right: 0.5rem
+    i
+      font-size: 1.2rem
+      margin-right: 0.5rem
+    
