@@ -3,20 +3,15 @@
 @use '../base/base-mixins'
 
 #nav-bar
-  margin: 0 auto
-  display: flex
-  justify-content: space-between
-  align-items: center
-  width: 100%
-  padding-bottom: 1rem
-  margin-bottom: 1rem
+  @include mixins.center-content()
+  padding: 1rem 0
   border-bottom: 1px solid variables.$border-color
 
   .navigation
     display: flex
     justify-content: space-between
     align-items: center
-    gap: 2rem
+    gap: 4.5rem
 
     li
       display: flex

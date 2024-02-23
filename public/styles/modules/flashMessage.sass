@@ -1,21 +1,25 @@
 @use '../base/variables'
 @use '../base/base-mixins'
+@use '../layouts/mixins'
+
+
 
 .message-error, .message
-  display: flex
-  justify-content: flex-start
-  margin: 0 auto
-  width: 50%
+  @include mixins.center-content()
   margin-bottom: 2rem
-  animation: 5.0s ease-in-out 1 forwards visibility
-  
+  justify-content: center
+  padding: 1rem 0
+
   span
+    width: 40%
     padding: 0.7rem
     background-color: #dbcfcf
     color: variables.$color-red-second
     border-radius: variables.$radius
     font-weight: bold
     box-shadow: variables.$shadow
+    display: flex
+    justify-content: center
 
 .message
   width: 100%

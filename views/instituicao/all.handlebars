@@ -1,4 +1,18 @@
 <section>
+  <div class='container-search'>
+    <form action='/instituicao' method='POST' class="form-search">
+      <input
+          autocomplete="off"  
+          id='name'
+          name="search"
+          placeholder='Pesquisar instituição por nome'
+      />
+      <input type='submit' value='Pesquisar ' class='btn btn-search' />
+      {{#if all}}
+          <a href="/instituicao" class="btn clear">Limpar</a>
+      {{/if}}
+    </form>
+  </div>
   {{#if messages.create-institution}}
     <div class='message'>
       <span>{{messages.create-institution}}</span>
@@ -19,20 +33,7 @@
       <span>{{messages.error-search}}</span>
     </div>
   {{/if}}
-  <div class='container-search container-search-item  '>
-    <form action='/instituicao' method='POST' class="form-search">
-      <input
-          autocomplete="off"  
-          id='name'
-          name="search"
-          placeholder='Pesquisar instituição por nome'
-      />
-      <input type='submit' value='Pesquisar ' class='btn btn-search' />
-      {{#if all}}
-          <a href="/instituicao" class="btn clear">Limpar</a>
-      {{/if}}
-    </form>
-  </div>
+
   {{#if institutions}}
     <table class='table'>
       <thead>
