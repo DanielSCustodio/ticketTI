@@ -159,36 +159,40 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (startTime > hourNow) {
-    req.flash(
-      'error-input-ticket',
-      'O horário de início não pode ser posterior ao horário atual.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
+  if (formatDate(dateNow) === formatDateBd(date)) {
+    if (startTime > hourNow) {
+      req.flash(
+        'error-input-ticket',
+        'O horário de início não pode ser posterior ao horário atual.',
+      );
+      res.render('ticket/create', {
+        ticket,
+        departaments,
+        people,
+        equipments,
+        administrators,
+        loggedInUser,
+      });
+      return;
+    }
   }
 
-  if (endTime > hourNow) {
-    req.flash(
-      'error-input-ticket',
-      'O horário de término não pode ser posterior ao horário atual.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
+  if (formatDate(dateNow) === formatDateBd(date)) {
+    if (endTime > hourNow) {
+      req.flash(
+        'error-input-ticket',
+        'O horário de término não pode ser posterior ao horário atual.',
+      );
+      res.render('ticket/create', {
+        ticket,
+        departaments,
+        people,
+        equipments,
+        administrators,
+        loggedInUser,
+      });
+      return;
+    }
   }
 
   if (!startTime) {
