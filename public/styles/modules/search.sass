@@ -3,13 +3,10 @@
 @use '../base/base-mixins'
 
 .container-search
-  width: 100%
   padding: 1rem
   border-bottom: 1px solid variables.$border-color
-  margin-bottom: 1rem
-  display: flex
-  justify-content: space-between
-  align-items: center
+  @include mixins.center-content()
+  justify-content: center
 
   @include base-mixins.tablet
     flex-wrap: wrap-reverse
@@ -17,20 +14,20 @@
 
   .form-search
     display: flex
-    justify-content: start
+    justify-content: center
     gap: 1rem
     width: 50%
 
     @include base-mixins.tablet
       width: 100%
 
-
     input
       padding: 0.5rem
-      width: 80%
+      width: 60%
       border-radius: variables.$radius
       background-color: variables.$bg-second-color
       color: variables.$second-text-color
+
     .btn-search
       background-color: variables.$primary-color
       color: variables.$second-text-color
@@ -75,8 +72,5 @@
             color: variables.$color-red-primary
         i
           color: variables.$text-color
-  &-item
-    padding-bottom: 1rem
-    justify-content: end
-    .form-search
-      width: 30%
+
+    

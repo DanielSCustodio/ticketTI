@@ -21,53 +21,49 @@
   </head>
   <body>
     {{#if session.userid}}
-      <div class='layout'>
-        <nav id="nav-bar">
-              <a href="/ticket/cadastro" class="btn">Novo Ticket</a>
+      <div class='search-bar-container'>
+        <div class='header-nav'>
+          <a href='/'>
+            <img
+              src='/image/logo-completa-transparente.svg'
+              alt='Logo da Câmara Municipal de Três Rios'
+            /></a>
+        </div>
+        <form action='/ticket' method='POST' class="form-search">
+            <input
+              autocomplete="off"  
+              id='name'
+              name="search"
+              placeholder='&#128269;&nbsp; Pesquisar ticket por título, descrição ou solução'
+            />
+          <input type='submit' value='Pesquisar ' class='btn btn-search' />
+          {{#if all}}
+              <a href="/ticket" class="btn clear">Limpar</a>
+          {{/if}}
+        </form>
 
-          <ul class="navigation">
-              <li><a href='/ticket/'><i class="bi bi-file-text"></i>Ticket</a></li>
-              <li><a href='/instituicao/'><i class="bi bi-bank"></i> Instituição</a></li>
-              <li><a href='/setor/'><i class="bi bi-diagram-3"></i>Setor</a></li>
-              <li><a href='/colaborador/'><i class="bi bi-person"></i>Pessoa</a></li>
-              <li><a href='/tipo-de-referencia/'><i class="bi bi-file-binary"></i>Tipo de Referência</a></li>
-              <li><a href='/equipamento/'><i class="bi bi-hdd-network"></i>Equipamento/Sistema</a></li>
-              {{#if loggedInUser.master}} <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li> {{/if}}
-              <li><a href='/dashboard/'><i class="bi bi-clipboard-pulse"></i>Dashboard</a></li>
-          </ul>
-        </nav>
-
-        <div class='search-bar-container'>
-          <div class='header-nav'>
-            <a href='/'>
-              <img
-                src='/image/logo-completa-transparente.svg'
-                alt='Logo da Câmara Municipal de Três Rios'
-              /></a>
-          </div>
-          <form action='/ticket' method='POST' class="form-search">
-              <input
-                autocomplete="off"  
-                id='name'
-                name="search"
-                placeholder='&#128269;&nbsp; Pesquisar ticket por título, descrição ou solução'
-              />
-            <input type='submit' value='Pesquisar ' class='btn btn-search' />
-            {{#if all}}
-                <a href="/ticket" class="btn clear">Limpar</a>
-            {{/if}}
-          </form>
-
-          <div class="user-name">
-              <i class="bi bi-person-circle"></i>
-              <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>
-              <div>
-                <a href='/logout'><i class="bi bi-box-arrow-right"></i>SAIR</a>
-              </div>
-          </div>
+        <div class="user-name">
+            <i class="bi bi-person-circle"></i>
+            <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>
+            <div>
+              <a href='/logout'><i class="bi bi-box-arrow-right"></i>SAIR</a>
+            </div>
         </div>
       </div>
-    {{/if}}
+      <nav id="nav-bar">
+        <a href="/ticket/cadastro" class="btn">Novo Ticket</a>
+        <ul class="navigation">
+            <li><a href='/ticket/'><i class="bi bi-file-text"></i>Ticket</a></li>
+            <li><a href='/instituicao/'><i class="bi bi-bank"></i> Instituição</a></li>
+            <li><a href='/setor/'><i class="bi bi-diagram-3"></i>Setor</a></li>
+            <li><a href='/colaborador/'><i class="bi bi-person"></i>Pessoa</a></li>
+            <li><a href='/tipo-de-referencia/'><i class="bi bi-file-binary"></i>Tipo de Referência</a></li>
+            <li><a href='/equipamento/'><i class="bi bi-hdd-network"></i>Equipamento/Sistema</a></li>
+            {{#if loggedInUser.master}} <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li> {{/if}}
+            <li><a href='/dashboard/'><i class="bi bi-clipboard-pulse"></i>Dashboard</a></li>
+        </ul>
+      </nav>
+  {{/if}}
 
     <div class="main-content">
       <section class="main-content-item">

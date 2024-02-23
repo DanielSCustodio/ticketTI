@@ -108,20 +108,29 @@ ul {
 }
 
 #nav-bar {
+  max-width: 85%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
+}
+@media (max-width: 912px) {
+  #nav-bar {
+    padding: 1rem 3rem;
+  }
+}
+@media (max-width: 720px) {
+  #nav-bar {
+    padding: 1rem;
+  }
 }
 #nav-bar .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 4.5rem;
 }
 #nav-bar .navigation li {
   display: flex;
@@ -141,97 +150,90 @@ ul {
   margin-right: 0.5rem;
 }
 
-.layout {
+.search-bar-container {
   max-width: 85%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column-reverse;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
 }
 @media (max-width: 912px) {
-  .layout {
+  .search-bar-container {
     padding: 1rem 3rem;
   }
 }
 @media (max-width: 720px) {
-  .layout {
+  .search-bar-container {
     padding: 1rem;
   }
 }
-.layout .search-bar-container {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
-}
-.layout .search-bar-container .header-nav {
+.search-bar-container .header-nav {
   width: 12%;
 }
-.layout .search-bar-container .header-nav a img {
+.search-bar-container .header-nav a img {
   max-width: 100%;
   margin-left: -11px;
   object-fit: cover;
 }
-.layout .search-bar-container .form-search {
+.search-bar-container .form-search {
   display: flex;
   gap: 1rem;
   width: 50%;
 }
-.layout .search-bar-container .form-search input {
+.search-bar-container .form-search input {
   padding: 0.5rem;
   width: 80%;
   border-radius: 6px;
   background-color: #25283A;
   color: #f9f9f9;
 }
-.layout .search-bar-container .form-search .btn-search {
+.search-bar-container .form-search .btn-search {
   background-color: #3F7446;
   color: #f9f9f9;
   width: 20%;
   transition: 0.8s;
 }
-.layout .search-bar-container .form-search .btn-search:hover {
+.search-bar-container .form-search .btn-search:hover {
   background-color: #4a9554;
 }
-.layout .search-bar-container .user-name {
+.search-bar-container .user-name {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
-.layout .search-bar-container .user-name a {
+.search-bar-container .user-name a {
   color: #f9f9f9;
 }
-.layout .search-bar-container .user-name a:hover {
+.search-bar-container .user-name a:hover {
   color: #9c9faf;
 }
 @media (max-width: 912px) {
-  .layout .search-bar-container .user-name {
+  .search-bar-container .user-name {
     margin-bottom: 1.5rem;
     justify-content: space-between;
     width: 100%;
   }
 }
-.layout .search-bar-container .user-name h6 {
+.search-bar-container .user-name h6 {
   color: #f9f9f9;
   margin: 0;
 }
-.layout .search-bar-container .user-name i {
+.search-bar-container .user-name i {
   font-size: 1.5rem;
   color: #f9f9f9;
 }
 @media (max-width: 912px) {
-  .layout .search-bar-container .user-name i {
+  .search-bar-container .user-name i {
     display: none;
   }
 }
-.layout .search-bar-container .user-name div {
+.search-bar-container .user-name div {
   margin-left: 2rem;
 }
-.layout .search-bar-container .user-name div a {
+.search-bar-container .user-name div a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -239,38 +241,24 @@ ul {
   color: #9c9faf;
   transition: 0.8s;
 }
-.layout .search-bar-container .user-name div a:hover {
+.search-bar-container .user-name div a:hover {
   color: #d66351;
 }
-.layout .search-bar-container .user-name div a:hover i {
+.search-bar-container .user-name div a:hover i {
   font-size: 1.5rem;
   color: #d66351;
 }
-.layout .search-bar-container .user-name div a i {
+.search-bar-container .user-name div a i {
   color: #9c9faf;
 }
 
 .main-content {
   min-height: 100vh;
   margin: 0 auto;
-  max-width: 85%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
+}
+.main-content-item {
   justify-content: stretch;
   align-items: flex-start;
-}
-@media (max-width: 912px) {
-  .main-content {
-    padding: 1rem 3rem;
-  }
-}
-@media (max-width: 720px) {
-  .main-content {
-    padding: 1rem;
-  }
 }
 
 .modal.show .modal-dialog {
@@ -635,8 +623,7 @@ ul {
 }
 
 .table {
-  max-width: 85%;
-  width: 100vw;
+  max: 85%;
   border-collapse: collapse;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
 }
@@ -910,13 +897,24 @@ ul {
 }
 
 .container-search {
-  width: 100%;
   padding: 1rem;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
-  margin-bottom: 1rem;
+  max-width: 85%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-content: center;
+}
+@media (max-width: 912px) {
+  .container-search {
+    padding: 1rem 3rem;
+  }
+}
+@media (max-width: 720px) {
+  .container-search {
+    padding: 1rem;
+  }
 }
 @media (max-width: 912px) {
   .container-search {
@@ -926,7 +924,7 @@ ul {
 }
 .container-search .form-search {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   gap: 1rem;
   width: 50%;
 }
@@ -937,7 +935,7 @@ ul {
 }
 .container-search .form-search input {
   padding: 0.5rem;
-  width: 80%;
+  width: 60%;
   border-radius: 6px;
   background-color: #25283A;
   color: #f9f9f9;
@@ -1004,29 +1002,37 @@ ul {
 .container-search .user-name div a i {
   color: #9c9faf;
 }
-.container-search-item {
-  padding-bottom: 1rem;
-  justify-content: end;
-}
-.container-search-item .form-search {
-  width: 30%;
-}
 
 .message-error, .message {
-  display: flex;
-  justify-content: flex-start;
+  max-width: 85%;
   margin: 0 auto;
-  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 2rem;
-  animation: 5s ease-in-out 1 forwards visibility;
+  justify-content: center;
+  padding: 1rem 0;
+}
+@media (max-width: 912px) {
+  .message-error, .message {
+    padding: 1rem 3rem;
+  }
+}
+@media (max-width: 720px) {
+  .message-error, .message {
+    padding: 1rem;
+  }
 }
 .message-error span, .message span {
+  width: 40%;
   padding: 0.7rem;
   background-color: #dbcfcf;
   color: #B23714;
   border-radius: 6px;
   font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .message {
