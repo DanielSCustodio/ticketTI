@@ -227,8 +227,12 @@ module.exports.checkUpdatePerson = async function async(req, res, next) {
 
 module.exports.checkSearchPerson = async function async(req, res, next) {
   const { search } = req.body;
-
+  const id = req.session.userid;
   const loggedInUser = await getName(req);
+  const user = await Administrator.findOne({
+    where: { id: id },
+  });
+  const privilege = user.privilege;
 
   let people = await Person.findAll({
     include: [{ model: Departament }, { model: Institution }],
@@ -240,7 +244,7 @@ module.exports.checkSearchPerson = async function async(req, res, next) {
       'error-search',
       'O termo de busca deve conter pelo menos 3 caracteres.',
     );
-    return res.render('colaborador/all', { people, loggedInUser });
+    return res.render('colaborador/all', { people, loggedInUser, privilege });
   }
   next();
 };

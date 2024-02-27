@@ -3,7 +3,7 @@
 @use '../base/base-mixins'
 
 .container-search
-  padding: 1rem
+  padding: 2rem 0
   border-bottom: 1px solid variables.$border-color
   @include mixins.center-content()
   justify-content: center
@@ -27,14 +27,18 @@
       border-radius: variables.$radius
       background-color: variables.$bg-second-color
       color: variables.$second-text-color
+      box-shadow: variables.$shadow
+
 
     .btn-search
       background-color: variables.$primary-color
       color: variables.$second-text-color
       width: 20%
       transition: 0.8s
+
       &:hover
         background-color: variables.$second-color
+
   .user-name
     display: flex
     justify-content: center

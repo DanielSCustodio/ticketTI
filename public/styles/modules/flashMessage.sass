@@ -2,17 +2,17 @@
 @use '../base/base-mixins'
 @use '../layouts/mixins'
 
-
-
 .message-error, .message
   @include mixins.center-content()
-  margin-bottom: 2rem
   justify-content: center
-  padding: 1rem 0
+  padding: 2rem 0
+  border-bottom: 1px solid variables.$border-color
+  box-shadow: variables.$shadow
+
 
   span
-    width: 40%
-    padding: 0.7rem
+    width: 41%
+    padding: 0.7rem 0
     background-color: #dbcfcf
     color: variables.$color-red-second
     border-radius: variables.$radius
@@ -34,7 +34,6 @@
 .message-large-error
   span
     color: variables.$color-red-second
-
 
 @keyframes visibility
   0%

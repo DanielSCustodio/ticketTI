@@ -1,5 +1,6 @@
 //Institution
 const Person = require('../../models/Person');
+const Administrator = require('../../models/Administrator');
 const Institution = require('../../models/Institution');
 const { getName } = require('../../middleware/helpers/getName');
 
@@ -51,13 +52,22 @@ module.exports.checkSearchInstituiton = async function async(req, res, next) {
   const { search } = req.body;
   const loggedInUser = await getName(req);
   const institutions = await Institution.findAll({ raw: true });
+  const id = req.session.userid;
+  const user = await Administrator.findOne({
+    where: { id: id },
+  });
+  const privilege = user.privilege;
 
   if (search.length <= 2) {
     req.flash(
       'error-search',
       'O termo de busca deve conter pelo menos 3 caracteres.',
     );
-    return res.render('instituicao/all', { institutions, loggedInUser });
+    return res.render('instituicao/all', {
+      institutions,
+      loggedInUser,
+      privilege,
+    });
   }
   next();
 };

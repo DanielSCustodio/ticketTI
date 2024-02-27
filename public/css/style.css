@@ -131,6 +131,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   gap: 4.5rem;
+  padding: 1rem 0;
 }
 #nav-bar .navigation li {
   display: flex;
@@ -156,7 +157,6 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
 }
 @media (max-width: 912px) {
@@ -623,9 +623,11 @@ ul {
 }
 
 .table {
-  max: 85%;
+  max-width: 85%;
   border-collapse: collapse;
-  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
+  border: 1px solid rgba(52, 56, 78, 0.4784313725);
+  margin: 0 auto;
+  margin-top: 4rem;
 }
 @media (max-width: 912px) {
   .table {
@@ -706,9 +708,11 @@ ul {
 }
 
 .btn-table {
-  margin: 2rem;
   background-color: #25283A;
   border: 1px solid #3F7446;
+  max-width: 85%;
+  margin-left: 7.5%;
+  margin-top: 4rem;
 }
 .btn-table:hover {
   border: 1px solid #f9f9f9;
@@ -897,7 +901,7 @@ ul {
 }
 
 .container-search {
-  padding: 1rem;
+  padding: 2rem 0;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
   max-width: 85%;
   margin: 0 auto;
@@ -939,6 +943,7 @@ ul {
   border-radius: 6px;
   background-color: #25283A;
   color: #f9f9f9;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .container-search .form-search .btn-search {
   background-color: #3F7446;
@@ -1009,9 +1014,10 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
   justify-content: center;
-  padding: 1rem 0;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 @media (max-width: 912px) {
   .message-error, .message {
@@ -1024,8 +1030,8 @@ ul {
   }
 }
 .message-error span, .message span {
-  width: 40%;
-  padding: 0.7rem;
+  width: 41%;
+  padding: 0.7rem 0;
   background-color: #dbcfcf;
   color: #B23714;
   border-radius: 6px;
