@@ -1,4 +1,18 @@
 <section>
+  <div class='container-search'>
+    <form action='/tipo-de-referencia' method='POST' class="form-search">
+      <input
+          autocomplete="off"  
+          id='name'
+          name="search"
+          placeholder='Pesquisar tipo de referência por nome'
+      />
+      <input type='submit' value='Pesquisar ' class='btn btn-search' />
+      {{#if all}}
+          <a href="/tipo-de-referencia" class="btn clear">Limpar</a>
+      {{/if}}
+    </form>
+  </div>
   {{#if messages.create-reference-type}}
     <div class='message'>
       <span>{{messages.create-reference-type}}</span>
@@ -20,20 +34,6 @@
     </div>
   {{/if}}
 
-  <div class='container-search container-search-item'>
-    <form action='/tipo-de-referencia' method='POST' class="form-search">
-      <input
-          autocomplete="off"  
-          id='name'
-          name="search"
-          placeholder='Pesquisar tipo de referência por nome'
-      />
-      <input type='submit' value='Pesquisar ' class='btn btn-search' />
-      {{#if all}}
-          <a href="/tipo-de-referencia" class="btn clear">Limpar</a>
-      {{/if}}
-    </form>
-  </div>
   {{#if referenceTypes}}
     <table class='table'>
       <thead>

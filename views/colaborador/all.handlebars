@@ -1,4 +1,18 @@
 <section>
+  <div class='container-search'>
+    <form action='/colaborador' method='POST' class="form-search">
+      <input
+          autocomplete="off"  
+          id='name'
+          name="search"
+          placeholder='Pesquisar colaborador por nome ou função'
+      />
+      <input type='submit' value='Pesquisar ' class='btn btn-search' />
+      {{#if all}}
+          <a href="/colaborador" class="btn clear">Limpar</a>
+      {{/if}}
+    </form>
+  </div>
   {{#if messages.create-person}}
     <div class='message'>
       <span>{{messages.create-person}}</span>
@@ -19,20 +33,7 @@
       <span>{{messages.error-search}}</span>
     </div>
   {{/if}}
-  <div class='container-search container-search-item  '>
-    <form action='/colaborador' method='POST' class="form-search">
-      <input
-          autocomplete="off"  
-          id='name'
-          name="search"
-          placeholder='Pesquisar colaborador por nome ou função'
-      />
-      <input type='submit' value='Pesquisar ' class='btn btn-search' />
-      {{#if all}}
-          <a href="/colaborador" class="btn clear">Limpar</a>
-      {{/if}}
-    </form>
-  </div>
+
   {{#if people}}
     <table class='table'>
       <thead>
