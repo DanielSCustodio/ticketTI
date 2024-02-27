@@ -2,6 +2,7 @@ const Person = require('../../models/Person');
 const Equipment = require('../../models/Equipment');
 const Ticket = require('../../models/Ticket');
 const Departament = require('../../models/Departament');
+const Administrator = require('../../models/Administrator');
 const { getName } = require('../helpers/getName');
 
 module.exports.checkDeleteDepartament = async function async(req, res, next) {
@@ -77,16 +78,20 @@ module.exports.checkUpdateDepartament = async function async(req, res, next) {
 
 module.exports.checkSearchDepartament = async function async(req, res, next) {
   const { search } = req.body;
+  const id = req.session.userid;
   const loggedInUser = await getName(req);
-
   const departaments = await Departament.findAll({ raw: true });
+  const user = await Administrator.findOne({
+    where: { id: id },
+  });
+  const privilege = user.privilege;
 
   if (search.length <= 2) {
     req.flash(
       'error-search',
       'O termo de busca deve conter pelo menos 3 caracteres.',
     );
-    return res.render('setor/all', { departaments, loggedInUser });
+    return res.render('setor/all', { departaments, loggedInUser, privilege });
   }
   next();
 };

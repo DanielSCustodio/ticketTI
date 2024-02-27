@@ -1,6 +1,7 @@
 //Equipment
 const Departament = require('../../models/Departament');
 const Person = require('../../models/Person');
+const Administrator = require('../../models/Administrator');
 const ReferenceType = require('../../models/ReferenceType');
 const Ticket = require('../../models/Ticket');
 const Equipment = require('../../models/Equipment');
@@ -259,6 +260,11 @@ module.exports.checkUpdateEquipment = async function (req, res, next) {
 module.exports.checkSearchEquipment = async function async(req, res, next) {
   const { search } = req.body;
   const loggedInUser = await getName(req);
+  const id = req.session.userid;
+  const user = await Administrator.findOne({
+    where: { id: id },
+  });
+  const privilege = user.privilege;
 
   let equipments = await Equipment.findAll({
     include: [
@@ -274,7 +280,11 @@ module.exports.checkSearchEquipment = async function async(req, res, next) {
       'error-search',
       'O termo de busca deve conter pelo menos 3 caracteres.',
     );
-    return res.render('equipamento/all', { equipments, loggedInUser });
+    return res.render('equipamento/all', {
+      equipments,
+      loggedInUser,
+      privilege,
+    });
   }
   next();
 };

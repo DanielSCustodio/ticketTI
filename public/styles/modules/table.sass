@@ -3,9 +3,11 @@
 @use '../base/base-mixins'
 
 .table
-  max: variables.$container-width
+  max-width:  variables.$container-width
   border-collapse: collapse
-  border-bottom: 1px solid variables.$border-color
+  border: 1px solid variables.$border-color
+  margin: 0 auto
+  margin-top: 4rem
 
   @include base-mixins.tablet
     display: none
@@ -77,9 +79,11 @@
       color: variables.$color-red-second
 
 .btn-table
-  margin: 2rem
   background-color: variables.$bg-second-color
   border: 1px solid variables.$primary-color
+  max-width:  variables.$container-width
+  margin-left: 7.5%
+  margin-top: 4rem
 
   &:hover
     border: 1px solid variables.$second-text-color

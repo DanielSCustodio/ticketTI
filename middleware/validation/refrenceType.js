@@ -1,5 +1,6 @@
 //Institution
 const Equipment = require('../../models/Equipment');
+const Administrator = require('../../models/Administrator');
 const ReferenceType = require('../../models/ReferenceType');
 const { getName } = require('../../middleware/helpers/getName');
 
@@ -47,7 +48,13 @@ module.exports.checkUpdateReferenceType = async function async(req, res, next) {
 
 module.exports.checkSearchReferenceType = async function async(req, res, next) {
   const { search } = req.body;
+  const id = req.session.userid;
   const referenceTypes = await ReferenceType.findAll({ raw: true });
+
+  const user = await Administrator.findOne({
+    where: { id: id },
+  });
+  const privilege = user.privilege;
 
   if (search.length <= 2) {
     const loggedInUser = await getName(req);
@@ -59,6 +66,7 @@ module.exports.checkSearchReferenceType = async function async(req, res, next) {
     return res.render('tipo-de-referencia/all', {
       referenceTypes,
       loggedInUser,
+      privilege,
     });
   }
   next();
