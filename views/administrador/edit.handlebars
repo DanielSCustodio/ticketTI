@@ -1,14 +1,17 @@
 <section class='form-conatiner'>
-  {{#if messages.error-input-administrator}}
-    <div class='message-error'>
-      <span>{{messages.error-input-administrator}}</span>
-    </div>
-  {{/if}}
-  {{#if messages.update-administrator}}
-    <div class='message'>
-      <span>{{messages.update-administrator}}</span>
-    </div>
-  {{/if}}
+  <div class='container-message'>
+    {{#if messages.error-input-administrator}}
+      <div class='message-error message-page'>
+        <span>{{messages.error-input-administrator}}</span>
+      </div>
+    {{/if}}
+    {{#if messages.update-administrator}}
+      <div class='message message-page'>
+        <span>{{messages.update-administrator}}</span>
+      </div>
+    {{/if}}
+  </div>
+
   <form action='/administrador/edit' method='POST' class='form'>
     <input type='hidden' name='id' value='{{administratorEdit.id}}' />
     <div class='form-control'>

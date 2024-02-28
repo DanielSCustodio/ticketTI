@@ -359,7 +359,7 @@ module.exports = class TicketController {
 
   static async searchTicket(req, res) {
     const { search } = req.body;
-    const all = true;
+    const clear = true;
     const loggedInUser = await getName(req);
 
     let tickets = await Ticket.findAll({
@@ -402,6 +402,6 @@ module.exports = class TicketController {
       return plainResult;
     });
 
-    res.render('ticket/all', { tickets, all, loggedInUser });
+    res.render('ticket/all', { tickets, clear, loggedInUser });
   }
 };

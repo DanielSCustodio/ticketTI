@@ -1,9 +1,12 @@
 <section class='form-conatiner'>
-  {{#if messages.error-input-administrator}}
-    <div class='message-error'>
-      <span>{{messages.error-input-administrator}}</span>
-    </div>
-  {{/if}}
+  <div class='container-message'>
+    {{#if messages.error-input-administrator}}
+      <div class='message-error message-page'>
+        <span>{{messages.error-input-administrator}}</span>
+      </div>
+    {{/if}}
+  </div>
+
   <form action='/administrador/add' method='POST' class='form'>
     <div class='form-control'>
       <label>Colaborador:</label>

@@ -1,17 +1,24 @@
 <section class='form-conatiner'>
-  {{#if messages.error-input-name}}
-    <div class='message-error'>
-      <span>{{messages.error-input-name}}</span>
-    </div>
-  {{/if}}
+  <div class='container-message'>
+    {{#if messages.error-input-name}}
+      <div class='message-error message-page'>
+        <span>{{messages.error-input-name}}</span>
+      </div>
+    {{/if}}
+  </div>
 
   <form action='/instituicao/edit' method='POST' class='form'>
-    <input type="hidden" name="id" value="{{institution.id}}">
+    <input type='hidden' name='id' value='{{institution.id}}' />
     <div class='form-control'>
       <label for='name'>Instituição:</label>
-      <input id='name' name='name' placeholder='Nome da instituição'  value="{{institution.name}}"/>
+      <input
+        id='name'
+        name='name'
+        placeholder='Nome da instituição'
+        value='{{institution.name}}'
+      />
     </div>
-      <div class="btn-submit">
+    <div class='btn-submit'>
       <input type='submit' value='Atualizar' class='btn' />
     </div>
   </form>

@@ -1,15 +1,24 @@
 <section class='form-conatiner'>
-  {{#if messages.error-input-name}}
-    <div class='message-error'>
-      <span>{{messages.error-input-name}}</span>
-    </div>
-  {{/if}}
+  <div class='container-message'>
+    {{#if messages.error-input-name}}
+      <div class='message-error message-page'>
+        <span>{{messages.error-input-name}}</span>
+      </div>
+    {{/if}}
+  </div>
+
   <form action='/setor/add' method='POST' class='form'>
     <div class='form-control'>
       <label for='name'>Setor:</label>
-      <input id='name' type='text' name='name' placeholder='Nome do setor' value="{{response.name}}"/>
+      <input
+        id='name'
+        type='text'
+        name='name'
+        placeholder='Nome do setor'
+        value='{{response.name}}'
+      />
     </div>
-    <div class="btn-submit">
+    <div class='btn-submit'>
       <input type='submit' value='Cadastrar' class='btn' />
     </div>
   </form>
