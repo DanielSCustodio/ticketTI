@@ -1,9 +1,12 @@
 <section class='form-conatiner'>
-  {{#if messages.error-input-name}}
-    <div class='message-error'>
-      <span>{{messages.error-input-name}}</span>
-    </div>
-  {{/if}}
+  <div class='container-message'>
+    {{#if messages.error-input-name}}
+      <div class='message-error message-page'>
+        <span>{{messages.error-input-name}}</span>
+      </div>
+    {{/if}}
+  </div>
+
   <form action='/tipo-de-referencia/add' method='POST' class='form'>
     <div class='form-control'>
       <label for='name'>Tipo de referência:</label>

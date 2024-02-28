@@ -2,20 +2,21 @@
 @use '../base/base-mixins'
 @use '../layouts/mixins'
 
+.container-message
+  height: 40px
+  width: 100%
+  margin-bottom: 1rem
+
 .message-error, .message
   @include mixins.center-content()
   justify-content: center
-  padding: 2rem 0
-  border-bottom: 1px solid variables.$border-color
-  box-shadow: variables.$shadow
-
+  animation: 5.0s ease-in-out 1 forwards visibility
 
   span
-    width: 41%
+    width: 100%
     padding: 0.7rem 0
-    background-color: #dbcfcf
+    background-color: #b7b4b4
     color: variables.$color-red-second
-    border-radius: variables.$radius
     font-weight: bold
     box-shadow: variables.$shadow
     display: flex
@@ -23,7 +24,7 @@
 
 .message
   width: 100%
-  
+
   span
     display: flex
     justify-content: center
@@ -35,6 +36,15 @@
   span
     color: variables.$color-red-second
 
+.message-page
+  width: 100%
+  margin-right: 13.5rem
+
+  span
+    width: 52.7%
+    border-radius: variables.$radius
+
+
 @keyframes visibility
   0%
     opacity: 1
@@ -42,4 +52,3 @@
     opacity: 1
   100%
     opacity: 0
-

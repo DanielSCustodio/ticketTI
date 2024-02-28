@@ -37,7 +37,7 @@
               placeholder='&#128269;&nbsp; Pesquisar ticket por título, descrição ou solução'
             />
           <input type='submit' value='Pesquisar ' class='btn btn-search' />
-          {{#if all}}
+          {{#if clear}}
               <a href="/ticket" class="btn clear">Limpar</a>
           {{/if}}
         </form>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <nav id="nav-bar">
-        <a href="/ticket/cadastro" class="btn">Novo Ticket</a>
+        <a href="/ticket/cadastro" class="btn btn-new-ticket">Novo Ticket</a>
         <ul class="navigation">
             <li><a href='/ticket/'><i class="bi bi-file-text"></i>Ticket</a></li>
             <li><a href='/instituicao/'><i class="bi bi-bank"></i> Instituição</a></li>

@@ -13,26 +13,28 @@
       {{/if}}
     </form>
   </div>
-  {{#if messages.create-equipment}}
-    <div class='message'>
-      <span>{{messages.create-equipment}}</span>
-    </div>
-  {{/if}}
-  {{#if messages.update-equipment}}
-    <div class='message'>
-      <span>{{messages.update-equipment}}</span>
-    </div>
-  {{/if}}
-  {{#if messages.error-privilege}}
-    <div class='message-error'>
-      <span>{{messages.error-privilege}}</span>
-    </div>
-  {{/if}}
-  {{#if messages.error-search}}
-    <div class='message-error'>
-      <span>{{messages.error-search}}</span>
-    </div>
-  {{/if}}
+  <div class="container-message">
+    {{#if messages.create-equipment}}
+      <div class='message'>
+        <span>{{messages.create-equipment}}</span>
+      </div>
+    {{/if}}
+    {{#if messages.update-equipment}}
+      <div class='message'>
+        <span>{{messages.update-equipment}}</span>
+      </div>
+    {{/if}}
+    {{#if messages.error-privilege}}
+      <div class='message-error'>
+        <span>{{messages.error-privilege}}</span>
+      </div>
+    {{/if}}
+    {{#if messages.error-search}}
+      <div class='message-error'>
+        <span>{{messages.error-search}}</span>
+      </div>
+    {{/if}}
+  </div>
 
   {{#if equipments}}
     <table class='table'>

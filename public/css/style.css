@@ -355,13 +355,13 @@ ul {
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  overflow: hidden;
-  background-image: url("https://i.imgur.com/GyuiNi2.png");
   background-repeat: none;
+  background-image: url("https://i.imgur.com/GyuiNi2.png");
 }
 .auth-container .message-login {
   justify-content: center;
   width: 100%;
+  margin-bottom: 4rem;
 }
 .auth-container .message-login span {
   padding: 0.7rem 5rem;
@@ -372,7 +372,7 @@ ul {
   border: 1px solid rgba(255, 255, 255, 0.1529411765);
   padding: 1.5rem;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.389);
+  background: rgba(0, 0, 0, 0.289);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(10.5px);
@@ -509,6 +509,13 @@ ul {
   background-color: #25283A;
 }
 
+.btn-new-ticket {
+  background: #3a9fab;
+}
+.btn-new-ticket:hover {
+  background: #2e6d75;
+}
+
 .form-conatiner {
   max-width: 85%;
   margin: 0 auto;
@@ -517,7 +524,8 @@ ul {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100vw;
+  max-width: 100%;
+  margin-top: 2rem;
 }
 @media (max-width: 912px) {
   .form-conatiner {
@@ -627,7 +635,7 @@ ul {
   border-collapse: collapse;
   border: 1px solid rgba(52, 56, 78, 0.4784313725);
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 @media (max-width: 912px) {
   .table {
@@ -681,8 +689,7 @@ ul {
   margin-bottom: 1rem;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
   padding: 1rem;
-  background-color: #d4d2d2;
-  border-radius: 6px;
+  border-radius: rgba(255, 255, 255, 0.1725490196);
 }
 .table-mobile-item p {
   margin-bottom: 1rem;
@@ -712,7 +719,7 @@ ul {
   border: 1px solid #3F7446;
   max-width: 85%;
   margin-left: 7.5%;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 .btn-table:hover {
   border: 1px solid #f9f9f9;
@@ -944,6 +951,7 @@ ul {
   background-color: #25283A;
   color: #f9f9f9;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1725490196);
 }
 .container-search .form-search .btn-search {
   background-color: #3F7446;
@@ -1008,6 +1016,12 @@ ul {
   color: #9c9faf;
 }
 
+.container-message {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 .message-error, .message {
   max-width: 85%;
   margin: 0 auto;
@@ -1015,9 +1029,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   justify-content: center;
-  padding: 2rem 0;
-  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  animation: 5s ease-in-out 1 forwards visibility;
 }
 @media (max-width: 912px) {
   .message-error, .message {
@@ -1030,11 +1042,10 @@ ul {
   }
 }
 .message-error span, .message span {
-  width: 41%;
+  width: 100%;
   padding: 0.7rem 0;
-  background-color: #dbcfcf;
+  background-color: #b7b4b4;
   color: #B23714;
-  border-radius: 6px;
   font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   display: flex;
@@ -1054,6 +1065,15 @@ ul {
 
 .message-large-error span {
   color: #B23714;
+}
+
+.message-page {
+  width: 100%;
+  margin-right: 13.5rem;
+}
+.message-page span {
+  width: 52.7%;
+  border-radius: 6px;
 }
 
 @keyframes visibility {
