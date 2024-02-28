@@ -27,7 +27,6 @@ router.post(
   '/edit',
   checkPrivilege,
   checkUpdateTicket,
-  checkTicket,
   TicketController.updateTicketSave,
 );
 
