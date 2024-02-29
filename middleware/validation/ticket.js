@@ -211,22 +211,6 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (!startTime) {
-    req.flash(
-      'error-input-ticket',
-      'O campo "início do atendimento" deve ser preenchido.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
-  }
-
   if (!endTime) {
     req.flash(
       'error-input-ticket',
@@ -294,8 +278,11 @@ module.exports.checkTicket = async function async(req, res, next) {
 };
 
 module.exports.checkUpdateTicket = async function async(req, res, next) {
+  console.log('==============++>ta aqui update');
   const id = req.body.id;
   const loggedInUser = await getName(req);
+  const dateNow = new Date();
+  const hourNow = dateNow.toLocaleTimeString('pt-BR');
 
   const {
     title,
@@ -447,6 +434,87 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       loggedInUser,
     });
     return;
+  }
+  if (formatDate(dateNow) < formatDateBd(date)) {
+    req.flash(
+      'error-input-ticket',
+      'A data do ticket não pode ser posterior à data atual.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+      loggedInUser,
+    });
+    return;
+  }
+  if (endTime < startTime) {
+    req.flash(
+      'error-input-ticket',
+      'A hora de início não pode ser posterior à hora de término.',
+    );
+    res.render('ticket/edit', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      supportAgent,
+      departament,
+      requester,
+      equipment,
+      loggedInUser,
+    });
+    return;
+  }
+  if (formatDate(dateNow) === formatDateBd(date)) {
+    if (startTime > hourNow) {
+      req.flash(
+        'error-input-ticket',
+        'O horário de início não pode ser posterior ao horário atual.',
+      );
+      res.render('ticket/edit', {
+        ticket,
+        departaments,
+        people,
+        equipments,
+        administrators,
+        supportAgent,
+        departament,
+        requester,
+        equipment,
+        loggedInUser,
+      });
+      return;
+    }
+  }
+
+  if (formatDate(dateNow) === formatDateBd(date)) {
+    if (endTime > hourNow) {
+      req.flash(
+        'error-input-ticket',
+        'O horário de término não pode ser posterior ao horário atual.',
+      );
+      res.render('ticket/edit', {
+        ticket,
+        departaments,
+        people,
+        equipments,
+        administrators,
+        supportAgent,
+        departament,
+        requester,
+        equipment,
+        loggedInUser,
+      });
+      return;
+    }
   }
 
   if (!startTime) {
