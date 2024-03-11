@@ -47,9 +47,9 @@
         </form>
 
         <div class="user-name">
-            <div class="user-name-item">
-              <i class="bi bi-person-circle"></i>
-              <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>
+            <div class="user-name-item name">
+              
+              <a href="/administrador/editar/{{loggedInUser.id}}"><i class="bi bi-person-circle"></i>{{loggedInUser.name}}</a>
             </div>
 
             <div class="user-name-item">
@@ -73,11 +73,10 @@
     <!-- __________________________________________________________________________________ -->  
     <div class="menu-mobile">
       <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-list"></i>
-        <a href='/'>
         <img
           src='/image/logo-completa-transparente.svg'
-          alt='Logo da Câmara Municipal de Três Rios'
-        /></a>
+          alt='Logo da Câmara Municipal de Três Rios'/>
+        <h2>ticket CVTR</h2>
       </button>
 
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -119,8 +118,9 @@
             <a href="/ticket/cadastro" class="btn btn-new-ticket">Novo Ticket</a>
           </nav>
         <div class="user-name-mobile">
-            <i class="bi bi-person-circle"></i>
-            <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>
+            <div>
+              <a href="/administrador/editar/{{loggedInUser.id}}"> <i class="bi bi-person-circle"></i>{{loggedInUser.name}}</a>
+            </div>
             <div>
               <a href='/logout'><i class="bi bi-box-arrow-right"></i>SAIR</a>
             </div>

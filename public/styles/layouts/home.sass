@@ -42,26 +42,28 @@
     display: flex
     justify-content: center
     align-items: center
-    gap: 1rem
+    gap: 0.5rem
 
     &-item
       display: flex
       justify-content: center
       align-items: center
 
-      a,i
-        margin: 0
-        padding: 0
-
-        &:hover
-          color: variables.$second-text-color !important
-
       i
-        margin-right: 1rem
+        margin-right: 0.2rem
         margin-top: -0.5rem
 
         &:hover
           color: variables.$text-color !important
+
+    .name
+      a
+        &:hover
+          color: variables.$second-text-color
+
+          i
+            color: variables.$second-text-color
+            cursor: pointer
 
     @include base-mixins.tablet
       margin-bottom: 1.5rem

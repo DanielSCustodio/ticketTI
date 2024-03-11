@@ -96,7 +96,7 @@ connection
     /*  force: true, */
   })
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT, '0.0.0.0', () => {
       console.log(`Aplicação em execução na porta ${process.env.PORT}`);
     });
   })
