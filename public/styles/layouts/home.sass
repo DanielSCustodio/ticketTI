@@ -6,6 +6,9 @@
   @include mixins.center-content()
   border-bottom: 1px solid variables.$border-color
 
+  @include base-mixins.tablet
+    display: none
+
   .header-nav
     width: 12%
     a
@@ -13,7 +16,7 @@
         max-width: 100%
         margin-left: -11px
         object-fit: cover
-  
+
   .form-search
     display: flex
     gap: 1rem
@@ -39,13 +42,26 @@
     display: flex
     justify-content: center
     align-items: center
-    gap: 0.5rem
+    gap: 1rem
 
-    a
-      color: variables.$second-text-color
+    &-item
+      display: flex
+      justify-content: center
+      align-items: center
 
-      &:hover
-        color: variables.$text-color
+      a,i
+        margin: 0
+        padding: 0
+
+        &:hover
+          color: variables.$second-text-color !important
+
+      i
+        margin-right: 1rem
+        margin-top: -0.5rem
+
+        &:hover
+          color: variables.$text-color !important
 
     @include base-mixins.tablet
       margin-bottom: 1.5rem
@@ -62,7 +78,6 @@
 
       @include base-mixins.tablet
         display: none
-
 
     div
       margin-left: 2rem
@@ -85,7 +100,6 @@
         i
           color: variables.$text-color
 
-
 .main-content
   min-height: 100vh
   margin: 0 auto
@@ -93,5 +107,3 @@
   &-item
     justify-content: stretch
     align-items: flex-start
-
-

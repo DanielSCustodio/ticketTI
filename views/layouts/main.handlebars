@@ -15,6 +15,10 @@
       rel='stylesheet'
       href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css'
     />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel='stylesheet' href='/css/style.css' />
 
     <title>ticketCVTR</title>
@@ -43,14 +47,17 @@
         </form>
 
         <div class="user-name">
-            <i class="bi bi-person-circle"></i>
-            <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>
-            <div>
+            <div class="user-name-item">
+              <i class="bi bi-person-circle"></i>
+              <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>
+            </div>
+
+            <div class="user-name-item">
               <a href='/logout'><i class="bi bi-box-arrow-right"></i>SAIR</a>
             </div>
         </div>
       </div>
-      <nav id="nav-bar">
+      <nav id="nav-bar" class="show-menu">
         <a href="/ticket/cadastro" class="btn btn-new-ticket">Novo Ticket</a>
         <ul class="navigation">
             <li><a href='/ticket/'><i class="bi bi-file-text"></i>Ticket</a></li>
@@ -62,7 +69,67 @@
             {{#if loggedInUser.master}} <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li> {{/if}}
             <li><a href='/dashboard/'><i class="bi bi-clipboard-pulse"></i>Dashboard</a></li>
         </ul>
-      </nav>
+      </nav>   
+    <!-- __________________________________________________________________________________ -->  
+    <div class="menu-mobile">
+      <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-list"></i>
+        <a href='/'>
+        <img
+          src='/image/logo-completa-transparente.svg'
+          alt='Logo da Câmara Municipal de Três Rios'
+        /></a>
+      </button>
+
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasScrollingLabel">ticketCVTR</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class='header-nav'>
+            <a href='/'>
+              <img
+                src='/image/logo-completa-transparente.svg'
+                alt='Logo da Câmara Municipal de Três Rios'
+              /></a>
+          </div>
+          <form action='/ticket' method='POST' class="form-search">
+            <input
+              autocomplete="off"  
+              id='name'
+              name="search"
+              placeholder='&#128269;&nbsp; Pesquisar ticket por título, descrição ou solução'
+            />
+            <input type='submit' value='Pesquisar ' class='btn btn-search' />
+            {{#if clear}}
+                <a href="/ticket" class="btn clear">Limpar</a>
+            {{/if}}
+          </form>
+          <nav class="navigation-mobile">
+            <ul class="navigation">
+              <li><a href='/ticket/'><i class="bi bi-file-text"></i>Ticket</a></li>
+              <li><a href='/instituicao/'><i class="bi bi-bank"></i> Instituição</a></li>
+              <li><a href='/setor/'><i class="bi bi-diagram-3"></i>Setor</a></li>
+              <li><a href='/colaborador/'><i class="bi bi-person"></i>Pessoa</a></li>
+              <li><a href='/tipo-de-referencia/'><i class="bi bi-file-binary"></i>Tipo de Referência</a></li>
+              <li><a href='/equipamento/'><i class="bi bi-hdd-network"></i>Equipamento/Sistema</a></li>
+              {{#if loggedInUser.master}} <li><a href='/administrador/'><i class="bi bi-gear"></i>Administrador</a></li> {{/if}}
+              <li><a href='/dashboard/'><i class="bi bi-clipboard-pulse"></i>Dashboard</a></li>
+            </ul>
+            <a href="/ticket/cadastro" class="btn btn-new-ticket">Novo Ticket</a>
+          </nav>
+        <div class="user-name-mobile">
+            <i class="bi bi-person-circle"></i>
+            <a href="/administrador/editar/{{loggedInUser.id}}">{{loggedInUser.name}}</a>
+            <div>
+              <a href='/logout'><i class="bi bi-box-arrow-right"></i>SAIR</a>
+            </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+      
   {{/if}}
 
     <div class="main-content">
@@ -85,3 +152,14 @@
     </footer>
   </body>
 </html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const navBar = document.getElementById('nav-bar');
+  const menuIcon = navBar.querySelector('.menu-icon');
+
+  menuIcon.addEventListener('click', function () {
+      navBar.classList.toggle('show-menu');
+    });
+  });
+</script>

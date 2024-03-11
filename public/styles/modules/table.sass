@@ -8,6 +8,7 @@
   border: 1px solid variables.$border-color
   margin: 0 auto
   margin-top: 2rem
+  --bs-table-bg: variables.$bg-second-color
 
   @include base-mixins.tablet
     display: none
@@ -22,6 +23,9 @@
     background-color: variables.$second-color
     border-bottom: 1px solid variables.$border-color
     border: none
+  
+  td
+    color: variables.$text-color
 
   tr:hover td
     color: variables.$second-text-color
@@ -88,6 +92,7 @@
     border: 1px solid variables.$second-text-color
 
 .btn-edit
+  background: none
   i
     color: #ebe376
     transition: .8s

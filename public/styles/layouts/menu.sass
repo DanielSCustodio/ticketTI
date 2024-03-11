@@ -2,6 +2,9 @@
 @use './mixins'
 @use '../base/base-mixins'
 
+.menu-mobile
+  display: none
+
 #nav-bar
   @include mixins.center-content()
   padding: 1rem 0
@@ -30,3 +33,101 @@
       font-size: 1.2rem
       margin-right: 0.5rem
     
+@include base-mixins.tablet
+  #nav-bar
+    display: none
+
+  .menu-mobile
+    display: flex
+    flex-direction: column
+
+    .offcanvas-header
+      background-color: variables.$primary-color
+      color: variables.$second-text-color
+
+      h5
+        font-weight: 100
+
+      button
+        background-color: variables.$color-red-primary
+        opacity: 1
+
+    .offcanvas-body
+      background-color: variables.$bg-primary-color
+      display: flex
+      flex-direction: column
+      height: 100vh
+
+      .header-nav        
+        a
+          margin: 0 auto
+          display: flex
+          justify-content: center
+          
+          img
+            width: 50%
+
+      .form-search
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 1rem
+        border-bottom: 1px solid variables.$border-color
+        padding-bottom: 5%
+
+
+        input
+          width: 95%
+          background-color: variables.$bg-second-color
+          padding: 0.75rem
+          border-radius: variables.$radius
+          color: variables.$second-text-color
+          border: 1px solid variables.$border-color
+          font-size: 80%  
+
+        .btn-search
+          background-color: variables.$primary-color
+
+      .navigation-mobile
+        margin-left: 5%
+
+        a
+          margin-top: 1rem
+
+        ul
+          padding: 0
+          display: flex
+          flex-direction: column
+          gap: .5rem
+
+          li
+            display: flex
+            justify-content: left
+
+            i
+              margin-right: 1rem
+
+            a,i
+              color: variables.$second-text-color
+
+      .user-name-mobile
+        margin-left: 5%
+        margin-top: 5%
+        border-top: 1px solid variables.$border-color
+        padding-top: 5%
+
+        i
+          color: variables.$second-text-color
+        
+        a
+          color: variables.$text-color
+        
+        div
+          margin-top: 5%
+          display: center
+          justify-content: left
+          align-items: center
+
+          i
+            margin-right: 2%
