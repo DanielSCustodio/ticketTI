@@ -6,31 +6,56 @@
   position: absolute
   width: 100%
 
-  border-top:  1px solid variables.$border-color
+  border-top: 1px solid variables.$border-color
   z-index: 99999 !important
-  background: #0f0d13
-  
+  background: variables.$bg-second-color
+
   .container-footer
     @include mixins.center-content()
-    margin: 0 5%
+    padding: 0.5rem 0
 
-    
-    @include base-mixins.smartphone
+    @include base-mixins.tablet
       flex-direction: column
+      justify-content: center
+      align-items: center
 
     img
-      height: 120px
-    
+      width: 20%
+      height: 20%
+      object-fit: contain
+
+      @include base-mixins.tablet
+        width: 30%
+
     h6,p,span
       color: variables.$second-text-color
       margin: 0
 
+      @include base-mixins.tablet
+        font-size: 0.8rem
+
     h6,span
       font-weight: 200
       letter-spacing: 0.3rem
+    
+    a
+      @include base-mixins.tablet
+        width: 100% 
+        display: flex
+        justify-content: center
 
     div
+      width: 50%
       display: flex
       flex-direction: column
       justify-content: center
-      align-items: center
+      align-items: end
+      gap: 0.5rem
+
+      @include base-mixins.tablet
+        width: 100%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+      
