@@ -738,12 +738,31 @@ ul {
   justify-content: center;
   width: 100%;
 }
+@media (max-width: 1024px) {
+  .form {
+    margin-left: 5%;
+  }
+}
+@media (max-width: 1024px) {
+  .form {
+    padding: 1rem;
+  }
+}
 .form .btn-submit {
   margin: 0 auto;
   width: 50%;
   display: flex;
   justify-content: flex-start;
   margin: 2rem 0;
+}
+@media (max-width: 1024px) {
+  .form .btn-submit {
+    width: 100%;
+    margin: 1rem 0;
+  }
+  .form .btn-submit input {
+    font-size: 0.8rem;
+  }
 }
 
 .form-control {
@@ -758,6 +777,11 @@ ul {
   border: 0;
   padding: 0;
 }
+@media (max-width: 1024px) {
+  .form-control {
+    width: 100%;
+  }
+}
 .form-control div {
   width: 100%;
 }
@@ -771,9 +795,9 @@ ul {
   font-size: 0.8rem;
   letter-spacing: 1.5;
 }
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
   .form-control label {
-    font-size: 0.9rem;
+    font-size: 0.6rem;
   }
 }
 .form-control input, .form-control textarea, .form-control select {
@@ -783,6 +807,11 @@ ul {
   border-radius: 6px;
   color: #f9f9f9;
   border: 1px solid rgba(52, 56, 78, 0.4784313725);
+}
+@media (max-width: 1024px) {
+  .form-control input, .form-control textarea, .form-control select {
+    font-size: 0.7rem;
+  }
 }
 .form-control input[type=date]::-webkit-calendar-picker-indicator {
   cursor: pointer;
@@ -1131,6 +1160,9 @@ ul {
   .container-search {
     flex-wrap: wrap-reverse;
     padding: 1rem 2rem;
+    max-width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
   }
 }
 .container-search .form-search {
@@ -1152,6 +1184,12 @@ ul {
   color: #f9f9f9;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border: 1px solid rgba(255, 255, 255, 0.1725490196);
+}
+@media (max-width: 1024px) {
+  .container-search .form-search input {
+    width: 100%;
+    font-size: 0.8rem;
+  }
 }
 .container-search .form-search .btn-search {
   background-color: #3F7446;
@@ -1221,6 +1259,11 @@ ul {
   width: 100%;
   margin-bottom: 1rem;
 }
+@media (max-width: 1024px) {
+  .container-message {
+    margin-bottom: 2rem;
+  }
+}
 
 .message-error, .message {
   max-width: 85%;
@@ -1229,6 +1272,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   justify-content: center;
+  width: 100%;
   animation: 5s ease-in-out 1 forwards visibility;
 }
 @media (max-width: 1024px) {
@@ -1241,6 +1285,11 @@ ul {
     padding: 1rem;
   }
 }
+@media (max-width: 1024px) {
+  .message-error, .message {
+    max-width: 100%;
+  }
+}
 .message-error span, .message span {
   width: 100%;
   padding: 0.7rem 0;
@@ -1250,8 +1299,9 @@ ul {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
 }
-
 .message {
   width: 100%;
 }
@@ -1274,6 +1324,11 @@ ul {
 .message-page span {
   width: 52.7%;
   border-radius: 6px;
+}
+@media (max-width: 1024px) {
+  .message-page span {
+    width: 100%;
+  }
 }
 
 @keyframes visibility {

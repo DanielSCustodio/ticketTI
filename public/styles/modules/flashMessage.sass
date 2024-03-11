@@ -7,10 +7,17 @@
   width: 100%
   margin-bottom: 1rem
 
+  @include base-mixins.tablet
+    margin-bottom: 2rem
+
 .message-error, .message
   @include mixins.center-content()
   justify-content: center
+  width: 100%
   animation: 5.0s ease-in-out 1 forwards visibility
+
+  @include base-mixins.tablet
+    max-width: 100%
 
   span
     width: 100%
@@ -21,6 +28,10 @@
     box-shadow: variables.$shadow
     display: flex
     justify-content: center
+    margin-bottom: 1rem
+
+    @include base-mixins.tablet
+    font-size: 0.8rem
 
 .message
   width: 100%
@@ -43,6 +54,9 @@
   span
     width: 52.7%
     border-radius: variables.$radius
+
+    @include base-mixins.tablet
+      width: 100%
 
 @keyframes visibility
   0%
