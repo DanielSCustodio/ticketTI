@@ -11,6 +11,9 @@
   @include base-mixins.tablet
     flex-wrap: wrap-reverse
     padding: 1rem 2rem
+    max-width: 100%
+    margin-top: 1rem
+    padding: 1rem
 
   .form-search
     display: flex
@@ -29,6 +32,10 @@
       color: variables.$second-text-color
       box-shadow: variables.$shadow
       border: 1px solid variables.$border-color-second
+
+      @include base-mixins.tablet
+        width: 100%
+        font-size: 0.8rem
 
     .btn-search
       background-color: variables.$primary-color
@@ -76,5 +83,3 @@
             color: variables.$color-red-primary
         i
           color: variables.$text-color
-
-    
