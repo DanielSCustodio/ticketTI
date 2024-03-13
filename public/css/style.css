@@ -831,27 +831,6 @@ ul {
   color: #9c9faf;
 }
 
-.container-form-view {
-  max-width: 85%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-}
-@media (max-width: 1024px) {
-  .container-form-view {
-    padding: 1rem 3rem;
-  }
-}
-@media (max-width: 720px) {
-  .container-form-view {
-    padding: 1rem;
-  }
-}
-
 .table {
   max-width: 85%;
   border-collapse: collapse;
@@ -912,8 +891,6 @@ ul {
 }
 
 .table-mobile-item {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
   padding: 1rem;
   border-radius: rgba(255, 255, 255, 0.1725490196);
 }
