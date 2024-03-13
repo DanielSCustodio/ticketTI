@@ -860,41 +860,46 @@ ul {
   margin-top: 2rem;
   --bs-table-bg: variables.$bg-second-color;
 }
+@media (max-width: 1024px) {
+  .table {
+    display: none;
+  }
+}
+.table th, .table td {
+  padding: 0.8rem;
+  text-align: center;
+  border-right: 1px solid rgba(52, 56, 78, 0.4784313725);
+}
+.table th {
+  color: #f9f9f9;
+  background-color: #4a9554;
+  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
+  border: none;
+}
+.table td {
+  color: #9c9faf;
+}
+.table tr:hover td {
+  color: #f9f9f9;
+}
+.table tr:nth-child(even) {
+  background: #191721;
+}
+.table i {
+  transition: 0.8s;
+  font-size: 1.3rem;
+}
+.table i:hover {
+  cursor: pointer;
+  color: #f9f9f9;
+}
+.table .table-align-left {
+  text-align: left;
+}
+.table .table-padding {
+  padding: 0.8rem 2rem;
+}
 
-/* @include base-mixins.tablet
- *  display: none */
- *
- * th, td
- *  padding: 0.8rem
- *  text-align: center
- *  border-right: 1px solid variables.$border-color
- *
- * th
- *  color: variables.$second-text-color
- *  background-color: variables.$second-color
- *  border-bottom: 1px solid variables.$border-color
- *  border: none
- * td
- *  color: variables.$text-color
- *
- * tr:hover td
- *  color: variables.$second-text-color
- *
- * tr:nth-child(even)
- *  background: #191721
- *
- * i
- *  transition: .8s
- *  font-size: 1.3rem
- *  &:hover
- *    cursor: pointer
- *    color: variables.$second-text-color
- *
- * .table-align-left
- *  text-align: left
- *
- * .table-padding
- *  padding: 0.8rem 2rem */
 .table-mobile {
   display: none;
 }
