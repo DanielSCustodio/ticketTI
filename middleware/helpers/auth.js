@@ -5,3 +5,11 @@ module.exports.checkAuth = function (req, res, next) {
   }
   next();
 };
+
+module.exports.checkLogged = function (req, res, next) {
+  if (req.session.userid) {
+    res.redirect('/');
+    return;
+  }
+  next();
+};
