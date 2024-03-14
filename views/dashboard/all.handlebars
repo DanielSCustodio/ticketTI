@@ -33,4 +33,20 @@
       {{/each}}
     </tbody>
   </table>
+    <div class="table-mobile">
+      {{#each tickets}}
+        <div class="table-mobile-dashboard">
+          <p><b>ID: </b>{{this.id}}</p>
+          <p><b>Título: </b>{{this.title}}</p>
+          <p><b>Equipamento: </b>{{this.Equipment.name}}</p>
+          <p><b>Setor: </b>{{this.Departament.name}}</p>
+          <p><b>Data: </b>{{this.date}}</p>
+          <p><b>Início: </b>{{this.startTime}}</p>
+          <p><b>Fim: </b>{{this.endTime}}</p>
+          <p><b>Solicitante: </b>{{this.Person.name}}</p>
+          <p><b>Agente de suporte: </b>{{AdministratorName}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </div> 
 </section>
