@@ -34,14 +34,20 @@
       border: 1px solid variables.$border-color-second
 
       @include base-mixins.tablet
-        width: 100%
-        font-size: 0.8rem
+        width: auto
+        font-size: 1.3rem
+
+      @include base-mixins.smartphone
+        font-size: 1rem
 
     .btn-search
       background-color: variables.$primary-color
       color: variables.$second-text-color
       width: 20%
       transition: 0.8s
+
+      @include base-mixins.smartphone
+        font-size: 75%
 
       &:hover
         background-color: variables.$second-color
@@ -51,6 +57,7 @@
     justify-content: center
     align-items: center
     gap: 0.5rem
+
     a
       color: variables.$second-text-color
       &:hover

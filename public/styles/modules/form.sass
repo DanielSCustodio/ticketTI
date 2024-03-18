@@ -34,7 +34,11 @@
       margin: 1rem 0
 
       input
-        font-size: 0.8rem
+        font-size: 1.3rem
+    
+    @include base-mixins.smartphone
+        font-size: 1rem
+
 
 .form-control
   background-color: variables.$bg-primary-color
@@ -65,7 +69,12 @@
     letter-spacing: 1.5
 
     @include base-mixins.tablet
-      font-size: 0.6rem
+      font-size: 1.3rem
+      margin-top: 1rem
+    
+    @include base-mixins.smartphone
+      font-size: 1rem
+      margin: 0
 
   input, textarea, select
     background-color: variables.$bg-second-color
@@ -76,7 +85,10 @@
     border: 1px solid variables.$border-color
 
     @include base-mixins.tablet
-      font-size: 0.7rem
+      font-size: 1.3rem
+    
+    @include base-mixins.smartphone
+      font-size: 1rem
 
   input[type="date"]::-webkit-calendar-picker-indicator
     cursor: pointer

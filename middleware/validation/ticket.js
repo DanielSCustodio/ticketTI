@@ -278,7 +278,6 @@ module.exports.checkTicket = async function async(req, res, next) {
 };
 
 module.exports.checkUpdateTicket = async function async(req, res, next) {
-  console.log('==============++>ta aqui update');
   const id = req.body.id;
   const loggedInUser = await getName(req);
   const dateNow = new Date();
