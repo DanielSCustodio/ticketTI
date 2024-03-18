@@ -38,8 +38,6 @@ module.exports = class TicketController {
   }
 
   static async createTicketSave(req, res) {
-    console.log('=========================+++>Create');
-
     const {
       title,
       description,
@@ -238,7 +236,6 @@ module.exports = class TicketController {
 
   static async updateTicketSave(req, res) {
     const id = req.body.id;
-    console.log('==================>Update');
 
     const {
       title,
