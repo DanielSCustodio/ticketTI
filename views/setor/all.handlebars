@@ -79,6 +79,25 @@
   {{/if}}
 </section>
 
+  <div class="table-mobile">
+  {{#each departaments}}
+      <div class="table-mobile-item">
+        <div class="content">
+            <p><b>ID: </b>{{this.id}}</p>
+            <p><b>Nome: </b>{{this.name}}</p>
+        </div>
+
+        <div class="actions">
+          <a href='/instituicao/editar/{{this.id}}' class="btn-edit"><i class='bi bi-pencil-square'></i> Editar</a>
+          <form action='/instituicao/remove' method='post'>
+            <input type='hidden' name='id' value='{{this.id}}' />
+            <button type='submit' class="btn-delete"><i class='bi bi-x-square'></i> Excluir</button>
+          </form>
+        </div>
+      </div>
+  {{/each}}
+    <a href='/instituicao/cadastro' class="btn btn-table-mobile">Cadastar</a> 
+
 <!-- Modal de Confirmação de Exclusão -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
