@@ -765,8 +765,8 @@ ul {
   }
 }
 @media (max-width: 720px) {
-  .form .btn-submit {
-    font-size: 1rem;
+  .form .btn-submit input {
+    font-size: 0.8rem;
   }
 }
 
@@ -808,7 +808,7 @@ ul {
 }
 @media (max-width: 720px) {
   .form-control label {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0;
   }
 }
@@ -823,11 +823,12 @@ ul {
 @media (max-width: 1024px) {
   .form-control input, .form-control textarea, .form-control select {
     font-size: 1.3rem;
+    width: 100%;
   }
 }
 @media (max-width: 720px) {
   .form-control input, .form-control textarea, .form-control select {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 .form-control input[type=date]::-webkit-calendar-picker-indicator {
@@ -1242,6 +1243,7 @@ ul {
   .container-search .form-search input {
     width: auto;
     font-size: 1.3rem;
+    width: 100%;
   }
 }
 @media (max-width: 720px) {
@@ -1327,6 +1329,11 @@ ul {
     margin-bottom: 3rem;
   }
 }
+@media (max-width: 720px) {
+  .container-message {
+    margin-bottom: 0.5rem;
+  }
+}
 
 .message-error, .message {
   max-width: 85%;
@@ -1336,6 +1343,7 @@ ul {
   align-items: center;
   justify-content: center;
   width: 100%;
+  animation: 5s ease-in-out 1 forwards visibility;
 }
 @media (max-width: 1024px) {
   .message-error, .message {
@@ -1350,7 +1358,7 @@ ul {
 @media (max-width: 1024px) {
   .message-error, .message {
     max-width: 100%;
-    margin-top: 2rem;
+    padding: 0;
   }
 }
 .message-error span, .message span {
@@ -1400,6 +1408,8 @@ ul {
 @media (max-width: 1024px) {
   .message-page span {
     width: 100%;
+    margin-left: 5%;
+    margin-right: 2%;
   }
 }
 
