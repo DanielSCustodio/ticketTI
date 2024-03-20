@@ -913,7 +913,7 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.5rem;
   padding-left: 5%;
   border-radius: rgba(255, 255, 255, 0.1725490196);
 }
@@ -926,7 +926,7 @@ ul {
   padding-right: 5%;
 }
 .table-mobile-item:nth-child(even), .table-mobile-dashboard:nth-child(even) {
-  background-color: #25283A;
+  background-color: #191721;
 }
 .table-mobile-item .content p, .table-mobile-item .content b, .table-mobile-dashboard .content p, .table-mobile-dashboard .content b {
   font-size: 1.5rem;
@@ -937,7 +937,12 @@ ul {
     font-size: 1rem;
   }
 }
-.table-mobile-item .actions .btn-edit, .table-mobile-item .actions .btn-delete, .table-mobile-dashboard .actions .btn-edit, .table-mobile-dashboard .actions .btn-delete {
+.table-mobile-item .actions, .table-mobile-dashboard .actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.table-mobile-item .actions .btn-edit, .table-mobile-item .actions .btn-delete, .table-mobile-item .actions .btn-detail, .table-mobile-dashboard .actions .btn-edit, .table-mobile-dashboard .actions .btn-delete, .table-mobile-dashboard .actions .btn-detail {
   padding: 0;
   font-size: 1.5rem;
   color: #9c9faf;
@@ -946,15 +951,15 @@ ul {
   gap: 1rem;
 }
 @media (max-width: 720px) {
-  .table-mobile-item .actions .btn-edit, .table-mobile-item .actions .btn-delete, .table-mobile-dashboard .actions .btn-edit, .table-mobile-dashboard .actions .btn-delete {
+  .table-mobile-item .actions .btn-edit, .table-mobile-item .actions .btn-delete, .table-mobile-item .actions .btn-detail, .table-mobile-dashboard .actions .btn-edit, .table-mobile-dashboard .actions .btn-delete, .table-mobile-dashboard .actions .btn-detail {
     font-size: 1rem;
   }
 }
-.table-mobile-item .actions .btn-edit i, .table-mobile-item .actions .btn-delete i, .table-mobile-dashboard .actions .btn-edit i, .table-mobile-dashboard .actions .btn-delete i {
+.table-mobile-item .actions .btn-edit i, .table-mobile-item .actions .btn-delete i, .table-mobile-item .actions .btn-detail i, .table-mobile-dashboard .actions .btn-edit i, .table-mobile-dashboard .actions .btn-delete i, .table-mobile-dashboard .actions .btn-detail i {
   font-size: 1.5rem;
 }
 @media (max-width: 720px) {
-  .table-mobile-item .actions .btn-edit i, .table-mobile-item .actions .btn-delete i, .table-mobile-dashboard .actions .btn-edit i, .table-mobile-dashboard .actions .btn-delete i {
+  .table-mobile-item .actions .btn-edit i, .table-mobile-item .actions .btn-delete i, .table-mobile-item .actions .btn-detail i, .table-mobile-dashboard .actions .btn-edit i, .table-mobile-dashboard .actions .btn-delete i, .table-mobile-dashboard .actions .btn-detail i {
     font-size: 1rem;
   }
 }

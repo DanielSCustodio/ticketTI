@@ -59,7 +59,7 @@
   display: flex
   flex-direction: row
   justify-content: space-between
-  padding: 1rem
+  padding: 1.5rem
   padding-left: 5%
   border-radius: variables.$border-color-second
 
@@ -72,7 +72,7 @@
     padding-right: 5%
 
   &:nth-child(even)
-    background-color: variables.$bg-second-color
+    background-color: #191721
 
   .content
     p,b
@@ -83,7 +83,10 @@
         font-size: 1rem
 
   .actions
-    .btn-edit, .btn-delete
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    .btn-edit, .btn-delete, .btn-detail
       padding: 0
       font-size: 1.5rem
       color: variables.$text-color
@@ -99,7 +102,6 @@
 
         @include base-mixins.smartphone
           font-size: 1rem
-    
 
 .btn-delete
   background-color: transparent

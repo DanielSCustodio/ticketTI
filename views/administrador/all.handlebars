@@ -49,7 +49,32 @@
   {{#if privilege}}
     <a href="/administrador/cadastro" class="btn btn-table">Cadastar</a>
   {{/if}}
+
+  <div class="table-mobile">
+  {{#each administrators}}
+      <div class="table-mobile-item">
+        <div class="content">
+            <p><b>ID: </b>{{this.id}}</p>
+            <p><b>Nome: </b>{{this.Person.name}}</p>
+            <p><b>Username: </b>{{#if this.privilege}}Sim{{else}}Não{{/if}}</p>
+            <p><b>Edição e criação: </b>{{this.name}}</p>
+            <p><b>Administrador geral: </b>{{#if this.allPrivileges}}Sim{{else}}Não{{/if}}</p>
+        </div>
+
+        <div class="actions">
+          <a href='/administrador/editar/{{this.id}}' class="btn-edit"><i class='bi bi-pencil-square'></i> Editar</a>
+          <form action='/administrador/remove' method='post'>
+            <input type='hidden' name='id' value='{{this.id}}' />
+            <button type='submit' class="btn-delete"><i class='bi bi-x-square'></i> Excluir</button>
+          </form>
+        </div>
+      </div>
+  {{/each}}
+    <a href='/administrador/cadastro' class="btn btn-table-mobile">Cadastar</a>
+
 </section>
+
+<!-- Modal de Confirmação de Exclusão -->
 
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
