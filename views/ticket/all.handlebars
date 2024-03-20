@@ -50,13 +50,12 @@
               <td>{{this.startTime}}</td>
               <td>{{this.Person.name}}</td>
               <td>{{AdministratorName}}</td>
-            <td>
-              <a href='/ticket/detalhes/{{this.id}}' class="btn-detail"><i class="bi bi-info-square"></i></a>
-            </td>
-            <td>
-              <a href='/ticket/editar/{{this.id}}' class="btn-edit"><i class='bi bi-pencil-square' ></i></a>
-            </td>
-
+              <td>
+                <a href='/ticket/detalhes/{{this.id}}' class="btn-detail"><i class="bi bi-info-square"></i></a>
+              </td>
+              <td>
+                <a href='/ticket/editar/{{this.id}}' class="btn-edit"><i class='bi bi-pencil-square' ></i></a>
+              </td>
           </tr>
         {{/each}}
       </tbody>
@@ -72,4 +71,24 @@
     <a href="/ticket/cadastro" class="btn btn-table">Cadastar</a>
   {{/if}}
 
+  <div class="table-mobile">
+  {{#each tickets}}
+      <div class="table-mobile-item">
+        <div class="content">
+          <p><b>ID: </b>{{this.id}}</p>
+          <p><b>Título: </b>{{this.title}}</p>
+          <p><b>Equipamento: </b>{{this.Equipment.name}}</p>
+          <p><b>Setor: </b>{{this.Departament.name}}</p>
+          <p><b>Data: </b>{{this.date}}</p>
+          <p><b>Horário: </b>{{this.startTime}}</p>
+          <p><b>Solicitante: </b>{{this.Person.name}}</p>
+          <p><b>Agente de suporte: </b>{{AdministratorName}}</p>
+        </div>
+        <div class="actions">
+          <a href='/ticket/editar/{{this.id}}' class="btn-edit"><i class='bi bi-pencil-square'></i>Editar</a>
+          <a href='/ticket/detalhes/{{this.id}}' class="btn-detail"><i class="bi bi-info-square"></i>Detalhes</a>
+        </div>
+      </div>
+  {{/each}}
+  <a href='/ticket/cadastro' class="btn btn-table-mobile">Cadastar</a>
 </section>
