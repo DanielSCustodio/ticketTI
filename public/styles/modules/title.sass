@@ -2,21 +2,22 @@
 @use '../layouts/mixins'
 @use '../base/base-mixins'
 
-.title
-  font-size: 1.5rem
-  margin: 0
-  font-weight: 700
-  margin-bottom: 2rem
-  text-transform: capitalize
 
-  @include base-mixins.smartphone
-    font-size: 1.3rem
+.container-title
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 100%
 
-
-.title-pages
-  font-size: 2rem
-  color: variables.$text-color
-
-  @include base-mixins.smartphone
+  .title
     font-size: 1.5rem
+    margin: 0
+    font-weight: 200
+    margin-bottom: 2rem
+    text-transform: uppercase
+    letter-spacing: 2px
+    color: variables.$second-text-color
 
+    @include base-mixins.tablet
+      font-size: 1.3rem
+      letter-spacing: 1px

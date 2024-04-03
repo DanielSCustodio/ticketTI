@@ -35,7 +35,12 @@
       </div>
     {{/if}}
   </div>
-
+  <div class="container-title">
+    <h1 class="title">Setor</h1>
+  </div>
+  {{#if privilege}}
+    <a href='/setor/cadastro' class="btn btn-table">Cadastar</a>
+  {{/if}}
   {{#if departaments}}
     <table class='table'>
       <thead>
@@ -74,12 +79,12 @@
       </div>
     {{/unless}}
   {{/if}}
-  {{#if privilege}}
-    <a href='/setor/cadastro' class="btn btn-table">Cadastar</a>
-  {{/if}}
 </section>
 
 <div class="table-mobile">
+  {{#if privilege}}
+    <a href='/instituicao/cadastro' class="btn btn-table-mobile">Cadastar</a>
+  {{/if}}
   {{#each departaments}}
       <div class="table-mobile-item">
         <div class="content">
@@ -96,9 +101,6 @@
         </div>
       </div>
   {{/each}}
-    <a href='/instituicao/cadastro' class="btn btn-table-mobile">Cadastar</a>
-
-
 
 </section>
 <!-- Modal de Confirmação de Exclusão -->
