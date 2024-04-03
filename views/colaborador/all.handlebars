@@ -35,6 +35,12 @@
       </div>
     {{/if}}
   </div>
+  <div class="container-title">
+    <h1 class="title">Pessoa</h1>
+  </div>
+  {{#if privilege}}
+    <a href="/colaborador/cadastro" class="btn btn-table">Cadastar</a>
+  {{/if}}
   
   {{#if people}}
     <table class='table'>
@@ -80,13 +86,13 @@
       </div>
     {{/unless}}
   {{/if}}
-
-  {{#if privilege}}
-    <a href="/colaborador/cadastro" class="btn btn-table">Cadastar</a>
-  {{/if}}
 </section>
 
 <div class="table-mobile">
+  {{#if privilege}}
+    <a href='/colaborador/cadastro' class="btn btn-table-mobile">Cadastar</a>
+  {{/if}}
+  
   {{#each people}}
       <div class="table-mobile-item">
         <div class="content">
@@ -106,9 +112,6 @@
         </div>
       </div>
   {{/each}}
-    <a href='/colaborador/cadastro' class="btn btn-table-mobile">Cadastar</a>
-
-
 
 </section>
 <!-- Modal de Confirmação de Exclusão -->

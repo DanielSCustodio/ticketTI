@@ -9,6 +9,13 @@
       <span>{{messages.error-privilege}}</span>
     </div>
   {{/if}}
+  <div class="container-title">
+    <h1 class="title" style="margin-top: 3rem;">Administrador</h1>
+  </div>
+  {{#if privilege}}
+    <a href="/administrador/cadastro" class="btn btn-table">Cadastar</a>
+  {{/if}}
+
   <table class='table'>
     <thead>
       <tr>
@@ -46,11 +53,11 @@
     </tbody>
     <p>{{adm}}</p>
   </table>
-  {{#if privilege}}
-    <a href="/administrador/cadastro" class="btn btn-table">Cadastar</a>
-  {{/if}}
 
   <div class="table-mobile">
+  {{#if privilege}}
+    <a href='/administrador/cadastro' class="btn btn-table-mobile">Cadastar</a>
+  {{/if}}
   {{#each administrators}}
       <div class="table-mobile-item">
         <div class="content">
@@ -70,7 +77,6 @@
         </div>
       </div>
   {{/each}}
-    <a href='/administrador/cadastro' class="btn btn-table-mobile">Cadastar</a>
 
 </section>
 

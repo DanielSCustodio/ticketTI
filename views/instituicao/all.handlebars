@@ -35,8 +35,13 @@
       </div>
     {{/if}}
   </div>
-  
+  <div class="container-title">
+    <h1 class="title">Instituição</h1>
+  </div>
   {{#if institutions}}
+    {{#if privilege}}
+      <a href='/instituicao/cadastro' class="btn btn-table">Cadastar</a>
+    {{/if}}
     <table class='table'>
       <thead>
         <tr>
@@ -69,9 +74,6 @@
         {{/each}}
       </tbody>
     </table>
-    {{#if privilege}}
-      <a href='/instituicao/cadastro' class="btn btn-table">Cadastar</a>
-    {{/if}}
   {{else}}
     {{#unless messages.error-search}}
       <div class='message message-large-error'>
@@ -81,6 +83,9 @@
   {{/if}}
 
   <div class="table-mobile">
+    {{#if privilege}}
+      <a href='/instituicao/cadastro' class="btn btn-table-mobile">Cadastar</a>
+    {{/if}}
   {{#each institutions}}
       <div class="table-mobile-item">
         <div class="content">
@@ -97,7 +102,6 @@
         </div>
       </div>
   {{/each}}
-    <a href='/instituicao/cadastro' class="btn btn-table-mobile">Cadastar</a>
 
 </section>
 <!-- Modal de Confirmação de Exclusão -->

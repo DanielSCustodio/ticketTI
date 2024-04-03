@@ -35,6 +35,12 @@
       </div>
     {{/if}}
   </div>
+  <div class="container-title">
+    <h1 class="title">Tipo De Referência</h1>
+  </div>
+  {{#if privilege}}
+    <a href='/tipo-de-referencia/cadastro' class="btn btn-table">Cadastar</a>
+  {{/if}}
   
   {{#if referenceTypes}}
     <table class='table'>
@@ -75,12 +81,12 @@
       </div>
     {{/unless}}
   {{/if}}
-  {{#if privilege}}
-    <a href='/tipo-de-referencia/cadastro' class="btn btn-table">Cadastar</a>
-  {{/if}}
 </section>
 
 <div class="table-mobile">
+  {{#if privilege}}
+    <a href='/tipo-de-referencia/cadastro' class="btn btn-table-mobile">Cadastar</a>
+  {{/if}}
   {{#each referenceTypes}}
       <div class="table-mobile-item">
         <div class="content">
@@ -97,7 +103,6 @@
       </div>
 </div>
   {{/each}}
-  <a href='/tipo-de-referencia/cadastro' class="btn btn-table-mobile">Cadastar</a>
 
 </section>
 <!-- Modal de Confirmação de Exclusão -->
