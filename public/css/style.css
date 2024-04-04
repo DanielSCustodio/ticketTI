@@ -644,6 +644,11 @@ ul {
     letter-spacing: 1px;
   }
 }
+@media (max-width: 720px) {
+  .container-title .title {
+    font-size: 0.8rem;
+  }
+}
 
 @media (max-width: 720px) {
   .default-container-buttons {
@@ -827,7 +832,7 @@ ul {
 @media (max-width: 1024px) {
   .form-control input, .form-control textarea, .form-control select {
     font-size: 1.3rem;
-    width: 100%;
+    width: 90%;
   }
 }
 @media (max-width: 720px) {
@@ -901,11 +906,11 @@ ul {
   padding: 0.8rem 2rem;
 }
 
-.table-mobile {
+.table-mobile, .table-modal {
   display: none;
 }
 @media (max-width: 1024px) {
-  .table-mobile {
+  .table-mobile, .table-modal {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -1036,6 +1041,42 @@ ul {
 
 .table-mobile-dashboard {
   flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .modal-content {
+    min-width: 90%;
+  }
+}
+
+.table-modal {
+  background-color: #16141c;
+}
+.table-modal thead {
+  background-color: #3F7446;
+  display: flex;
+}
+.table-modal thead tr {
+  display: flex;
+  border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
+  padding: 1rem 0;
+  font-size: 2rem;
+  gap: 2rem;
+  margin-left: 1rem;
+}
+.table-modal tbody tr {
+  display: flex !important;
+  gap: 2.5rem;
+  margin-left: 1rem;
+}
+.table-modal tbody tr td {
+  padding: 1rem 0;
+}
+.table-modal tbody tr:nth-child(even) {
+  background: #191721;
+}
+.table-modal tbody tr:nth-child(odd) {
+  background: #16141c;
 }
 
 .default-container {
