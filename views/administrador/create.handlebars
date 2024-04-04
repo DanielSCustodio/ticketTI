@@ -1,4 +1,7 @@
 <section class='form-conatiner'>
+  <div class="container-title">
+    <h1 class="title">Cadastrar Administrador</h1>
+  </div>
   <div class='container-message'>
     {{#if messages.error-input-administrator}}
       <div class='message-error message-page'>
@@ -100,16 +103,27 @@
               {{/each}}
             </tbody>
           </table>
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each people}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-people'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
         </section>
       </div>
-      <div class='modal-footer'>
-        <span id='currentPage'></span>
-        <div class="btn-pagination">
-          <button type='button' class='btn btn-table' id='prevPageBtn'>Anterior</button>
-          <button type='button' class='btn btn-table' id='nextPageBtn'>Próximo</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
