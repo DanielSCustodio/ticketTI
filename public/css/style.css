@@ -1061,16 +1061,19 @@ ul {
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
   padding: 1rem 0;
   font-size: 2rem;
-  gap: 2rem;
+  gap: 1.75rem;
   margin-left: 1rem;
 }
 .table-modal tbody tr {
-  display: flex !important;
   gap: 2.5rem;
   margin-left: 1rem;
 }
 .table-modal tbody tr td {
   padding: 1rem 0;
+}
+.table-modal tbody tr .id-table {
+  padding-right: 1.75rem;
+  padding-left: 1rem;
 }
 .table-modal tbody tr:nth-child(even) {
   background: #191721;
