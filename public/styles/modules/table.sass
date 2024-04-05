@@ -48,7 +48,6 @@
 
 .table-mobile, .table-modal
   display: none
-
   @include base-mixins.tablet
     display: flex
     flex-direction: column
@@ -178,17 +177,20 @@
       border-bottom: 1px solid variables.$border-color
       padding: 1rem 0
       font-size: 2rem
-      gap: 2rem
+      gap: 1.75rem
       margin-left: 1rem
 
   tbody
     tr
-      display: flex !important
       gap: 2.5rem
       margin-left: 1rem
 
       td
         padding: 1rem 0
+      
+      .id-table
+        padding-right: 1.75rem
+        padding-left: 1rem
 
     tr:nth-child(even)
       background: #191721
