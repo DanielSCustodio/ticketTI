@@ -1,4 +1,7 @@
 <section class='form-conatiner'>
+  <div class="container-title">
+    <h1 class="title">Cadastrar colaborador</h1>
+  </div>
   <div class='container-message'>
     {{#if messages.error-input-person}}
       <div class='message-error message-page'>
@@ -94,6 +97,26 @@
             </tbody>
           </table>
 
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each institutions}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-institutions'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
         </section>
       </div>
       <div class='modal-footer'>
@@ -128,6 +151,26 @@
           <!-- Código Handlebars do Modal -->
           <input type="text" id="searchInputDepartament" placeholder="Buscar por nome do setor">
           <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each departaments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-departaments'
+                >
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+          <table class='table-modal'>
             <thead>
               <tr>
                 <th>ID</th>
