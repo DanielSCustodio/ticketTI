@@ -107,7 +107,6 @@
               <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Função</th>
               </tr>
             </thead>
             <tbody>
@@ -118,17 +117,33 @@
                 >
                   <td>{{this.id}}</td>
                   <td>{{this.name}}</td>
-                  <td>{{this.role}}</td>
                 </tr>
               {{/each}}
             </tbody>
           </table>
-          <h6 id="no-results" class="remove">Sem resultados</h6>
+
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each people}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-people'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
         </section>
       </div>
-      <div class='modal-footer'>
-      </div>
-
     </div>
   </div>
 </section>
@@ -164,7 +179,6 @@
               <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Função</th>
               </tr>
             </thead>
             <tbody>
@@ -175,15 +189,31 @@
                 >
                   <td>{{this.id}}</td>
                   <td>{{this.Person.name}}</td>
-                  <td>{{this.Person.role}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each administrators}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.Person.name}}'
+                  class='selectable-row-administrators'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.Person.name}}</td>
                 </tr>
               {{/each}}
             </tbody>
           </table>
 
         </section>
-      </div>
-      <div class='modal-footer'>
       </div>
     </div>
   </div>
@@ -230,6 +260,26 @@
                 >
                   <td>{{this.id}}</td>
                   <td>{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each equipments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-equipments'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
                 </tr>
               {{/each}}
             </tbody>
@@ -289,6 +339,26 @@
             </tbody>
           </table>
 
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each departaments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-departaments'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
         </section>
       </div>
       <div class='modal-footer'>
@@ -339,22 +409,7 @@
       let rowNamePerson = row.getAttribute('data-name').toLowerCase();
       let isVisible = rowNamePerson.includes(searchTerm);
       row.style.display = isVisible ? 'table-row' : 'none';
-
-      console.log(isVisible)
-
-      if (isVisible) {
-        anyResultFound = true; // Se um resultado for encontrado, definimos como true
-      }
     });
-
-    // Se nenhum resultado for encontrado, escondemos a tabela
-    if (!anyResultFound) {
-      table.style.display = 'none';
-      document.getElementById('no-results').classList.remove('remove');
-    } else {
-      table.style.display = 'table'; // Caso contrário, exibimos a tabela
-      document.getElementById('no-results').classList.add('remove');
-    }
   });
 
 });
@@ -362,7 +417,7 @@
 
 <!--Administrator-->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
   let openModalBtnAdministrator = document.getElementById('openModalBtnAdministrator');
   let administratorModel = new bootstrap.Modal(document.getElementById('administratorModel'));
   let administratorIdSelectedInput = document.getElementById('administratorIdSelected');
