@@ -175,9 +175,27 @@
             </tbody>
           </table>
 
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each referenceType}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-reference-type'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
         </section>
-      </div>
-      <div class='modal-footer'>
       </div>
     </div>
   </div>
@@ -228,10 +246,27 @@
               {{/each}}
             </tbody>
           </table>
-
+          
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each departaments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-departaments'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
         </section>
-      </div>
-      <div class='modal-footer'>
       </div>
     </div>
   </div>
