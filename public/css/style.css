@@ -1046,6 +1046,7 @@ ul {
 @media (max-width: 1024px) {
   .modal-content {
     min-width: 90%;
+    height: 100%;
   }
 }
 
