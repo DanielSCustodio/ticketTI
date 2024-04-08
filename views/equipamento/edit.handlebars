@@ -1,4 +1,7 @@
 <section class='form-conatiner'>
+  <div class="container-title">
+    <h1 class="title">Editar Equipamento/Sistema</h1>
+  </div>
   <div class='container-message'>
     {{#if messages.error-input-equipment}}
       <div class='message-error message-page'>
@@ -101,16 +104,28 @@
               {{/each}}
             </tbody>
           </table>
+
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each people}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-people'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
         </section>
       </div>
-      <div class='modal-footer'>
-        <span id='currentPage'></span>
-        <div class="btn-pagination">
-          <button type='button' class='btn btn-table' id='prevPageBtn'>Anterior</button>
-          <button type='button' class='btn btn-table' id='nextPageBtn'>Próximo</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -161,9 +176,27 @@
             </tbody>
           </table>
 
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each referenceType}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-reference-type'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
         </section>
-      </div>
-      <div class='modal-footer'>
       </div>
     </div>
   </div>
@@ -215,9 +248,27 @@
             </tbody>
           </table>
 
+          <table class='table-modal'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each departaments}}
+                <tr style="cursor: pointer"
+                  data-name='{{this.name}}'
+                  class='selectable-row-departaments'
+                >
+                  <td class="id-table">{{this.id}}</td>
+                  <td style="width: 100%;">{{this.name}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
         </section>
-      </div>
-      <div class='modal-footer'>
       </div>
     </div>
   </div>
@@ -257,38 +308,6 @@ document.addEventListener('DOMContentLoaded', function () {
       // Define a visibilidade da linha com base no termo de busca
       row.style.display = isVisible ? 'table-row' : 'none';
     });
-  });
-  let currentPage = 1;
-  const itemsPerPage = 10;
-  const totalItems = selectableRowsPerson.length;
-
-  function paginate(page) {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-
-    selectableRowsPerson.forEach(function (row, index) {
-      const isVisible = index >= startIndex && index < endIndex;
-      row.style.display = isVisible ? 'table-row' : 'none';
-    });
-
-    document.getElementById('currentPage').innerText = `Página ${page}`;
-  }
-
-  paginate(currentPage);
-
-  document.getElementById('prevPageBtn').addEventListener('click', function () {
-    if (currentPage > 1) {
-      currentPage--;
-      paginate(currentPage);
-    }
-  });
-
-  document.getElementById('nextPageBtn').addEventListener('click', function () {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
-      paginate(currentPage);
-    }
   });
 
 });
