@@ -862,8 +862,7 @@ ul {
   max-width: 85%;
   border-collapse: collapse;
   border: 1px solid rgba(52, 56, 78, 0.4784313725);
-  margin: 0 auto;
-  margin-top: 2rem;
+  margin: 2rem auto;
   --bs-table-bg: variables.$bg-second-color;
 }
 @media (max-width: 1024px) {
@@ -875,6 +874,7 @@ ul {
   padding: 0.8rem;
   text-align: center;
   border-right: 1px solid rgba(52, 56, 78, 0.4784313725);
+  text-align: left;
 }
 .table th {
   color: #f9f9f9;
@@ -890,6 +890,9 @@ ul {
 }
 .table tr:nth-child(even) {
   background: #191721;
+}
+.table button i, .table a i {
+  text-align: cnter;
 }
 .table i {
   transition: 0.8s;

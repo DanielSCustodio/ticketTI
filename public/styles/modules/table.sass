@@ -6,8 +6,7 @@
   max-width: variables.$container-width
   border-collapse: collapse
   border: 1px solid variables.$border-color
-  margin: 0 auto
-  margin-top: 2rem
+  margin: 2rem auto
   --bs-table-bg: variables.$bg-second-color
 
   @include base-mixins.tablet
@@ -17,6 +16,7 @@
     padding: 0.8rem
     text-align: center
     border-right: 1px solid variables.$border-color
+    text-align: left
 
   th
     color: variables.$second-text-color
@@ -33,9 +33,14 @@
   tr:nth-child(even)
     background: #191721
 
+  button, a
+    i
+      text-align: cnter
+
   i
     transition: .8s
     font-size: 1.3rem
+
     &:hover
       cursor: pointer
       color: variables.$second-text-color
