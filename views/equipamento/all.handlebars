@@ -51,8 +51,8 @@
           <th>Setor</th>
           <th>Tipo de refrência</th>
           <th>Referência</th>
-          <th>Editar</th>
-          <th>Excluir</th>
+          <th class="align-center">Editar</th>
+          <th class="align-center">Excluir</th>
       </thead>
       <tbody>
         {{#each equipments}}
@@ -63,12 +63,12 @@
             <td>{{this.Departament.name}}</td>
             <td>{{this.ReferenceType.name}}</td>
             <td>{{this.reference}}</td>
-            <td>
+            <td class="align-center">
               <a href='/equipamento/editar/{{this.id}}' class="btn-edit"><i
                   class='bi bi-pencil-square'
                 ></i></a>
             </td>
-            <td>
+            <td class="align-center">
               <form action='/equipamento/remove' method='post'>
                 <input type='hidden' name='id' value='{{this.id}}'  />
                 <button type='submit' class="btn-delete"><i
