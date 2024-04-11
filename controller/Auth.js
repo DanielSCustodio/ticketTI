@@ -25,14 +25,14 @@ module.exports = class AuthController {
       raw: true,
       where: { id: user.PersonId },
     });
-    /* 
+
     const passwordMatch = bcrypt.compareSync(password, user.password);
 
     if (!passwordMatch) {
       req.flash('error-login', 'Senha inválida.');
       res.render('auth/login');
       return;
-    } */
+    }
 
     req.session.userid = user.id;
 
