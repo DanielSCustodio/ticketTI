@@ -47,8 +47,8 @@
         <tr>
           <th>ID</th>
           <th>Nome</th>
-          <th>Editar</th>
-          <th>Excluir</th>
+          <th class="align-center">Editar</th>
+          <th class="align-center">Excluir</th>
         </tr>
       </thead>
       <tbody>
@@ -56,11 +56,11 @@
           <tr>
             <td>{{this.id}}</td>
             <td>{{this.name}}</td>
-            <td>
+            <td class="align-center">
               <a href='/setor/editar/{{this.id}}' class="btn-edit"><i
                   class='bi bi-pencil-square'
                 ></i></a></td>
-            <td>
+            <td class="align-center">
               <form action='/setor/remove' method='post'>
                 <input type='hidden' name='id' value='{{this.id}}' />
                 <button type='submit' class="btn-delete"><i

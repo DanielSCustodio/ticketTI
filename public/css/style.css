@@ -64,7 +64,7 @@ ul {
   width: 100%;
   border-top: 1px solid rgba(52, 56, 78, 0.4784313725);
   z-index: 99999 !important;
-  background: #25283A;
+  background: #151313;
 }
 #footer .container-footer {
   max-width: 85%;
@@ -1086,6 +1086,10 @@ ul {
 }
 .table-modal tbody tr:nth-child(odd) {
   background: #16141c;
+}
+
+.align-center {
+  text-align: center !important;
 }
 
 .default-container {

@@ -40,8 +40,8 @@
           <th>Horário</th>
           <th>Solicitante</th>
           <th>Agente de suporte</th>
-          <th>Detalhes</th>
-          <th>Editar</th>
+          <th class="align-center">Detalhes</th>
+          <th class="align-center">Editar</th>
       </thead>
       <tbody>
         {{#each tickets}}
@@ -54,10 +54,10 @@
               <td>{{this.startTime}}</td>
               <td>{{this.Person.name}}</td>
               <td>{{AdministratorName}}</td>
-              <td>
+              <td class="align-center">
                 <a href='/ticket/detalhes/{{this.id}}' class="btn-detail"><i class="bi bi-info-square"></i></a>
               </td>
-              <td>
+              <td class="align-center">
                 <a href='/ticket/editar/{{this.id}}' class="btn-edit"><i class='bi bi-pencil-square' ></i></a>
               </td>
           </tr>

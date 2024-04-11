@@ -22,10 +22,10 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Username</th>
-        <th>Edição e criação</th>
-        <th>Administrador geral</th>
-        <th>Editar</th>
-        <th>Excluir</th>
+        <th class="align-center">Edição e criação</th>
+        <th class="align-center">Administrador geral</th>
+        <th class="align-center">Editar</th>
+        <th class="align-center">Excluir</th>
     </thead>
     <tbody>
       {{#each administrators}}
@@ -33,14 +33,14 @@
           <td>{{this.id}}</td>
           <td>{{this.Person.name}}</td>
           <td>{{this.username}}</td>
-          <td>{{#if this.privilege}}Sim{{else}}Não{{/if}}</td>
-          <td>{{#if this.allPrivileges}}Sim{{else}}Não{{/if}}</td>
-          <td>
+          <td class="align-center">{{#if this.privilege}}Sim{{else}}Não{{/if}}</td>
+          <td class="align-center">{{#if this.allPrivileges}}Sim{{else}}Não{{/if}}</td>
+          <td class="align-center">
             <a href='/administrador/editar/{{this.id}}' class="btn-edit"><i
                 class='bi bi-pencil-square'
               ></i></a>
           </td>
-          <td>
+          <td class="align-center">
             <form action='/administrador/remove' method='post'>
               <input type='hidden' name='id' value='{{this.id}}' />
               <button type='submit' class="btn-delete"><i

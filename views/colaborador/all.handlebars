@@ -51,8 +51,8 @@
           <th>Cargo</th>
           <th>Setor</th>
           <th>Instituição</th>
-          <th>Editar</th>
-          <th>Excluir</th>
+          <th class="align-center">Editar</th>
+          <th class="align-center">Excluir</th>
       </thead>
       <tbody>
         {{#each people}}
@@ -62,12 +62,12 @@
             <td>{{this.role}}</td>
             <td>{{this.Departament.name}}</td>
             <td>{{this.Institution.name}}</td>
-            <td>
+            <td class="align-center">
               <a href='/colaborador/editar/{{this.id}}' class="btn-edit"><i
                   class='bi bi-pencil-square'
                 ></i></a>
             </td>
-            <td>
+            <td class="align-center">
               <form action='/colaborador/remove' method='post'>
                 <input type='hidden' name='id' value='{{this.id}}' />
                 <button type='submit' class="btn-delete"><i
