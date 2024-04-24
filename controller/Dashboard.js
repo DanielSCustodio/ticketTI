@@ -39,6 +39,8 @@ module.exports = class DashboardController {
         return plainResult;
       });
 
+      tickets = tickets.reverse();
+
       res.render('dashboard/all', { tickets, privilege, loggedInUser });
     } catch (error) {
       console.log(
