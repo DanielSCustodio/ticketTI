@@ -136,6 +136,8 @@ module.exports = class TicketController {
         return plainResult;
       });
 
+      tickets = tickets.reverse();
+
       res.render('ticket/all', { tickets, privilege, loggedInUser });
     } catch (error) {
       console.log(
