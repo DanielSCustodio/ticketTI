@@ -67,7 +67,7 @@ ul {
   background: #151313;
 }
 #footer .container-footer {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -144,7 +144,7 @@ ul {
 }
 
 #nav-bar {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -166,7 +166,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   padding: 1rem 0;
 }
 #nav-bar .navigation li {
@@ -270,7 +270,6 @@ ul {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
   }
   .menu-mobile .offcanvas-body .navigation-mobile ul li {
     display: flex;
@@ -310,7 +309,7 @@ ul {
   }
 }
 .search-bar-container {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -721,7 +720,7 @@ ul {
 }
 
 .form-conatiner {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -861,7 +860,7 @@ ul {
 }
 
 .table {
-  max-width: 85%;
+  max-width: 90%;
   border-collapse: collapse;
   border: 1px solid rgba(52, 56, 78, 0.4784313725);
   margin: 2rem auto;
@@ -993,7 +992,7 @@ ul {
 .btn-table, .btn-table-mobile {
   background-color: #25283A;
   border: 1px solid #3F7446;
-  max-width: 85%;
+  max-width: 90%;
   margin-left: 7.5%;
   margin-top: 2rem;
 }
@@ -1093,7 +1092,7 @@ ul {
 }
 
 .default-container {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1145,7 +1144,7 @@ ul {
 }
 
 .container-view {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1163,7 +1162,7 @@ ul {
 }
 
 .container-topic {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1182,7 +1181,7 @@ ul {
 }
 
 .container-topic-list {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1202,7 +1201,7 @@ ul {
 }
 
 .default-container-title {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1257,7 +1256,7 @@ ul {
 .container-search {
   padding: 2rem 0;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1400,7 +1399,7 @@ ul {
 }
 
 .message-error, .message {
-  max-width: 85%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
