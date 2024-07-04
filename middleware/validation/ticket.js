@@ -19,11 +19,9 @@ module.exports.checkTicket = async function async(req, res, next) {
     departamentInput,
     equipmentInput,
   } = req.body;
-
-  const loggedInUser = await getName(req);
-
   const dateNow = new Date();
 
+  const loggedInUser = await getName(req);
   const hourNow = dateNow.toLocaleTimeString('pt-BR');
 
   const departaments = await Departament.findAll({ raw: true });
@@ -127,10 +125,58 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
+  if (!startTime) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "início do atendimento" deve ser preenchido.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
+  if (!endTime) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "final do atendimento" deve ser preenchido.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
   if (formatDate(dateNow) < formatDateBd(date)) {
     req.flash(
       'error-input-ticket',
       'A data do ticket não pode ser posterior à data atual.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
+  if (endTime < startTime) {
+    req.flash(
+      'error-input-ticket',
+      'A hora de início não pode ser posterior à hora de término.',
     );
     res.render('ticket/create', {
       ticket,
@@ -175,104 +221,6 @@ module.exports.checkTicket = async function async(req, res, next) {
       });
       return;
     }
-  }
-
-  if (formatDate(dateNow) === formatDateBd(date)) {
-    if (endTime > hourNow) {
-      req.flash(
-        'error-input-ticket',
-        'O horário de término não pode ser posterior ao horário atual.',
-      );
-      res.render('ticket/create', {
-        ticket,
-        departaments,
-        people,
-        equipments,
-        administrators,
-        loggedInUser,
-      });
-      return;
-    }
-  }
-
-  if (!startTime) {
-    req.flash(
-      'error-input-ticket',
-      'O campo "início do atendimento" deve ser preenchido.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
-  }
-
-  if (!endTime) {
-    req.flash(
-      'error-input-ticket',
-      'O campo "final do atendimento" deve ser preenchido.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
-  }
-
-  if (!administratorInput) {
-    req.flash(
-      'error-input-ticket',
-      'O campo "agente de atendimento" deve ser preenchido. Clique na lupa para selecionar.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
-  }
-
-  if (!departamentInput) {
-    req.flash(
-      'error-input-ticket',
-      'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
-  }
-
-  if (!equipmentInput) {
-    req.flash(
-      'error-input-ticket',
-      'O campo "Equipamento/Sistema" deve ser preenchido. Clique na lupa para selecionar.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
   }
   next();
 };
@@ -453,6 +401,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
     });
     return;
   }
+
   if (endTime < startTime) {
     req.flash(
       'error-input-ticket',
@@ -472,6 +421,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
     });
     return;
   }
+
   if (formatDate(dateNow) === formatDateBd(date)) {
     if (startTime > hourNow) {
       req.flash(
@@ -514,26 +464,6 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
       });
       return;
     }
-  }
-
-  if (!startTime) {
-    req.flash(
-      'error-input-ticket',
-      'O campo "início do atendimento" deve ser preenchido.',
-    );
-    res.render('ticket/edit', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      supportAgent,
-      departament,
-      requester,
-      equipment,
-      loggedInUser,
-    });
-    return;
   }
 
   if (!startTime) {
