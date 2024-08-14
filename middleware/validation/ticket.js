@@ -4,7 +4,11 @@ const Administrator = require('../../models/Administrator');
 const Equipment = require('../../models/Equipment');
 const Ticket = require('../../models/Ticket');
 const { getName } = require('../../middleware/helpers/getName');
-const { formatDateBd, formatDate } = require('../helpers/formatDate');
+const {
+  isDateGreater,
+  isDateEqual,
+  formatDateBd,
+} = require('../helpers/formatDate');
 
 module.exports.checkTicket = async function async(req, res, next) {
   const {
@@ -44,6 +48,58 @@ module.exports.checkTicket = async function async(req, res, next) {
     departamentInput,
     equipmentInput,
   };
+
+  if (isDateGreater(dateNow, date)) {
+    req.flash(
+      'error-input-ticket',
+      'A data do ticket não pode ser posterior à data atual',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
+  if (isDateEqual(dateNow, date)) {
+    if (startTime > hourNow) {
+      req.flash(
+        'error-input-ticket',
+        'O horário de início não pode ser posterior ao horário atual.',
+      );
+      res.render('ticket/create', {
+        ticket,
+        departaments,
+        people,
+        equipments,
+        administrators,
+        loggedInUser,
+      });
+      return;
+    }
+  }
+
+  if (isDateEqual(dateNow, date)) {
+    if (endTime > hourNow) {
+      req.flash(
+        'error-input-ticket',
+        'O horário de término não pode ser posterior ao horário atual.',
+      );
+      res.render('ticket/create', {
+        ticket,
+        departaments,
+        people,
+        equipments,
+        administrators,
+        loggedInUser,
+      });
+      return;
+    }
+  }
 
   if (title.length <= 9) {
     req.flash(
@@ -157,22 +213,6 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (formatDate(dateNow) < formatDateBd(date)) {
-    req.flash(
-      'error-input-ticket',
-      'A data do ticket não pode ser posterior à data atual.',
-    );
-    res.render('ticket/create', {
-      ticket,
-      departaments,
-      people,
-      equipments,
-      administrators,
-      loggedInUser,
-    });
-    return;
-  }
-
   if (endTime < startTime) {
     req.flash(
       'error-input-ticket',
@@ -189,10 +229,10 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (endTime < startTime) {
+  if (!administratorInput) {
     req.flash(
       'error-input-ticket',
-      'A hora de início não pode ser posterior à hora de término.',
+      'O campo "agente de atendimento" deve ser preenchido. Clique na lupa para selecionar.',
     );
     res.render('ticket/create', {
       ticket,
@@ -205,23 +245,38 @@ module.exports.checkTicket = async function async(req, res, next) {
     return;
   }
 
-  if (formatDate(dateNow) === formatDateBd(date)) {
-    if (startTime > hourNow) {
-      req.flash(
-        'error-input-ticket',
-        'O horário de início não pode ser posterior ao horário atual.',
-      );
-      res.render('ticket/create', {
-        ticket,
-        departaments,
-        people,
-        equipments,
-        administrators,
-        loggedInUser,
-      });
-      return;
-    }
+  if (!departamentInput) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "setor" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
   }
+
+  if (!equipmentInput) {
+    req.flash(
+      'error-input-ticket',
+      'O campo "Equipamento/Sistema" deve ser preenchido. Clique na lupa para selecionar.',
+    );
+    res.render('ticket/create', {
+      ticket,
+      departaments,
+      people,
+      equipments,
+      administrators,
+      loggedInUser,
+    });
+    return;
+  }
+
   next();
 };
 
@@ -382,7 +437,8 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
     });
     return;
   }
-  if (formatDate(dateNow) < formatDateBd(date)) {
+
+  if (isDateGreater(dateNow, date)) {
     req.flash(
       'error-input-ticket',
       'A data do ticket não pode ser posterior à data atual.',
@@ -422,7 +478,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
     return;
   }
 
-  if (formatDate(dateNow) === formatDateBd(date)) {
+  if (isDateEqual(dateNow, date)) {
     if (startTime > hourNow) {
       req.flash(
         'error-input-ticket',
@@ -444,7 +500,7 @@ module.exports.checkUpdateTicket = async function async(req, res, next) {
     }
   }
 
-  if (formatDate(dateNow) === formatDateBd(date)) {
+  if (isDateEqual(dateNow, date)) {
     if (endTime > hourNow) {
       req.flash(
         'error-input-ticket',
