@@ -549,7 +549,7 @@ ul {
   border: 1px solid rgba(52, 56, 78, 0.4784313725);
   padding: 1.5rem;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.289);
+  background: rgba(0, 0, 0, 0.459);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(0.5px);
@@ -576,27 +576,26 @@ ul {
   display: flex;
   justify-content: center;
   border-bottom: 1px solid rgba(52, 56, 78, 0.4784313725);
-  margin-bottom: 3rem;
-  margin-top: -1rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 .auth-container .card-auth .title-auth h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   object-fit: cover;
   font-weight: 200;
   color: #f9f9f9;
 }
 .auth-container .card-auth .title-auth h1 span {
-  font-size: 1.8rem;
-  font-weight: 300;
+  font-size: 0.8rem;
+  font-weight: 800;
   color: #f9f9f9;
 }
 .auth-container .card-auth .logo {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 .auth-container .card-auth .logo img {
-  width: 230px;
+  width: 180px;
   object-fit: cover;
 }
 .auth-container .card-auth .form-auth .form-control {
