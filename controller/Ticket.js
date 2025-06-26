@@ -396,13 +396,14 @@ module.exports = class TicketController {
     });
     // Formate a data antes de passá-la para o frontend
     tickets = tickets.map((result) => {
-      const plainResult = result.get({ plain: true });
+      let plainResult = result.get({ plain: true });
       // Renomeia o campo AdministratorId para AdministratorName
       plainResult.AdministratorName = plainResult.Administrator?.Person?.name;
       // Formate o campo de data para o formato brasileiro
       plainResult.date = formatDateBd(plainResult.date);
       return plainResult;
     });
+    tickets = tickets.reverse();
 
     res.render('ticket/all', { tickets, clear, loggedInUser });
   }
